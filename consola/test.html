@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tester</title>
+  <script src="./Server/database.js"></script>
+</head>
+
+<style>
+  
+  .TestBoton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    vertical-align: center;
+    justify-content: center;
+  }
+
+
+</style>
+
+<script>
+
+function Test(){
+
+var query = 'SELECT * from SOV_Productos';
+
+connection.query(query, function(err, rows, fields) {
+    if(err){
+        console.log("An error ocurred performing the query.");
+        return;
+    }
+
+    console.log("Query succesfully executed: ", rows);
+});
+  
+}
+
+</script>
+<body>
+  
+<div class="TestBoton">
+  <div style="width:100%; height:200%">
+    <button type="button" onclick="Test()">Test!</button>
+</div>
+  
+</div>
+
+<div>
+
+<p id="result"></p>
+</div>
+
+  
+</body>
+</html>
