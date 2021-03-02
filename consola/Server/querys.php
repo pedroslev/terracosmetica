@@ -194,5 +194,70 @@ if (isset($_POST['SubirAWebSC'])) {
         $conn->close();}
         }
 
+    //CARGAR USUARIO
+    if (isset($_POST['SubirUsuario'])) {
+
+        $NombreUsuario = $_POST['NombreUsuario'];
+        $EmailUsuario = $_POST['EmailUsuario'];
+        $ContrasenaUsuario = md5($_POST['ContrasenaUsuario']);
+        $NivelUsuario = $_POST['NivelUsuario'];
+        
+        $sql = "INSERT INTO SOV_Usuarios (Nombre, Email, Contrasena, Level)
+        VALUES ('$NombreUsuario', '$EmailUsuario', '$ContrasenaUsuario' , '$NivelUsuario')";
+        $result = $conn->query($sql);
+        
+        if ($result) {
+        header("Location: ../index.php");
+        $conn->close();
+        exit();
+        }
+        else 
+        {
+        header("Location: ../signin.html");
+        $conn->close();}
+        }
+
+    //EDITAR USUARIO
+    if (isset($_POST['EditarUsuario'])) {
+
+        $IDUsuario = $_POST['IDUsuario'];
+        $NombreUsuario = $_POST['NombreUsuario'];
+        $EmailUsuario = $_POST['EmailUsuario'];
+        $ContrasenaUsuario = md5($_POST['ContrasenaUsuario']);
+        $NivelUsuario = $_POST['NivelUsuario'];
+        
+        $sql = "UPDATE SOV_Usuarios SET  Nombre='".$NombreUsuario."' , Email='".$EmailUsuario."' , Contrasena='".$ContrasenaUsuario."' , Level='".$NivelUsuario."' WHERE ID='".$IDUsuario."' ";
+        $result = $conn->query($sql);
+        
+        if ($result) {
+        header("Location: ../index.php");
+        $conn->close();
+        exit();
+        }
+        else 
+        {
+        header("Location: ../signin.html");
+        $conn->close();}
+        }
+
+            //ELIMINAR USUARIO
+    if (isset($_POST['EliminarUsuario'])) {
+
+        $IDUsuario= $_POST['IDUsuario'];
+        
+        $sql = "DELETE FROM SOV_Usuarios WHERE ID='".$IDUsuario."' ";
+        $result = $conn->query($sql);
+        
+        if ($result) {
+        header("Location: ../index.php");
+        $conn->close();
+        exit();
+        }
+        else 
+        {
+        header("Location: ../signin.html");
+        $conn->close();}
+        }
+
 
 ?>

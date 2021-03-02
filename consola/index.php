@@ -33,7 +33,7 @@ session_start();
       
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="signin.html">Sign out</a>
+          <a class="nav-link" href="login.php">Sign out</a>
         </li>
       </ul>
     </nav>
@@ -482,18 +482,18 @@ session_start();
 
           <!-- PROVEEDORES -->
           <div class="Ocultar" id="ProveedoresTitulo">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Proveedores</h1>
-         <!-- FORM DE PROVEEDORES -->
-            <form method="POST" class="form-inline">
-            <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorConf" name="ProveedorConf" required placeholder="Proveedor">
-            <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorTelConf" name="ProveedorTelConf" required placeholder="Telefono">
-            <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorEmailConf" name="ProveedorEmailConf" required placeholder="Email">
-            <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorDirConf" name="ProveedorDirConf" required placeholder="Direccion">
-            <button type="submit" class="btn btn-success mb-2" name="SubirProveedor">Agregar</button>
-           </form>
-            <!-- FIN DE FORM DE PROVEEDORES -->
-            </div>
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Proveedores</h1>
+                    <!-- FORM DE PROVEEDORES -->
+                    <form method="POST" class="form-inline">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorConf" name="ProveedorConf" required placeholder="Proveedor">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorTelConf" name="ProveedorTelConf" required placeholder="Telefono">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorEmailConf" name="ProveedorEmailConf" required placeholder="Email">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorDirConf" name="ProveedorDirConf" required placeholder="Direccion">
+                        <button type="submit" class="btn btn-success mb-2" name="SubirProveedor">Agregar</button>
+                   </form>
+                    <!-- FIN DE FORM DE PROVEEDORES -->
+              </div>
            
        
 
@@ -634,61 +634,66 @@ session_start();
 
           <!-- Configuracion -->
           <div class="Ocultar" id="ConfiguracionTitulo">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Configuracion</h1>
-            </div>
-                <div class="table-responsive">
-                              <table class="table table-striped table-sm">
-                                <thead>
-                                  <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Puesto</th>
-                                    <th>Email</th>
-                                    <th></th>
-                                    <th></th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                  <?php 
-                        //MOSTRADOR DE PRODUCTOS (LISTADO)
-                        $class="FormLista";
-                        $sql ="SELECT * FROM SOV_Usuarios";
-                        $result= $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                               ?>                     
-<tr>
-   <td><?php echo $row["ID"]; ?></td>
-    <form action="index.php#Usuarios" method="post" id="EditarUsuario<?php echo $row["ID"]; ?>">                    
-        <td><input name="NombreUsuario" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Nombre"]; ?>"></td>
-        <td><input name="ApellidoUsuario" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Apellido"]; ?>"></td>
-        <td><input name="PuestoUsuario" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Puesto"]; ?>"></td>
-        <td><input name="EmailUsuario" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Email"]; ?>"></td>
-        <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
-        <input type="hidden" name="EditarProducto" value="set" />
-    </form>
-    <td> 
-        <button class="btn btn-light" name="EditarUsuario" onclick=".submit()"><span data-feather="edit"></span></button>
-    </td> 
-    <td>                 
-        <form action="index.php#Usuarios" method="post">
-            <input type="hidden" name="IDUsuario" value="<?php echo $row["ID"]; ?>" />
-            <button class="btn btn-light" name="EliminarUsuario" onclick=".submit()"><span data-feather="trash-2"></span></button>
-        </form>                                    
-    </td> 
-</tr>
-                         <?php   } } else {  ?>
-                            <tr>
-                            NO HAY Ususarios
-                            <tr>
-                      <?php     }   ?>             
-                  </tbody>
-                </table>
-              </div>
-              </div> 
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">Usuarios</h1>
+                 <!-- FORM DE Ususarios -->
+                    <form method="POST" class="form-inline">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="NombreUsuario" name="NombreUsuario" required placeholder="Nombre">
+                        <input type="email" class="form-control mb-2 mr-sm-2" id="EmailUsuario" name="EmailUsuario" required placeholder="Email">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="ContrasenaUsuario" name="ContrasenaUsuario" required placeholder="Contraseña">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="NivelUsuario" name="NivelUsuario" required placeholder="Nivel">
+                        <button type="submit" class="btn btn-success mb-2" name="SubirUsuario">Agregar</button>
+                   </form>
+                    <!-- FIN DE FORM DE Ususarios-->
+                </div>
+                    <div class="table-responsive">
+                                  <table class="table table-striped table-sm">
+                                    <thead>
+                                      <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Contraseña</th>
+                                        <th>Nivel</th>
+                                        <th></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                      <?php 
+                            //MOSTRADOR DE PRODUCTOS (LISTADO)
+                            $class="FormLista";
+                            $sql ="SELECT * FROM SOV_Usuarios";
+                            $result= $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                   ?>                     
+                                        <tr>
+                                           <td><?php echo $row["ID"]; ?></td>
+                                            <form action="index.php#Usuarios" method="post" id="EditarUsuario<?php echo $row["ID"]; ?>">                    
+                                                <td><input name="NombreUsuario" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Nombre"]; ?>"></td>
+                                                <td><input name="EmailUsuario" type="email"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Email"]; ?>"></td>
+                                                <td><input name="ContrasenaUsuario" type="password"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Contrasena"]; ?>"></td>
+                                                <td><input name="NivelUsuario" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Level"]; ?>"></td>
+                                                <input type="hidden" name="IDUsuario" value="<?php echo $row["ID"]; ?>" />
+                                                <input type="hidden" name="EditarUsuario" value="set" />
+                                            </form>                                            
+                                            <td>                 
+                                                <form action="index.php#Usuarios" method="post">
+                                                    <input type="hidden" name="IDUsuario" value="<?php echo $row["ID"]; ?>" />
+                                                    <button class="btn btn-light" name="EliminarUsuario" onclick=".submit()"><span data-feather="trash-2"></span></button>
+                                                </form>                                    
+                                            </td> 
+                                        </tr>
+                             <?php   } } else {  ?>
+                                <tr>
+                                NO HAY Ususarios
+                                <tr>
+                          <?php     }   ?>             
+                      </tbody>
+                    </table>
+                  </div>
+          </div> 
 
 
         </main>
