@@ -1,6 +1,6 @@
 <?php
 
-$conn=new mysqli("localhost", "u839063682_Sovuser1", "Sovpassword1", "u839063682_sov");
+$conn=new mysqli("localhost", "u839063682_terrauser", "Terrapassword1", "u839063682_TERRA");
 
 
 if (mysqli_connect_errno()) {
