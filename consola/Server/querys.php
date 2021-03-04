@@ -86,72 +86,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
 
 
-    //CARGAR PROVEEDOR
-    if (isset($_POST['SubirProveedor'])) {
-
-        $NombreProveedor= $_POST['ProveedorConf'];
-        $TelefonoProveedor=$_POST['ProveedorTelConf'];
-        $DireccionProveedor= $_POST['ProveedorDirConf'];
-        $EmailProveedor= $_POST['ProveedorEmailConf'];
-        
-        $sql = "INSERT INTO SOV_Proveedores (Nombre, Telefono, Direccion, Email)
-        VALUES ('$NombreProveedor', '$TelefonoProveedor', '$DireccionProveedor' , '$EmailProveedor')";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
-        $conn->close();
-        exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
-
-    //EDITAR PROVEEDOR
-    if (isset($_POST['EditarProveedor'])) {
-        
-        $IDProveedor= $_POST['IDProveedor'];
-        $NombreProveedor= $_POST['ProveedorEdit'];
-        $TelefonoProveedor=$_POST['ProveedorTelEdit'];
-        $DireccionProveedor= $_POST['ProveedorDirEdit'];
-        $EmailProveedor= $_POST['ProveedorEmailEdit'];
-        
-        $sql = "UPDATE SOV_Proveedores SET  Nombre='".$NombreProveedor."' , Telefono='".$TelefonoProveedor."' , Direccion='".$DireccionProveedor."' , Email='".$EmailProveedor."' WHERE ID='".$IDProveedor."' ";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
-        $conn->close();
-        exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
-
-//ELIMINAR PROVEEDOR
-    if (isset($_POST['EliminarProveedor'])) {
-
-        $IDProveedor= $_POST['IDProveedor'];
-        
-        $sql = "DELETE FROM SOV_Proveedores WHERE ID='".$IDProveedor."' ";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
-        $conn->close();
-        exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
-
-
+    
 
     //CARGAR CATEGORIA
     if (isset($_POST['SubirCategoria'])) {

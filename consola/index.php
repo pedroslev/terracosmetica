@@ -19,10 +19,10 @@ session_start();
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="icon" type="image/x-icon" href="./media/favicon.png"/>
 	
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
   <script src="./js/index.js"></script>
   
 </head>
@@ -107,157 +107,6 @@ session_start();
             Bienvenido a la interfaz de Administrador de HAZE S.O.V. (Sistema de Organización de Ventas)
             </div>
             
-          <!-- FACTURACION -->
-          <div class="Ocultar" id="FacturacionTitulo">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Facturacion</h1>
-            <form action="index.php#Facturacion" method="post" id="BuscarProducto">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar..." id="BuscadorFacturacion" name="BuscadorFacturacion" onchange="document.getElementById('BuscarProducto').submit()" aria-label="Text input with segmented dropdown button">
-              <div class="input-group-append">
-               <input type="hidden" name="BuscarProducto" value="set" />
-                <button type="button" class="btn btn-outline-secondary" onclick=".submit()">Buscar</button>
-                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="sr-only">Filtrar por</span>
-                </button>
-                <div class="dropdown-menu">
-                 <button class="dropdown-item" href="#">Nombre</button>
-                  <button class="dropdown-item" href="#">Proveedor</button>
-                  <button class="dropdown-item" href="#">Categoria</button>
-                  <button class="dropdown-item" href="#">Codigo</button>
-                  <div role="separator" class="dropdown-divider"></div>
-                  <button class="dropdown-item" href="#">borrar filtros</button>
-                </div>
-              </div>
-            </div>
-            </form> 
-            </div>
-            
-<div class="card-deck">
-  <div class="card">
-   <div class="card-header">
-    Resultado De Busqueda
-  </div>
-    <div class="card-body">
-     <div class="table-responsive">
-                              <table class="table table-striped table-sm">
-                                <thead>
-                                  <tr>
-                                    <th>Codigo</th>
-                                    <th>Nombre</th>
-                                    <th>Precio U</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio F</th>
-                                    <th>Agregar</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                
-                  <?php 
-                        //MOSTRADOR DE PRODUCTOS (LISTADO)
-                                    if (isset($_POST['BuscarProducto'])) {
-
-        $BuscadorFacturacion= $_POST['BuscadorFacturacion'];                 
-          $sql ="SELECT * FROM SOV_Productos WHERE Nombre LIKE '%".$BuscadorFacturacion."%'";
-                        $result= $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                               ?>                     
-<tr>         
-        <td><?php echo $row["Codigo"]; ?></td>
-        <td><?php echo $row["Nombre"]; ?></td> 
-        <td><?php echo $row["PrecioSov"]; ?></td>
-        <td><span data-feather="minus-circle"></span><input name="CantidadProducto" type="text" class="FormLista" value="001"><span data-feather="plus-circle"></span></td>
-        <td><?php echo F; ?></td>
-    <form action="index.php#Facturacion" method="post">
-            <input type="hidden" name="IDAgregarProducto" value="<?php echo $row["ID"]; ?>" />
-            <td><button class="btn btn-link" name="AgregarProducto" onclick=".submit()"><span data-feather="plus-circle"></span></button></td>
-        </form>  
-</tr>
-                         <?php   } } else {  ?>
-                            <tr>
-                            NO HAY Coincidencias
-                            <tr>
-                      <?php     } } else { ?> 
-                          buscate algo
-                      <?php     }?>              
-                  </tbody>
-                </table>
-              </div>
-    </div>
-  </div>
-  <div class="card">
-   <div class="card-header">
-    Carrito
-  </div>
-       <div class="card-body">
-     <div class="table-responsive">
-                              <table class="table table-striped table-sm">
-                                <thead>
-                                  <tr>
-                                    <th>Codigo</th>
-                                    <th>Nombre</th>
-                                    <th>Precio U</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio T</th>
-                                    <th>Quitar</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                <?php 
-                    //MOSTRADOR DE PRODUCTOS (LISTADO)
-                   for($Y=0;$Y <= $_SESSION['CantidadCarrito'];$Y++) {
-                       console.log($_SESSION['IDCarrito'][$Y]);
-                   }
-                                    
-                                    
-                    for($Y=0;$Y <= $_SESSION['CantidadCarrito'];$Y++) {
-                    $IDT=$_SESSION['IDCarrito'][$Y];
-                        echo $IDT;
-                    $sql ="SELECT * FROM SOV_Productos WHERE ID ='".$IDT."'";
-                    $result= $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                        // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                           ?>         
-                        <tr>         
-                            <td><?php echo $row["Codigo"]; ?></td>
-                            <td><?php echo $row["Nombre"]; ?></td> 
-                            <td><?php echo $row["PrecioSov"]; ?></td>
-                            <td><span data-feather="minus-circle"></span><input name="CantidadProducto" type="text" class="FormLista" value="001"><span data-feather="plus-circle"></span></td>
-                            <td><?php echo F; ?></td>
-                            <form action="index.php#Facturacion" method="post">
-                            <input type="hidden" name="IDAgregarProducto" value="<?php echo $row["ID"]; ?>" />
-                            <td><button class="btn btn-link" name="quitarrProducto" onclick=".submit()"><span data-feather="minus-circle"></span></button></td>
-                            </form>  
-                        </tr>
-                    <?php }  } else {  ?>
-                    <tr>
-                        Error
-                    <tr>
-                    <?php }; }; ?>  
-                    
-                  </tbody>
-                  
-                </table>
-              </div>
-    </div>
-  </div>
-</div>
-           <nav class="navbar fixed-bottom navbar-dark bg-dark justify-content-between" style="  left: 227px;">
-      <div>
-      <h3 class="navbar-text">$14000<br><small>Total a Facturar</small></h3>
-      <h3 class="navbar-text">2<br><small>Total De Articulos</small></h3>
-      </div>
-     <div>
-      <button type="button" class="btn btn-success">Cobrar En Efectivo</button>
-      <button type="button" class="btn btn-primary">Cobrar Con MercadoPago</button>
-      </div>
-     
-    </nav>
-            </div>
-            
           <!-- VENTAS -->
           <div class="Ocultar" id="VentasTitulo">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -281,11 +130,8 @@ session_start();
                                     <th>Nombre</th>
                                     <th>Cantidad</th>
                                     <th>Categoria</th>
-                                    <th>Proveedor</th>
-                                    <th>Costo</th>
-                                    <th>MargenSov</th>
-                                    <th>MargenML</th>
-                                    <th>PrecioSov</th>
+                                    <th>Costo</th>                                    
+                                    <th>MargenML</th>                                   
                                     <th>PrecioML</th>
                                     <th></th>
                                     <th></th>
@@ -307,11 +153,8 @@ session_start();
         <td><?php echo $row["Nombre"]; ?></td>                            
         <td><?php echo $row["Stock"]; ?></td>
         <td><?php echo $row["Categoria"]; ?></td>
-        <td><?php echo $row["Proveedor"]; ?></td>
         <td>$<input name="CostoProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Costo"]; ?>"></td>
-        <td>%<input name="MargenSovProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["MargenSov"]; ?>"></td>
         <td>%<input name="MargenMLProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["MargenML"]; ?>"></td>
-        <td>$<input name="PrecioSOVProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["PrecioSov"]; ?>"></td>
         <td>$<input name="PrecioMLProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["PrecioML"]; ?>"></td>
         <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
         <input type="hidden" name="EditarProducto" value="set" />
@@ -384,30 +227,8 @@ session_start();
                     ?>
                     </select>
                 </div>
-                  <div class="col">
-                  <label for="Proveedor">Proveedor</label>
-                    <select class="form-control" id="Proveedor" name="Proveedor" required>
-                    <?php 
-                        //MOSTRADOR DE PROVEEDORES EN CARGA DE PRODUCTOS
-                        $sqlProveedores ="SELECT Nombre FROM SOV_Proveedores";
-                        $resultProveedores= $conn->query($sqlProveedores);
-                        if ($resultProveedores->num_rows > 0) {
-                            // output data of each row
-                            while($row = $resultProveedores->fetch_assoc()) {
-                              echo "<option>" .$row["Nombre"]. "</option>";
-                            }
-                          } else {
-                            echo "<option> - </option>";
-                          }
-                          
-                    ?>
-                    </select>
-                </div>
-                  <div class="col">
-                  <label for="LinkFoto">Link Foto</label>
-                  <input type="text" class="form-control mb-2" id="LinkFoto" name="Link" placeholder="http:foto.com/sov.jpg">
-                </div>
-                </div>
+    
+                 </div>
                 <div class="form-row">
                 <div class="col">
                   <label for="Costo">Costo</label>
@@ -418,15 +239,7 @@ session_start();
                     <input type="text" class="form-control" id="Costo" name="Costo" value="" placeholder="Costo" onchange="CalculoPrecioSov()" >
                   </div>
                 </div>
-                  <div class="col">
-                  <label for="MargenSov">MargenSov</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">%</div>
-                    </div>
-                    <input type="text" class="form-control" id="MargenSov" name="MargenSov" placeholder="100" value="0" onchange="CalculoPrecioSov()">
-                  </div>
-                </div>
+                
                 <div class="col">
                   <label for="MargenML">MargenML</label>
                   <div class="input-group mb-2">
@@ -436,15 +249,7 @@ session_start();
                     <input type="text" class="form-control" id="MargenML" name="MargenML" placeholder="100" value="0" onchange="CalculoPrecioML()">
                   </div>
                 </div>
-              <div class="col">
-                  <label for="PrecioSov">PrecioSov</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">$</div>
-                    </div>
-                    <input type="text" class="form-control" id="PrecioSov" name="PrecioSov" placeholder="PrecioSov">
-                  </div>
-                </div>
+             
                 <div class="col">
                   <label for="PrecioML">PrecioML</label>
                   <div class="input-group mb-2">
@@ -457,12 +262,7 @@ session_start();
                 </div>
 
                 
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
-                  <label class="form-check-label" for="defaultCheck1">
-                    Mostrar en el Ecomerce
-                  </label>
-                </div>
+              
                 <div class="form-row">
                 <div class="col">
                   
