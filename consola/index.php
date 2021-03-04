@@ -287,11 +287,8 @@ session_start();
                                     <th>Nombre</th>
                                     <th>Cantidad</th>
                                     <th>Categoria</th>
-                                    <th>Proveedor</th>
-                                    <th>Costo</th>
-                                    <th>MargenSov</th>
-                                    <th>MargenML</th>
-                                    <th>PrecioSov</th>
+                                    <th>Costo</th>                                    
+                                    <th>MargenML</th>                                   
                                     <th>PrecioML</th>
                                     <th></th>
                                     <th></th>
@@ -313,11 +310,8 @@ session_start();
         <td><?php echo $row["Nombre"]; ?></td>                            
         <td><?php echo $row["Stock"]; ?></td>
         <td><?php echo $row["Categoria"]; ?></td>
-        <td><?php echo $row["Proveedor"]; ?></td>
         <td>$<input name="CostoProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Costo"]; ?>"></td>
-        <td>%<input name="MargenSovProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["MargenSov"]; ?>"></td>
         <td>%<input name="MargenMLProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["MargenML"]; ?>"></td>
-        <td>$<input name="PrecioSOVProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["PrecioSov"]; ?>"></td>
         <td>$<input name="PrecioMLProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["PrecioML"]; ?>"></td>
         <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
         <input type="hidden" name="EditarProducto" value="set" />
@@ -390,30 +384,8 @@ session_start();
                     ?>
                     </select>
                 </div>
-                  <div class="col">
-                  <label for="Proveedor">Proveedor</label>
-                    <select class="form-control" id="Proveedor" name="Proveedor" required>
-                    <?php 
-                        //MOSTRADOR DE PROVEEDORES EN CARGA DE PRODUCTOS
-                        $sqlProveedores ="SELECT Nombre FROM SOV_Proveedores";
-                        $resultProveedores= $conn->query($sqlProveedores);
-                        if ($resultProveedores->num_rows > 0) {
-                            // output data of each row
-                            while($row = $resultProveedores->fetch_assoc()) {
-                              echo "<option>" .$row["Nombre"]. "</option>";
-                            }
-                          } else {
-                            echo "<option> - </option>";
-                          }
-                          
-                    ?>
-                    </select>
-                </div>
-                  <div class="col">
-                  <label for="LinkFoto">Link Foto</label>
-                  <input type="text" class="form-control mb-2" id="LinkFoto" name="Link" placeholder="http:foto.com/sov.jpg">
-                </div>
-                </div>
+    
+                 </div>
                 <div class="form-row">
                 <div class="col">
                   <label for="Costo">Costo</label>
@@ -424,15 +396,7 @@ session_start();
                     <input type="text" class="form-control" id="Costo" name="Costo" value="" placeholder="Costo" onchange="CalculoPrecioSov()" >
                   </div>
                 </div>
-                  <div class="col">
-                  <label for="MargenSov">MargenSov</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">%</div>
-                    </div>
-                    <input type="text" class="form-control" id="MargenSov" name="MargenSov" placeholder="100" value="0" onchange="CalculoPrecioSov()">
-                  </div>
-                </div>
+                
                 <div class="col">
                   <label for="MargenML">MargenML</label>
                   <div class="input-group mb-2">
@@ -442,15 +406,7 @@ session_start();
                     <input type="text" class="form-control" id="MargenML" name="MargenML" placeholder="100" value="0" onchange="CalculoPrecioML()">
                   </div>
                 </div>
-              <div class="col">
-                  <label for="PrecioSov">PrecioSov</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">$</div>
-                    </div>
-                    <input type="text" class="form-control" id="PrecioSov" name="PrecioSov" placeholder="PrecioSov">
-                  </div>
-                </div>
+             
                 <div class="col">
                   <label for="PrecioML">PrecioML</label>
                   <div class="input-group mb-2">
@@ -463,12 +419,7 @@ session_start();
                 </div>
 
                 
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
-                  <label class="form-check-label" for="defaultCheck1">
-                    Mostrar en el Ecomerce
-                  </label>
-                </div>
+              
                 <div class="form-row">
                 <div class="col">
                   
