@@ -13,7 +13,7 @@ session_start();
 
 <head>
 	<meta charset="utf-8">
-	<title>Haze SOV</title>
+	<title>Terra Consola</title>
 	<meta name="author" content="HAZEinc.">
 	<meta name="description" content="Ventas online y control de stock">
 	
@@ -29,7 +29,7 @@ session_start();
 
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0"> 
-      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">SOV DEMO</a>
+      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">DEMO</a>
       
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -45,7 +45,7 @@ session_start();
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#Inicio" id="Inicio" onclick="Seleccionar(selected=0)">
+                <a class="nav-link active" href="#Inicio" id="Inicio" name="Inicio" onclick="Seleccionar(selected=0)">
                   <span data-feather="home"></span>
                   Inicio
                 </a>
@@ -61,12 +61,6 @@ session_start();
                 <a class="nav-link" href="#Productos" id="Productos" onclick="Seleccionar(selected=2)">
                   <span data-feather="gift"></span>
                   Productos
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#Proveedores" id="Proveedores" onclick="Seleccionar(selected=7)">
-                  <span data-feather="truck"></span>
-                  Proveedores
                 </a>
               </li>
               <li class="nav-item">
@@ -274,81 +268,7 @@ session_start();
             </div>
           <!-- FIN DEL FORMULARIO DE CARGA DE PRODUCTOS -->
 
-          <!-- PROVEEDORES -->
-          <div class="Ocultar" id="ProveedoresTitulo">
-              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Proveedores</h1>
-                    <!-- FORM DE PROVEEDORES -->
-                    <form method="POST" class="form-inline">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorConf" name="ProveedorConf" required placeholder="Proveedor">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorTelConf" name="ProveedorTelConf" required placeholder="Telefono">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorEmailConf" name="ProveedorEmailConf" required placeholder="Email">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="ProveedorDirConf" name="ProveedorDirConf" required placeholder="Direccion">
-                        <button type="submit" class="btn btn-success mb-2" name="SubirProveedor">Agregar</button>
-                   </form>
-                    <!-- FIN DE FORM DE PROVEEDORES -->
-              </div>
-           
-       
 
-      <!-- LISTADO DE Proveedores-->
-      <div class="table-responsive">
-            <table class="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Telefono</th>
-                    <th>Email</th>
-                  <th>Dirección</th>
-                  <th></th>
-                </tr>
-              </thead>
-            <tbody>
-            <?php 
-                  $sql ="SELECT * FROM SOV_Proveedores";
-                  $result= $conn->query($sql);
-                  if ($result->num_rows > 0) {
-                      // output data of each row
-                      while($row = $result->fetch_assoc()) {
-                        //HAY QUE AGREGAR ENCABEZADO PARA QUE SI NO HAY PROVEEDORES NO LO MUESTRE
-                      ?>                     
-                              <tr>                      
-                              <form action="index.php#Proveedores" method="post" id="EditarProveedor<?php echo $row["ID"]; ?>">
-                                   <td>
-                                    <input class="FormLista" name="ProveedorEdit" type="text"  value="<?php echo $row["Nombre"]; ?>" aria-label="..." onchange="document.getElementById('EditarProveedor<?php echo $row["ID"]; ?>').submit()">
-                                    </td>
-                                    <td>
-                                    <input class="FormLista" name="ProveedorTelEdit" type="text"  value="<?php echo $row["Telefono"]; ?>" aria-label="..." onchange="document.getElementById('EditarProveedor<?php echo $row["ID"]; ?>').submit()">
-                                    </td>
-                                  <td>
-                                    <input class="FormLista" name="ProveedorEmailEdit" type="text"  value="<?php echo $row["Email"]; ?>" aria-label="..." onchange="document.getElementById('EditarProveedor<?php echo $row["ID"]; ?>').submit()">
-                                    </td>
-                                    <td>
-                                    <input class="FormLista" name="ProveedorDirEdit" type="text"  value="<?php echo $row["Direccion"]; ?>" aria-label="..." onchange="document.getElementById('EditarProveedor<?php echo $row["ID"]; ?>').submit()">
-                                    </td>
-                                    <input type="hidden" name="IDProveedor" value="<?php echo $row["ID"]; ?>" />
-                                    <input type="hidden" name="EditarProveedor" value="set" />
-                                </form>
-                              
-                              <td>                 
-                                <form action="index.php#Proveedores" method="post">
-                                    <input type="hidden" name="IDProveedor" value="<?php echo $row["ID"]; ?>" />
-                                    <button class="btn btn-light" name="EliminarProveedor" onclick=".submit()"><span data-feather="trash-2"></span></button>
-                                </form>                                    
-                            </td> 
-                            </tr>
-                         <?php   } } else {  ?>
-                            <tr>
-                            NO HAY PROVEEDORES
-                            <tr>
-                      <?php     }   ?>
-            </tbody>
-          </table>
-        </div>
-            </div>
-             
-          
-          
           <!-- CATEGORIAS -->
           <div class="Ocultar" id="CategoriasTitulo">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
