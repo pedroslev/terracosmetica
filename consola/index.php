@@ -29,7 +29,7 @@ session_start();
 
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0"> 
-      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">TERRA</a>
+      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">DEMO</a>
       
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -45,7 +45,7 @@ session_start();
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#Inicio" id="Inicio" onclick="Seleccionar(selected=0)">
+                <a class="nav-link active" href="#Inicio" id="Inicio" name="Inicio" onclick="Seleccionar(selected=0)">
                   <span data-feather="home"></span>
                   Inicio
                 </a>
