@@ -13,14 +13,13 @@ $Categoria=$_POST['Categoria'];
 $Proveedor=$_POST['Proveedor'];
 $Link=$_POST['Link'];
 $Costo=$_POST['Costo'];
-$MargenSov=$_POST['MargenSov'];
-$MargenML=$_POST['MargenML'];
-$PrecioSov=$_POST['PrecioSov'];
-$PrecioML=$_POST['PrecioML'];
+$Margen=$_POST['MargenML'];
+$Precio=$_POST['PrecioML'];
 $Mostrar='1';
 
-$sql = "INSERT INTO SOV_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Proveedor, Foto, Costo, MargenSov, MargenML, PrecioSov, PrecioML, Mostrar)
-VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '$Proveedor', '$Link', '.$Costo.', '.$MargenSov.', '.$MargenML.', '.$PrecioSov.', '.$PrecioML.', '.$Mostrar.')";
+//AGREGAR IMAGENES
+$sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Mostrar)
+VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '$Link', '.$Costo.', '.$Margen.', '.$Precio.', '.$Mostrar.')";
 $result = $conn->query($sql);
 
 if ($result) {
@@ -51,7 +50,7 @@ if (isset($_POST['SubirAWebSC'])) {
     $PrecioML=$_POST['PrecioML'];
     $Mostrar='1';
     
-    $sql = "INSERT INTO SOV_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Proveedor, Foto, Costo, MargenSov, MargenML, PrecioSov, PrecioML, Mostrar)
+    $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Proveedor, Foto, Costo, MargenSov, MargenML, PrecioSov, PrecioML, Mostrar)
     VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '$Proveedor', '$Link', '.$Costo.', '.$MargenSov.', '.$MargenML.', '.$PrecioSov.', '.$PrecioML.', '.$Mostrar.')";
     $result = $conn->query($sql);
     
@@ -71,7 +70,7 @@ if (isset($_POST['SubirAWebSC'])) {
 
         $IDProducto= $_POST['IDProducto'];
         
-        $sql = "DELETE FROM SOV_Productos WHERE ID='".$IDProducto."' ";
+        $sql = "DELETE FROM TERRA_Productos WHERE ID='".$IDProducto."' ";
         $result = $conn->query($sql);
         
         if ($result) {
@@ -86,72 +85,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
 
 
-    //CARGAR PROVEEDOR
-    if (isset($_POST['SubirProveedor'])) {
-
-        $NombreProveedor= $_POST['ProveedorConf'];
-        $TelefonoProveedor=$_POST['ProveedorTelConf'];
-        $DireccionProveedor= $_POST['ProveedorDirConf'];
-        $EmailProveedor= $_POST['ProveedorEmailConf'];
-        
-        $sql = "INSERT INTO SOV_Proveedores (Nombre, Telefono, Direccion, Email)
-        VALUES ('$NombreProveedor', '$TelefonoProveedor', '$DireccionProveedor' , '$EmailProveedor')";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
-        $conn->close();
-        exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
-
-    //EDITAR PROVEEDOR
-    if (isset($_POST['EditarProveedor'])) {
-        
-        $IDProveedor= $_POST['IDProveedor'];
-        $NombreProveedor= $_POST['ProveedorEdit'];
-        $TelefonoProveedor=$_POST['ProveedorTelEdit'];
-        $DireccionProveedor= $_POST['ProveedorDirEdit'];
-        $EmailProveedor= $_POST['ProveedorEmailEdit'];
-        
-        $sql = "UPDATE SOV_Proveedores SET  Nombre='".$NombreProveedor."' , Telefono='".$TelefonoProveedor."' , Direccion='".$DireccionProveedor."' , Email='".$EmailProveedor."' WHERE ID='".$IDProveedor."' ";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
-        $conn->close();
-        exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
-
-//ELIMINAR PROVEEDOR
-    if (isset($_POST['EliminarProveedor'])) {
-
-        $IDProveedor= $_POST['IDProveedor'];
-        
-        $sql = "DELETE FROM SOV_Proveedores WHERE ID='".$IDProveedor."' ";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
-        $conn->close();
-        exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
-
-
+    
 
     //CARGAR CATEGORIA
     if (isset($_POST['SubirCategoria'])) {
@@ -159,7 +93,7 @@ if (isset($_POST['SubirAWebSC'])) {
         $NombreCategoria= $_POST['NombreCategoria'];
         $IconoCategoria= $_POST['IconoCategoria'];
         
-        $sql = "INSERT INTO SOV_Categorias (Nombre,Icono)
+        $sql = "INSERT INTO TERRA_Categorias (Nombre,Icono)
         VALUES ('$NombreCategoria','$IconoCategoria')";
         $result = $conn->query($sql);
         
@@ -180,7 +114,7 @@ if (isset($_POST['SubirAWebSC'])) {
 
         $IDCategoria= $_POST['IDCategoria'];
         
-        $sql = "DELETE FROM SOV_Categorias WHERE ID='".$IDCategoria."' ";
+        $sql = "DELETE FROM TERRA_Categorias WHERE ID='".$IDCategoria."' ";
         $result = $conn->query($sql);
         
         if ($result) {
@@ -226,7 +160,7 @@ if (isset($_POST['SubirAWebSC'])) {
         $ContrasenaUsuario = md5($_POST['ContrasenaUsuario']);
         $NivelUsuario = $_POST['NivelUsuario'];
         
-        $sql = "UPDATE SOV_Usuarios SET  Nombre='".$NombreUsuario."' , Email='".$EmailUsuario."' , Contrasena='".$ContrasenaUsuario."' , Level='".$NivelUsuario."' WHERE ID='".$IDUsuario."' ";
+        $sql = "UPDATE TERRA_Usuarios SET  Nombre='".$NombreUsuario."' , Email='".$EmailUsuario."' , Contrasena='".$ContrasenaUsuario."' , Level='".$NivelUsuario."' WHERE ID='".$IDUsuario."' ";
         $result = $conn->query($sql);
         
         if ($result) {
@@ -245,7 +179,7 @@ if (isset($_POST['SubirAWebSC'])) {
 
         $IDUsuario= $_POST['IDUsuario'];
         
-        $sql = "DELETE FROM SOV_Usuarios WHERE ID='".$IDUsuario."' ";
+        $sql = "DELETE FROM TERRA_Usuarios WHERE ID='".$IDUsuario."' ";
         $result = $conn->query($sql);
         
         if ($result) {
