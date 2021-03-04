@@ -52,12 +52,6 @@ session_start();
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#Facturacion" id="Facturacion" onclick="Seleccionar(selected=6)">
-                  <span data-feather="shopping-cart"></span>
-                  Facturacion
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="#Ventas" id="Ventas" onclick="Seleccionar(selected=1)">
                   <span data-feather="dollar-sign"></span>
                   Ventas
