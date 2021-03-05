@@ -5,7 +5,7 @@
             rgba(255, 255, 255, 0.19) 0%,
             rgba(255, 255, 255, 0.84) 100%
           ),
-          url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/BANER-1.jpg);
+          url(../images/BANER-1.jpg);
         min-height: 400px;
       }
       .et_pb_row_0.et_pb_row {
@@ -151,7 +151,7 @@
         font-family: "Caveat", handwriting;
         font-size: 24px;
         line-height: 1em;
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/Terra_iconos6.jpg);
+        background-image: url(../images/Terra_iconos6.jpg);
         min-height: 216px;
         padding-right: 50% !important;
         padding-left: 16px !important;
@@ -173,7 +173,7 @@
         font-family: "Caveat", handwriting;
         font-size: 24px;
         line-height: 1em;
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/Terra_iconos-1.jpg);
+        background-image: url(../images/Terra_iconos-1.jpg);
         min-height: 216px;
         padding-right: 50% !important;
         padding-left: 16px !important;
@@ -186,7 +186,7 @@
         font-family: "Caveat", handwriting;
         font-size: 24px;
         line-height: 1em;
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/Terra_iconos-2.jpg);
+        background-image: url(../images/Terra_iconos-2.jpg);
         min-height: 216px;
         padding-right: 50% !important;
         padding-left: 16px !important;
