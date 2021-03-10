@@ -29,7 +29,7 @@ session_start();
 
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0"> 
-      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">DEMO</a>
+      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">Demo Terracosmetica</a>
       
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -85,7 +85,7 @@ session_start();
             <div class="fixed-bottom Marca">
             <a href="http://hazear.com/" target="_blank"><strong>HAZE</strong></a>
             <h1 class="h2"><strong>S O V</strong></h1>
-            <p>Version 0.0</p>
+            <p>Version T0.0.1</p>
           </div>
           </div>
 
@@ -135,7 +135,7 @@ session_start();
                   <?php 
                         //MOSTRADOR DE PRODUCTOS (LISTADO)
                         $class="FormLista";
-                        $sql ="SELECT * FROM SOV_Productos";
+                        $sql ="SELECT * FROM ".$DBN."_Productos";
                         $result= $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
@@ -208,7 +208,7 @@ session_start();
                     <select class="form-control" id="Categoria" name="Categoria" required>
                     <?php 
                         //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
-                        $sql ="SELECT Nombre FROM SOV_Categorias";
+                        $sql ="SELECT Nombre FROM ".$DBN."_Categorias";
                         $result= $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
@@ -299,7 +299,7 @@ session_start();
                                 </thead>
                                 <tbody>
                   <?php 
-                        $sql ="SELECT * FROM SOV_Categorias";
+                        $sql ="SELECT * FROM ".$DBN."_Categorias";
                         $result= $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
@@ -376,7 +376,7 @@ session_start();
                       <?php 
                             //MOSTRADOR DE PRODUCTOS (LISTADO)
                             $class="FormLista";
-                            $sql ="SELECT * FROM SOV_Usuarios";
+                            $sql ="SELECT * FROM ".$DBN."_Usuarios";
                             $result= $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 // output data of each row
