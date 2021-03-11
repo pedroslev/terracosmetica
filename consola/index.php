@@ -303,9 +303,9 @@ function URLChecker(){
             <h1 class="h2">Categorias</h1>
             <!-- FORM DE CATEGORIA -->
             <form method="POST" class="form-inline">
-            <input type="text" class="form-control mb-2 mr-sm-2" id="NombreCategoria" name="NombreCategoria" required placeholder="NombreCategoria">
+            <input type="text" class="form-control mb-2 mr-sm-2" id="NombreCategoria" name="CategoriaNombre" required placeholder="NombreCategoria">
                 <div class="input-group  mb-2 mr-sm-2">
-                <input type="text" class="form-control" id="IconoCategoria" name="IconoCategoria" required placeholder="Pegue Aqui Nombre del icono">
+                <input type="text" class="form-control" id="IconoCategoria" name="CategoriaIcono" placeholder="Pegue Aqui Nombre del icono">
                 <div class="input-group-append">
     <a href="https://feathericons.com/" class="btn btn-outline-secondary" target="_blank">+</a>
   </div>
@@ -339,11 +339,11 @@ function URLChecker(){
                             <td>   
                                
                                 <span data-feather="<?php echo $row["Icono"]; ?>"></span>
-                                <input class="FormLista" name="IconoCategoria" type="text"  value="<?php echo $row["Icono"]; ?>" aria-label="..." onchange="document.getElementById('EditarCategoria<?php echo $row["ID"]; ?>').submit()">
+                                <input class="FormLista" name="CategoriaEditIcono" type="text"  value="<?php echo $row["Icono"]; ?>" aria-label="..." onchange="document.getElementById('EditarCategoria<?php echo $row['ID']; ?>').submit()" >
                             </td>
                             <td>
                                 
-                                    <input class="FormLista" name="NombreCategoria" type="text"  value="<?php echo $row["Nombre"]; ?>" aria-label="..." onchange="document.getElementById('EditarCategoria<?php echo $row["ID"]; ?>').submit()">
+                                    <input class="FormLista" name="CategoriaEditNombre" type="text" required value="<?php echo $row["Nombre"]; ?>" aria-label="..." onchange="document.getElementById('EditarCategoria<?php echo $row['ID']; ?>').submit()">
                                     <input type="hidden" name="IDCategoria" value="<?php echo $row["ID"]; ?>" />
                                     <input type="hidden" name="EditarCategoria" value="set" />
                                 
@@ -380,10 +380,10 @@ function URLChecker(){
                 <h1 class="h2">Usuarios</h1>
                  <!-- FORM DE Ususarios -->
                     <form method="POST" class="form-inline">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="NombreUsuario" name="NombreUsuario" required placeholder="Nombre">
-                        <input type="email" class="form-control mb-2 mr-sm-2" id="EmailUsuario" name="EmailUsuario" required placeholder="Email">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="ContrasenaUsuario" name="ContrasenaUsuario" required placeholder="Contraseña">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="NivelUsuario" name="NivelUsuario" required placeholder="Nivel">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioNombre" name="UsuarioNombre" required placeholder="Nombre">
+                        <input type="email" class="form-control mb-2 mr-sm-2" id="UsuarioEmail" name="UsuarioEmail" required placeholder="Email">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioContrasena" name="UsuarioContrasena" required placeholder="Contraseña">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioNivel" name="UsuarioNivel" required placeholder="Nivel">
                         <button type="submit" class="btn btn-success mb-2" name="SubirUsuario">Agregar</button>
                    </form>
                     <!-- FIN DE FORM DE Ususarios-->
@@ -413,11 +413,12 @@ function URLChecker(){
                                         <tr>
                                            <td><?php echo $row["ID"]; ?></td>
                                             <form action="index.php#Usuarios" method="post" id="EditarUsuario<?php echo $row["ID"]; ?>">                    
-                                                <td><input name="NombreUsuario" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Nombre"]; ?>"></td>
-                                                <td><input name="EmailUsuario" type="email"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Email"]; ?>"></td>
-                                                <td><input name="ContrasenaUsuario" type="password"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Contrasena"]; ?>"></td>
-                                                <td><input name="NivelUsuario" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Level"]; ?>"></td>
+                                                <td><input name="UsuarioNombre" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Nombre"]; ?>"></td>
+                                                <td><input name="UsuarioEmail" type="email"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Email"]; ?>"></td>
+                                                <td><input name="UsuarioContrasena" type="password"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Contrasena"]; ?>"></td>
+                                                <td><input name="UsuarioNivel" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Level"]; ?>"></td>
                                                 <input type="hidden" name="IDUsuario" value="<?php echo $row["ID"]; ?>" />
+                                                <input type="hidden" name="UsuarioContrasenaOld" value="<?php echo $row["Contrasena"]; ?>" />
                                                 <input type="hidden" name="EditarUsuario" value="set" />
                                             </form>                                            
                                             <td>                 
