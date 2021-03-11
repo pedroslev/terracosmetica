@@ -29,7 +29,7 @@ exit();
 }
 else 
 {
-header("Location: /login.php");
+header("Location: ../login.php");
 $conn->close();}
 }
 
@@ -61,7 +61,7 @@ if (isset($_POST['SubirAWebSC'])) {
     }
     else 
     {
-    header("Location: /login.php");
+    header("Location: ../login.php");
     $conn->close();}
     }
 
@@ -80,7 +80,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: /login.php");
+        header("Location: ../login.php");
         $conn->close();}
         }
 
@@ -123,7 +123,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: /login.php");
+        header("Location: ../login.php");
         $conn->close();}
         }
 
@@ -146,7 +146,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: /login.php");
+        header("Location: ../login.php");
         $conn->close();}
         }
 
@@ -169,7 +169,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: /login.php");
+        header("Location: ../login.php");
         $conn->close();}
         }
 
@@ -188,7 +188,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: /login.php");
+        header("Location: ../login.php");
         $conn->close();}
         }
 
