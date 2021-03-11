@@ -87,111 +87,176 @@ if (isset($_POST['SubirAWebSC'])) {
 
     
 
-    //CARGAR CATEGORIA
-    if (isset($_POST['SubirCategoria'])) {
+//CARGAR CATEGORIA
+$Operacion="Categoria";
+if (isset($_POST['Subir'.$Operacion.''])) {
+    //Post de datos
+    $Nombre= $_POST[''.$Operacion.'Nombre'];
+    //Si el usuario no envia icono asiga un "?"
+    if (empty($_POST[''.$Operacion.'Icono'])){
+    $Icono="help-circle"; 
+    } else {
+    $Icono=$_POST[''.$Operacion.'Icono']; 
+    };
 
-        $NombreCategoria= $_POST['NombreCategoria'];
-        $IconoCategoria= $_POST['IconoCategoria'];
+    //Insert en Tabla - $DBN se modifica en:/server/datavase.php
+    $sql = "INSERT INTO ".$DBN."_".$Operacion.'s'." (Nombre,Icono)
+    VALUES ('$Nombre','$Icono')";
+    $result = $conn->query($sql);
+    $conn->close();
+
+    if ($result) {
+        header("Location: ../consola/index.php#'.$Operacion.'");
         
-        $sql = "INSERT INTO TERRA_Categorias (Nombre,Icono)
-        VALUES ('$NombreCategoria','$IconoCategoria')";
-        $result = $conn->query($sql);
+        exit();
+    }
+    else 
+    {
+        header("Location: ../consola/login.php");
         
-        if ($result) {
-        header("Location: ../index.php");
+        exit();
+    }
+}
+
+//EDITAR: Categoria
+$Operacion="Categoria";
+if (isset($_POST['Editar'.$Operacion.''])) {
+    //Post de datos
+    $ID=$_POST['ID'.$Operacion.''];
+    
+    //Si el usuario no envia icono asiga un "?"
+    if (empty($_POST[''.$Operacion.'EditIcono'])){
+    $Icono="help-circle"; 
+    } else {
+    $Icono=$_POST[''.$Operacion.'EditIcono']; 
+    }; 
+
+     //Si el usuario cambia el nombre por un blank no lo modifica en DB
+    if (!empty($_POST[''.$Operacion.'EditNombre'])){
+        $Nombre=$_POST[''.$Operacion.'EditNombre'];
+        //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
+        $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."' , Icono='".$Icono."'  WHERE ID='".$ID."' ";
+    };
+    $result = $conn->query($sql);
+
+    if ($result) {
+        header("Location: ../consola/index.php#'.$Operacion.'");
         $conn->close();
         exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
-
-
-    //ELIMINAR CATEGORIA
-    if (isset($_POST['EliminarCategoria'])) {
-
-        $IDCategoria= $_POST['IDCategoria'];
-        
-        $sql = "DELETE FROM TERRA_Categorias WHERE ID='".$IDCategoria."' ";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
+    } else {
+        header("Location: ../consola/login.php");
         $conn->close();
         exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
+    }
+}    
 
-    //CARGAR USUARIO
-    if (isset($_POST['SubirUsuario'])) {
 
-        $NombreUsuario = $_POST['NombreUsuario'];
-        $EmailUsuario = $_POST['EmailUsuario'];
-        $ContrasenaUsuario = md5($_POST['ContrasenaUsuario']);
-        $NivelUsuario = $_POST['NivelUsuario'];
-        
-        $sql = "INSERT INTO SOV_Usuarios (Nombre, Email, Contrasena, Level)
-        VALUES ('$NombreUsuario', '$EmailUsuario', '$ContrasenaUsuario' , '$NivelUsuario')";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
+//ELIMINAR: CATEGORIA
+$Operacion="Categoria";
+if (isset($_POST['Eliminar'.$Operacion.''])) {
+    //Post de datos
+    $ID=$_POST['ID'.$Operacion.''];
+    //Delete de fila segun ID - $DBN se modifica en:/server/datavase.php
+    $sql = "DELETE FROM ".$DBN."_".$Operacion.'s'." WHERE ID='".$ID."' ";
+    $result = $conn->query($sql);
+
+    if ($result) {
+        header("Location: ../consola/index.php#'.$Operacion.'");
         $conn->close();
         exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
-
-    //EDITAR USUARIO
-    if (isset($_POST['EditarUsuario'])) {
-
-        $IDUsuario = $_POST['IDUsuario'];
-        $NombreUsuario = $_POST['NombreUsuario'];
-        $EmailUsuario = $_POST['EmailUsuario'];
-        $ContrasenaUsuario = md5($_POST['ContrasenaUsuario']);
-        $NivelUsuario = $_POST['NivelUsuario'];
-        
-        $sql = "UPDATE TERRA_Usuarios SET  Nombre='".$NombreUsuario."' , Email='".$EmailUsuario."' , Contrasena='".$ContrasenaUsuario."' , Level='".$NivelUsuario."' WHERE ID='".$IDUsuario."' ";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
+    }
+    else 
+    {
+        header("Location: ../consola/login.php");
         $conn->close();
         exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
+    }
+}
 
-            //ELIMINAR USUARIO
-    if (isset($_POST['EliminarUsuario'])) {
+//CARGAR: Usuario
+$Operacion="Usuario";
+if (isset($_POST['Subir'.$Operacion.''])) {
+    //Post de datos
+    $Nombre = $_POST[''.$Operacion.'Nombre'];
+    $Email = $_POST[''.$Operacion.'Email'];
+    $Contrasena = md5($_POST[''.$Operacion.'Contrasena']);
+    $Nivel= $_POST[''.$Operacion.'Nivel'];
 
-        $IDUsuario= $_POST['IDUsuario'];
+    //Insert en Tabla - $DBN se modifica en:/server/datavase.php
+    $sql = "INSERT INTO ".$DBN."_".$Operacion.'s'." (Nombre, Email, Contrasena, Level)
+    VALUES ('$Nombre', '$Email', '$Contrasena' , '$Nivel')";
+    $result = $conn->query($sql);
+    $conn->close();
+
+    if ($result) {
+        header("Location: ../consola/index.php#'.$Operacion.'");
         
-        $sql = "DELETE FROM TERRA_Usuarios WHERE ID='".$IDUsuario."' ";
-        $result = $conn->query($sql);
+        exit();
+    }
+    else 
+    {
+        header("Location: ../consola/login.php");
         
-        if ($result) {
-        header("Location: ../index.php");
+        exit();
+    }
+}
+    
+
+//EDITAR: Categoria
+$Operacion="Categoria";
+if (isset($_POST['Editar'.$Operacion.''])) {
+    //Post de datos
+    $ID=$_POST['ID'.$Operacion.''];
+    $Nombre = $_POST[''.$Operacion.'Nombre'];
+    $Email = $_POST[''.$Operacion.'Email'];
+    //Falta que chequee si es vacia no cargarla
+    $Nivel= $_POST[''.$Operacion.'Nivel'];
+    if ($_POST[''.$Operacion.'Contrasena']==$_POST[''.$Operacion.'ContrasenaOld']) {
+        //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
+    $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."' , Email='".$Email."' , Level='".$Nivel."'  WHERE ID='".$ID."' ";
+    }
+    else 
+    {
+        $Contrasena = md5($_POST[''.$Operacion.'Contrasena']);
+        //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
+    $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."' , Email='".$Email."' , Contrasena='".$Contrasena."' , Level='".$Nivel."'  WHERE ID='".$ID."' ";
+    }
+
+    
+    $result = $conn->query($sql);
+
+    if ($result) {
+        header("Location: ../consola/index.php#'.$Operacion.'");
         $conn->close();
         exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
-        }
+    } else {
+        header("Location: ../consola/login.php");
+        $conn->close();
+        exit();
+    }
+}   
+           
+        //ELIMINAR: Usuario
+$Operacion="Usuario";
+if (isset($_POST['Eliminar'.$Operacion.''])) {
+    //Post de datos
+    $ID=$_POST['ID'.$Operacion.''];
+    //Delete de fila segun ID - $DBN se modifica en:/server/datavase.php
+    $sql = "DELETE FROM ".$DBN."_".$Operacion.'s'." WHERE ID='".$ID."' ";
+    $result = $conn->query($sql);
+
+    if ($result) {
+        header("Location: ../consola/index.php#'.$Operacion.'");
+        $conn->close();
+        exit();
+    }
+    else 
+    {
+        header("Location: ../consola/login.php");
+        $conn->close();
+        exit();
+    }
+}
 
 
 ?>
