@@ -18,7 +18,7 @@ $Precio=$_POST['PrecioML'];
 $Mostrar='1';
 
 //AGREGAR IMAGENES
-$sql = "INSERT INTO ".$DBN."_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Mostrar)
+$sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Mostrar)
 VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '$Link', '.$Costo.', '.$Margen.', '.$Precio.', '.$Mostrar.')";
 $result = $conn->query($sql);
 
@@ -29,7 +29,7 @@ exit();
 }
 else 
 {
-header("Location: ../login.php");
+header("Location: ../signin.html");
 $conn->close();}
 }
 
@@ -50,7 +50,7 @@ if (isset($_POST['SubirAWebSC'])) {
     $PrecioML=$_POST['PrecioML'];
     $Mostrar='1';
     
-    $sql = "INSERT INTO ".$DBN."_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Proveedor, Foto, Costo, MargenSov, MargenML, PrecioSov, PrecioML, Mostrar)
+    $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Proveedor, Foto, Costo, MargenSov, MargenML, PrecioSov, PrecioML, Mostrar)
     VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '$Proveedor', '$Link', '.$Costo.', '.$MargenSov.', '.$MargenML.', '.$PrecioSov.', '.$PrecioML.', '.$Mostrar.')";
     $result = $conn->query($sql);
     
@@ -61,7 +61,7 @@ if (isset($_POST['SubirAWebSC'])) {
     }
     else 
     {
-    header("Location: ../login.php");
+    header("Location: ../signin.html");
     $conn->close();}
     }
 
@@ -70,7 +70,7 @@ if (isset($_POST['SubirAWebSC'])) {
 
         $IDProducto= $_POST['IDProducto'];
         
-        $sql = "DELETE FROM ".$DBN."_Productos WHERE ID='".$IDProducto."' ";
+        $sql = "DELETE FROM TERRA_Productos WHERE ID='".$IDProducto."' ";
         $result = $conn->query($sql);
         
         if ($result) {
@@ -80,7 +80,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: ../login.php");
+        header("Location: ../signin.html");
         $conn->close();}
         }
 
@@ -93,10 +93,10 @@ if (isset($_POST['SubirAWebSC'])) {
         $NombreCategoria= $_POST['NombreCategoria'];
         $IconoCategoria= $_POST['IconoCategoria'];
         
-        $sql = "INSERT INTO ".$DBN."_Categorias (Nombre,Icono)
+        $sql = "INSERT INTO TERRA_Categorias (Nombre,Icono)
         VALUES ('$NombreCategoria','$IconoCategoria')";
         $result = $conn->query($sql);
-        echo $sql;
+        
         if ($result) {
         header("Location: ../index.php");
         $conn->close();
@@ -104,7 +104,8 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-            echo $sql;
+        header("Location: ../signin.html");
+        $conn->close();}
         }
 
 
@@ -113,7 +114,7 @@ if (isset($_POST['SubirAWebSC'])) {
 
         $IDCategoria= $_POST['IDCategoria'];
         
-        $sql = "DELETE FROM ".$DBN."_Categorias WHERE ID='".$IDCategoria."' ";
+        $sql = "DELETE FROM TERRA_Categorias WHERE ID='".$IDCategoria."' ";
         $result = $conn->query($sql);
         
         if ($result) {
@@ -123,7 +124,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: ../login.php");
+        header("Location: ../signin.html");
         $conn->close();}
         }
 
@@ -135,7 +136,7 @@ if (isset($_POST['SubirAWebSC'])) {
         $ContrasenaUsuario = md5($_POST['ContrasenaUsuario']);
         $NivelUsuario = $_POST['NivelUsuario'];
         
-        $sql = "INSERT INTO ".$DBN."_Usuarios (Nombre, Email, Contrasena, Level)
+        $sql = "INSERT INTO SOV_Usuarios (Nombre, Email, Contrasena, Level)
         VALUES ('$NombreUsuario', '$EmailUsuario', '$ContrasenaUsuario' , '$NivelUsuario')";
         $result = $conn->query($sql);
         
@@ -146,7 +147,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: ../login.php");
+        header("Location: ../signin.html");
         $conn->close();}
         }
 
@@ -159,7 +160,7 @@ if (isset($_POST['SubirAWebSC'])) {
         $ContrasenaUsuario = md5($_POST['ContrasenaUsuario']);
         $NivelUsuario = $_POST['NivelUsuario'];
         
-        $sql = "UPDATE ".$DBN."_Usuarios SET  Nombre='".$NombreUsuario."' , Email='".$EmailUsuario."' , Contrasena='".$ContrasenaUsuario."' , Level='".$NivelUsuario."' WHERE ID='".$IDUsuario."' ";
+        $sql = "UPDATE TERRA_Usuarios SET  Nombre='".$NombreUsuario."' , Email='".$EmailUsuario."' , Contrasena='".$ContrasenaUsuario."' , Level='".$NivelUsuario."' WHERE ID='".$IDUsuario."' ";
         $result = $conn->query($sql);
         
         if ($result) {
@@ -169,7 +170,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: ../login.php");
+        header("Location: ../signin.html");
         $conn->close();}
         }
 
@@ -178,7 +179,7 @@ if (isset($_POST['SubirAWebSC'])) {
 
         $IDUsuario= $_POST['IDUsuario'];
         
-        $sql = "DELETE FROM ".$DBN."_Usuarios WHERE ID='".$IDUsuario."' ";
+        $sql = "DELETE FROM TERRA_Usuarios WHERE ID='".$IDUsuario."' ";
         $result = $conn->query($sql);
         
         if ($result) {
@@ -188,7 +189,7 @@ if (isset($_POST['SubirAWebSC'])) {
         }
         else 
         {
-        header("Location: ../login.php");
+        header("Location: ../signin.html");
         $conn->close();}
         }
 
