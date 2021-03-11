@@ -174,10 +174,8 @@ session_start();
             </div>
             
 
-
-
-            <!-- FORMULARIO DE CARGA DE PRODUCTOS-->
-            <div class="Ocultar" id="AgregarProducto">
+<!-- FORMULARIO DE CARGA DE PRODUCTOS-->
+<div class="Ocultar" id="AgregarProducto">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Agregar Producto</h1>
             <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=2)">X</button>
@@ -193,22 +191,22 @@ session_start();
                   <input type="text" class="form-control mb-2" name="Nombre" id="Nombre" placeholder="Nombre" required>
                   </div>
                   <div class="col">
-                  <label for="Descripcion">Descripción</label>
+                  <label for="Descripcion">DescripciĆ³n</label>
                   <input type="text" class="form-control mb-2" id="Descripcion" placeholder="Descripcion" name="Descripcion" required>
                 </div>
                 </div>
                
                 <div class="form-row">
                  <div class="col-1">
-                  <label for="Cantidad">Cantidad</label>
-                    <input type="text" class="form-control mb-2" id="Cantidad" name="Cantidad" placeholder="Cantidad" required>
+                  <label for="Stock">Cantidad</label>
+                    <input type="text" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
                 </div>
                 <div class="col">
                   <label for="Categoria">Categoria</label>
                     <select class="form-control" id="Categoria" name="Categoria" required>
                     <?php 
                         //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
-                        $sql ="SELECT Nombre FROM ".$DBN."_Categorias";
+                        $sql ="SELECT Nombre FROM TERRA_Categorias";
                         $result= $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
@@ -235,38 +233,37 @@ session_start();
                 </div>
                 
                 <div class="col">
-                  <label for="MargenML">MargenML</label>
+                  <label for="Margen">Margen</label>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="MargenML" name="MargenML" placeholder="100" value="0" onchange="CalculoPrecioML()">
+                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="0" onchange="CalculoPrecioML()">
                   </div>
                 </div>
              
                 <div class="col">
-                  <label for="PrecioML">PrecioML</label>
+                  <label for="Precio">Precio</label>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                    <input type="text" class="form-control" id="PrecioML" name="PrecioML" placeholder="PrecioML">
+                    <input type="text" class="form-control" id="Precio" name="Precio" placeholder="Precio">
                   </div>
                 </div>
                 </div>
 
-                
-              
                 <div class="form-row">
                 <div class="col">
                   
-                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWebSC" onclick="LimpiarForm(), Seleccionar(selected=5)">Seguir Cargando</button>
-                  <button type="submit" class="btn btn-success mb-2" name="SubirAWeb">Subir a la Web</button>
+                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Subir</button>
                 </div>
               </div>
             </form>
             </div>
           <!-- FIN DEL FORMULARIO DE CARGA DE PRODUCTOS -->
+
+
 
 
           <!-- CATEGORIAS -->
