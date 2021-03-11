@@ -1,6 +1,6 @@
-
-  var selected=0;
+var selected=0;
   function Seleccionar(selected){
+
     //Quito el active de todos los ids
     if(document.getElementById("Inicio").classList.contains('active')){document.getElementById("Inicio").classList.remove('active')}
     if(document.getElementById("Ventas").classList.contains('active')){document.getElementById("Ventas").classList.remove('active')}
@@ -94,10 +94,23 @@
           
       //AGREGAR PRODUCTO
     case 4:
+      //AGREGA EL ACTIVE A PRODUCTOS
+      document.getElementById("Productos").classList.add('active')
       //ANIADO OCULTAR PRODUCTOS
       document.getElementById("AgregarProducto").classList.remove('Ocultar')
       //ANIADO OCULTAR PRODUCTOS
       document.getElementById("ProductosTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR INICIO
+      document.getElementById("InicioTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR VENTAS
+      document.getElementById("VentasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR REPORTES
+      document.getElementById("ReportesTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR AGREGAR CONFIGURACION
+      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
+      //ANIADO OCULTAR AGREGAR CATEGORIAS
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+          
 
     break;
 
@@ -147,30 +160,15 @@
   }
 
 
-    function CalculoPrecioSov() {
-    var margen = document.getElementById("MargenSov").value/100;
+    function CalculoPrecio() {
+    var margen = document.getElementById("Margen").value/100;
     var costo = document.getElementById("Costo").value;
+    var oferta = document.getElementById("Oferta").value; 
     var aux = +costo+(+costo*margen);
-      //falta hacer que redondee  
-    //document.getElementById("PrecioSov").value = aux;
-    //document.getElementById("PrecioSov").setAttribute('value', aux);
-    document.getElementById("PrecioSov").value= new Number(JSON.parse(aux));
+    var discount = aux * (oferta/100);
+    aux = aux - discount;
+    document.getElementById("Precio").value= new Number(JSON.parse(aux));
     }
-
-
-
-    function CalculoPrecioML() {
-      var margen = document.getElementById("MargenML").value/100;
-      var costo = document.getElementById("Costo").value;
-      var aux = +costo+(+costo*margen);
-        //falta hacer que redonde
-        //document.getElementById("PrecioML").value = aux;
-        //document.getElementById("PrecioML").setAttribute('value', aux);
-        document.getElementById("PrecioML").value= new Number(JSON.parse(aux));
-
-
-
-      }
   
 
       function LimpiarForm(){
