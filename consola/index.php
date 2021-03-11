@@ -122,7 +122,7 @@ session_start();
                                   <tr>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
-                                    <th>Cantidad</th>
+                                    <th>Stock</th>
                                     <th>Categoria</th>
                                     <th>Costo</th>                                    
                                     <th>MargenML</th>                                   
@@ -200,15 +200,15 @@ session_start();
                
                 <div class="form-row">
                  <div class="col-1">
-                  <label for="Cantidad">Cantidad</label>
-                    <input type="text" class="form-control mb-2" id="Cantidad" name="Cantidad" placeholder="Cantidad" required>
+                  <label for="Stock">Cantidad</label>
+                    <input type="text" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
                 </div>
                 <div class="col">
                   <label for="Categoria">Categoria</label>
                     <select class="form-control" id="Categoria" name="Categoria" required>
                     <?php 
                         //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
-                        $sql ="SELECT Nombre FROM SOV_Categorias";
+                        $sql ="SELECT Nombre FROM TERRA_Categorias";
                         $result= $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
@@ -235,33 +235,30 @@ session_start();
                 </div>
                 
                 <div class="col">
-                  <label for="MargenML">MargenML</label>
+                  <label for="Margen">Margen</label>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="MargenML" name="MargenML" placeholder="100" value="0" onchange="CalculoPrecioML()">
+                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="0" onchange="CalculoPrecioML()">
                   </div>
                 </div>
              
                 <div class="col">
-                  <label for="PrecioML">PrecioML</label>
+                  <label for="Precio">Precio</label>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                    <input type="text" class="form-control" id="PrecioML" name="PrecioML" placeholder="PrecioML">
+                    <input type="text" class="form-control" id="Precio" name="Precio" placeholder="Precio">
                   </div>
                 </div>
                 </div>
 
-                
-              
                 <div class="form-row">
                 <div class="col">
                   
-                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWebSC" onclick="LimpiarForm(), Seleccionar(selected=5)">Seguir Cargando</button>
-                  <button type="submit" class="btn btn-success mb-2" name="SubirAWeb">Subir a la Web</button>
+                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Subir</button>
                 </div>
               </div>
             </form>

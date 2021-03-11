@@ -34,24 +34,20 @@ $conn->close();}
 }
 
 //CARGAR PRODUCTO Y SEGUIR CARGANDO CON LIMPIEZA DE FORMULARIO
-if (isset($_POST['SubirAWebSC'])) {
+if (isset($_POST['SubirAWeb'])) {
 
     $Codigo= $_POST['Codigo'];
     $Nombre=$_POST['Nombre'];
     $Descripcion=$_POST['Descripcion'];
-    $Cantidad=$_POST['Cantidad'];
-    $Categoria='1';//$_POST['Categoria'];
-    $Proveedor='1';//$_POST['Proveedor'];
-    $Link=$_POST['Link'];
+    $Stock=$_POST['Stock'];
+    $_POST['Categoria'];
     $Costo=$_POST['Costo'];
-    $MargenSov=$_POST['MargenSov'];
-    $MargenML=$_POST['MargenML'];
-    $PrecioSov=$_POST['PrecioSov'];
-    $PrecioML=$_POST['PrecioML'];
+    $Margen=$_POST['Margen'];
+    $Precio=$_POST['Precio'];
     $Mostrar='1';
     
-    $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Proveedor, Foto, Costo, MargenSov, MargenML, PrecioSov, PrecioML, Mostrar)
-    VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '$Proveedor', '$Link', '.$Costo.', '.$MargenSov.', '.$MargenML.', '.$PrecioSov.', '.$PrecioML.', '.$Mostrar.')";
+    $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Precio, Mostrar)
+    VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '.$Costo.', '.$Margen.', '.$Precio.', '.$Mostrar.')";
     $result = $conn->query($sql);
     
     if ($result) {
