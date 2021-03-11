@@ -7,7 +7,25 @@ include './php/fnc.php';
 
 session_start();
 ?>
+<script>
+//Funcion que cada 100ms ejecuta Funcion URLChecker
+setInterval(URLChecker, 100);
 
+//Funcion para checkear la URL
+function URLChecker(){
+  //Obtencion de URL
+  const URL=window.location.href;
+  //Ifs continuos buscando la cadena de valor de cada href para ejecutar la funcion "Selected();" 
+  //Selected(); esta en index.js y determina el movimiento de la pagina
+    if(URL.indexOf('Inicio') > -1){Seleccionar(selected=0);}
+    if(URL.indexOf('Ventas') > -1){Seleccionar(selected=1);}
+    if(URL.indexOf('Productos') > -1){Seleccionar(selected=2);}
+    if(URL.indexOf('Reportes') > -1){Seleccionar(selected=3);}
+    if(URL.indexOf('Categorias') > -1){Seleccionar(selected=8);}
+    if(URL.indexOf('Configuracion') > -1){Seleccionar(selected=5);}
+    if(URL.indexOf('Agregar') > -1){Seleccionar(selected=4)}
+}
+</script>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -114,7 +132,7 @@ session_start();
             <div class="Ocultar" id="ProductosTitulo">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Productos</h1>
-            <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=4)">Agregar Producto</button>
+            <button type="button" class="btn btn-outline-dark" id="Agregar"onclick="Seleccionar(selected=4),window.location='#Agregar'">Agregar Producto</button>
             </div>
             <div class="table-responsive">
                               <table class="table table-striped table-sm">
@@ -122,11 +140,12 @@ session_start();
                                   <tr>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
-                                    <th>Cantidad</th>
+                                    <th>Stock</th>
                                     <th>Categoria</th>
                                     <th>Costo</th>                                    
-                                    <th>MargenML</th>                                   
-                                    <th>PrecioML</th>
+                                    <th>Margen</th>                                   
+                                    <th>Precio</th>
+                                    <th>Oferta</th>
                                     <th></th>
                                     <th></th>
                                   </tr>
@@ -147,9 +166,10 @@ session_start();
         <td><?php echo $row["Nombre"]; ?></td>                            
         <td><?php echo $row["Stock"]; ?></td>
         <td><?php echo $row["Categoria"]; ?></td>
-        <td>$<input name="CostoProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["Costo"]; ?>"></td>
-        <td>%<input name="MargenMLProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["MargenML"]; ?>"></td>
-        <td>$<input name="PrecioMLProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row["ID"]; ?>').submit()" class="FormLista" value="<?php echo $row["PrecioML"]; ?>"></td>
+        <td>$<input name="CostoProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Costo"]; ?>"></td>
+        <td>%<input name="MargenProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Margen"]; ?>"></td>
+        <td>$<input name="OfertaProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Oferta"]; ?>"></td>
+        <td>$<input name="PrecioProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Precio"]; ?>"></td>
         <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
         <input type="hidden" name="EditarProducto" value="set" />
     </form>
@@ -174,41 +194,40 @@ session_start();
             </div>
             
 
-
-
-            <!-- FORMULARIO DE CARGA DE PRODUCTOS-->
-            <div class="Ocultar" id="AgregarProducto">
+<!-- FORMULARIO DE CARGA DE PRODUCTOS-->
+<div class="Ocultar" id="AgregarProducto">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Agregar Producto</h1>
-            <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=2)">X</button>
+            <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=2),window.location='#Productos'">X</button>
             </div>
             <form method="POST">
               <div class="form-row">
                 <div class="col-1">
                   <label for="Codigo">Codigo</label>
-                    <input type="text" class="form-control  mb-2" id="Codigo" placeholder="#PROD" required name="Codigo">
+                    <input type="text" class="form-control  mb-2" id="Codigo" placeholder="#PR0D" required name="Codigo">
                 </div>
+
                 <div class="col">
                 <label for="Nombre">Nombre</label>
                   <input type="text" class="form-control mb-2" name="Nombre" id="Nombre" placeholder="Nombre" required>
                   </div>
                   <div class="col">
-                  <label for="Descripcion">Descripción</label>
+                  <label for="Descripcion">Descripcion</label>
                   <input type="text" class="form-control mb-2" id="Descripcion" placeholder="Descripcion" name="Descripcion" required>
                 </div>
                 </div>
                
                 <div class="form-row">
                  <div class="col-1">
-                  <label for="Cantidad">Cantidad</label>
-                    <input type="text" class="form-control mb-2" id="Cantidad" name="Cantidad" placeholder="Cantidad" required>
+                  <label for="Stock">Cantidad</label>
+                    <input type="text" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
                 </div>
                 <div class="col">
                   <label for="Categoria">Categoria</label>
                     <select class="form-control" id="Categoria" name="Categoria" required>
                     <?php 
                         //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
-                        $sql ="SELECT Nombre FROM ".$DBN."_Categorias";
+                        $sql ="SELECT Nombre FROM TERRA_Categorias";
                         $result= $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
@@ -221,8 +240,7 @@ session_start();
                     ?>
                     </select>
                 </div>
-    
-                 </div>
+                </div>
                 <div class="form-row">
                 <div class="col">
                   <label for="Costo">Costo</label>
@@ -230,27 +248,37 @@ session_start();
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                    <input type="text" class="form-control" id="Costo" name="Costo" value="" placeholder="Costo" onchange="CalculoPrecioSov()" >
+                    <input type="text" class="form-control" id="Costo" name="Costo" value="" placeholder="Costo" onchange="CalculoPrecio()" >
                   </div>
                 </div>
                 
                 <div class="col">
-                  <label for="MargenML">MargenML</label>
+                  <label for="MargenML">Margen</label>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="MargenML" name="MargenML" placeholder="100" value="0" onchange="CalculoPrecioML()">
+                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="0" onchange="CalculoPrecio()">
                   </div>
                 </div>
              
                 <div class="col">
-                  <label for="PrecioML">PrecioML</label>
+                  <label for="Precio">Oferta</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">%</div>
+                    </div>
+                    <input type="text" class="form-control" id="Oferta" name="Oferta" placeholder="Oferta" value="0" onchange="CalculoPrecio()">
+                  </div>
+                </div>
+
+                <div class="col">
+                  <label for="Precio">Precio</label>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                    <input type="text" class="form-control" id="PrecioML" name="PrecioML" placeholder="PrecioML">
+                    <input type="text" class="form-control" id="Precio" name="Precio" placeholder="Precio">
                   </div>
                 </div>
                 </div>
@@ -259,14 +287,14 @@ session_start();
               
                 <div class="form-row">
                 <div class="col">
-                  
-                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWebSC" onclick="LimpiarForm(), Seleccionar(selected=5)">Seguir Cargando</button>
-                  <button type="submit" class="btn btn-success mb-2" name="SubirAWeb">Subir a la Web</button>
+                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Subir</button>
                 </div>
               </div>
             </form>
             </div>
           <!-- FIN DEL FORMULARIO DE CARGA DE PRODUCTOS -->
+
+
 
 
           <!-- CATEGORIAS -->
@@ -414,13 +442,14 @@ session_start();
       </div>
     </div>
 
+
+
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

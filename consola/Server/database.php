@@ -2,7 +2,8 @@
 
 $DBN="TERRA";
 
-$conn=new mysqli("localhost", "u839063682_terrauser", "Terrapassword1", "u839063682_TERRA");
+#$conn=new mysqli("localhost", "u839063682_terrauser", "Terrapassword1", "u839063682_TERRA");
+$conn=new mysqli("sql436.main-hosting.eu", "u839063682_terrauser", "Terrapassword1", "u839063682_TERRA");
 
 
 if (mysqli_connect_errno()) {
