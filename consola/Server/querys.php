@@ -2,21 +2,22 @@
 
 include './database.php';
 
-//CARGAR PRODUCTO Y SEGUIR CARGANDO CON LIMPIEZA DE FORMULARIO
+//CARGAR PRODUCTO
 if (isset($_POST['SubirAWeb'])) {
 
     $Codigo= $_POST['Codigo'];
     $Nombre=$_POST['Nombre'];
     $Descripcion=$_POST['Descripcion'];
     $Stock=$_POST['Stock'];
-    $_POST['Categoria'];
+    $Categoria=$_POST['Categoria'];
     $Costo=$_POST['Costo'];
     $Margen=$_POST['Margen'];
     $Precio=$_POST['Precio'];
+    $Oferta=$_POST['Oferta'];
     $Mostrar='1';
     
-    $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Precio, Mostrar)
-    VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '.$Costo.', '.$Margen.', '.$Precio.', '.$Mostrar.')";
+    $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Precio, Oferta, Mostrar)
+    VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '.$Costo.', '.$Margen.', '$Precio', '.$Oferta.', '$Mostrar')";
     $result = $conn->query($sql);
     
     if ($result) {
@@ -29,6 +30,7 @@ if (isset($_POST['SubirAWeb'])) {
     header("Location: ../signin.html");
     $conn->close();}
     }
+
    //ELIMINAR PRODUCTO
     if (isset($_POST['EliminarProducto'])) {
 
