@@ -5,7 +5,7 @@
             rgba(255, 255, 255, 0.19) 0%,
             rgba(255, 255, 255, 0.84) 100%
           ),
-          url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/woman-cream-face-in-bathrobe-with-beauty-healthy-s-YEFHNPW-scaled.jpg);
+          url(../images/woman-cream-face-in-bathrobe-with-beauty-healthy-s-YEFHNPW-scaled.jpg);
         min-height: 400px;
       }
       .et_pb_row_0.et_pb_row {
@@ -396,70 +396,76 @@
         line-height: 1.7em !important;
         text-align: center !important;
       }
+
+      /* Poco Performante*/
+
       .et_pb_slider .et_pb_slide_10 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_0 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_11 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_1 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_8 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_15 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_2 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_12 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_6 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_3 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_13 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_4 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_14 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_5 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_7 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
       .et_pb_slider .et_pb_slide_9 {
-        background-image: url(http://dev.terracosmeticanatural.com/wp-content/uploads/2020/07/fotos-terra-10.jpg);
+        background-image: url(../images/fotos-terra-10.jpg);
         background-color: #ffffff;
       }
+
+      /* Poco Performante*/
+
       @media only screen and (max-width: 980px) {
         .et_pb_section_2 {
           border-top-width: 2px;
