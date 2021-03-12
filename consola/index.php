@@ -174,7 +174,7 @@ function URLChecker(){
         <input type="hidden" name="EditarProducto" value="set" />
     </form>
     <td> 
-        <button class="btn btn-light" name="EditarProducto" onclick=".submit()"><span data-feather="edit"></span></button>
+        <button class="btn btn-light" id="MenuEditarProducto" name="MenuEditarProducto" onclick="Seleccionar(selected=6), window.location='#EditarProducto';"><span data-feather="edit"></span></button>
     </td> 
     <td>                 
         <form action="index.php#Productos" method="post">
@@ -192,7 +192,7 @@ function URLChecker(){
                 </table>
               </div>
             </div>
-            
+
 
 <!-- FORMULARIO DE CARGA DE PRODUCTOS-->
 <div class="Ocultar" id="AgregarProducto">
@@ -205,6 +205,129 @@ function URLChecker(){
                 <div class="col-1">
                   <label for="Codigo">Codigo</label>
                     <input type="text" class="form-control  mb-2" id="Codigo" placeholder="#PR0D" required name="Codigo">
+                </div>
+
+                <div class="col">
+                <label for="Nombre">Nombre</label>
+                  <input type="text" class="form-control mb-2" name="Nombre" id="Nombre" placeholder="Nombre" required>
+                  </div>
+                  <div class="col">
+                  <label for="Descripcion">Descripcion</label>
+                  <input type="text" class="form-control mb-2" id="Descripcion" placeholder="Descripcion" name="Descripcion" required>
+                </div>
+                </div>
+
+                <div class="form-row">
+                 <div class="col-1">
+                  <label for="Stock">Cantidad</label>
+                    <input type="text" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
+                </div>
+                <div class="col">
+                  <label for="Categoria">Categoria</label>
+                    <select class="form-control" id="Categoria" name="Categoria" required>
+                    <?php 
+                        //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
+                        $sql ="SELECT Nombre FROM TERRA_Categorias";
+                        $result= $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                              echo "<option>" .$row["Nombre"]. "</option>";
+                            }
+                          } else {
+                            echo "<option> - </option>";
+                          }
+                    ?>
+                    </select>
+                </div>
+                </div>
+                <div class="form-row">
+                <div class="col">
+                  <label for="Costo">Costo</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
+                    </div>
+                    <input type="text" class="form-control" id="Costo" name="Costo" value="" placeholder="Costo" onchange="CalculoPrecio()" >
+                  </div>
+                </div>
+
+                <div class="col">
+                  <label for="MargenML">Margen</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">%</div>
+                    </div>
+                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="0" onchange="CalculoPrecio()">
+                  </div>
+                </div>
+
+                <div class="col">
+                  <label for="Precio">Oferta</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">%</div>
+                    </div>
+                    <input type="text" class="form-control" id="Oferta" name="Oferta" placeholder="Oferta" value="0" onchange="CalculoPrecio()">
+                  </div>
+                </div>
+
+                <div class="col">
+                  <label for="Precio">Precio</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
+                    </div>
+                    <input type="text" class="form-control" id="Precio" name="Precio" placeholder="Precio">
+                  </div>
+                </div>
+                </div>
+    
+                <div class="form-row">
+                <div class="col">
+                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Subir</button>
+                </div>
+              </div>
+            </form>
+            </div>
+          <!-- FIN DEL FORMULARIO DE CARGA DE PRODUCTOS -->
+
+
+<!-- FORMULARIO DE EDICION DE PRODUCTOS-->
+<?php 
+if (isset($_POST['MenuEditarProducto'])) {
+  $ID = $_POST['IDProducto'];
+  
+  $sql = "SELECT * FROM TERRA_Productos WHERE ID ='".$ID."'";
+        $result = $conn->query($sql);
+        echo $ID;
+        if($result){
+          $conn->close();
+          $fila = mysqli_fetch_object($result);
+          $Codigo= $fila->Codigo;
+          $Nombre= $fila->Nombre;
+          $Descripcion=$fila->Descripcion;
+          $Stock=$fila->Stock;
+          $Categoria=$fila->Categoria;
+          $Costo=$fila->Costo;
+          $Margen=$fila->Margen;
+          $Precio=$fila->Precio;
+          $Oferta=$fila->Oferta;
+          $Mostrar=$fila->Mostrar;
+          }
+          echo $Codigo;
+        }
+?>
+<div class="Ocultar" id="EditarProducto">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Editar Producto</h1>
+            <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=2),window.location='#Productos'">X</button>
+            </div>
+            <form method="POST">
+              <div class="form-row">
+                <div class="col-1">
+                  <label for="Codigo">Codigo</label>
+                    <input type="text" class="form-control  mb-2" value="<?php echo $Codigo;?>" id="Codigo" name="Codigo" required>
                 </div>
 
                 <div class="col">
@@ -287,14 +410,13 @@ function URLChecker(){
               
                 <div class="form-row">
                 <div class="col">
-                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Subir</button>
+                  <button type="submit" class="btn btn-primary mb-2" name="EditarProductoBoton" onclick="LimpiarForm(), Seleccionar(selected=5)">Confirmar Cambios</button>
                 </div>
               </div>
             </form>
             </div>
-          <!-- FIN DEL FORMULARIO DE CARGA DE PRODUCTOS -->
-
-
+          
+          <!-- FIN DEL FORMULARIO DE EDICION DE PRODUCTOS -->
 
 
           <!-- CATEGORIAS -->
