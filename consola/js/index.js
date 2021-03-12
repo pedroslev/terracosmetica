@@ -12,7 +12,7 @@ var selected=0;
   //Me fijo cual toque para agregarle su active(subrayado)
   switch(selected){
 
-      //INICIO
+  //INICIO
   case 0:
       //AGREGA EL ACTIVE A INICIO
       document.getElementById("Inicio").classList.add('active')
@@ -29,10 +29,12 @@ var selected=0;
       //ANIADO OCULTAR AGREGAR CONFIGURACION
       document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar') 
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
     break;
 
-      //VENTAS
+    //VENTAS
     case 1:
       //AGREGA EL ACTIVE A VENTAS
       document.getElementById("Ventas").classList.add('active')
@@ -49,15 +51,19 @@ var selected=0;
       //ANIADO OCULTAR AGREGAR CONFIGURACION
       document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar')   
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar') 
     break;
 
-      //PRODUCTOS
+    //PRODUCTOS
     case 2:
       //AGREGA EL ACTIVE A PRODUCTOS
       document.getElementById("Productos").classList.add('active')
       //ANIADO OCULTAR PRODUCTOS
       document.getElementById("ProductosTitulo").classList.remove('Ocultar')
+      //ANIADO OCULTAR EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
       //ANIADO OCULTAR INICIO
       document.getElementById("InicioTitulo").classList.add('Ocultar')
       //ANIADO OCULTAR VENTAS
@@ -65,14 +71,14 @@ var selected=0;
       //ANIADO OCULTAR REPORTES
       document.getElementById("ReportesTitulo").classList.add('Ocultar')
        //ANIADO OCULTAR AGREGAR PRODUCTO
-      document.getElementById("AgregarProducto").classList.add('Ocultar')   
+      document.getElementById("AgregarProducto").classList.add('Ocultar')
       //ANIADO OCULTAR AGREGAR CONFIGURACION
-      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
+      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar')
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar')   
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
       break;
 
-      //REPORTES
+    //REPORTES
     case 3:
       //AGREGA EL ACTIVE A REPORTES
       document.getElementById("Reportes").classList.add('active')
@@ -89,14 +95,16 @@ var selected=0;
       //ANIADO OCULTAR AGREGAR CONFIGURACION
       document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar')  
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
     break;
-          
-      //AGREGAR PRODUCTO
+
+    //AGREGAR PRODUCTO
     case 4:
       //AGREGA EL ACTIVE A PRODUCTOS
       document.getElementById("Productos").classList.add('active')
-      //ANIADO OCULTAR PRODUCTOS
+      //SACO OCULTAR AGREGAR PRODUCTOS
       document.getElementById("AgregarProducto").classList.remove('Ocultar')
       //ANIADO OCULTAR PRODUCTOS
       document.getElementById("ProductosTitulo").classList.add('Ocultar')
@@ -110,11 +118,11 @@ var selected=0;
       document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
       document.getElementById("CategoriasTitulo").classList.add('Ocultar')
-          
-
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
     break;
 
-      //CONFIGURACION
+    //CONFIGURACION
     case 5:
       //AGREGA EL ACTIVE A CONFIGURACION
       document.getElementById("Configuracion").classList.add('active')
@@ -126,15 +134,37 @@ var selected=0;
       document.getElementById("VentasTitulo").classList.add('Ocultar')
       //ANIADO OCULTAR PRODUCTOS
       document.getElementById("ProductosTitulo").classList.add('Ocultar')
-        //ANIADO OCULTAR AGREGAR PRODUCTO
+      //ANIADO OCULTAR AGREGAR PRODUCTO
       document.getElementById("AgregarProducto").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR REPORTES
       document.getElementById("ReportesTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar')  
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+    document.getElementById("EditarProducto").classList.add('Ocultar')  
     break;
-      
-      //CATEGORIAS
+
+    //EDITAR PRODUCTO
+    case 6:
+      //AGREGA EL ACTIVE A PRODUCTOS
+      document.getElementById("Productos").classList.add('active')
+      //SACO OCULTAR EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.remove('Ocultar')
+      //ANIADO OCULTAR PRODUCTOS
+      document.getElementById("ProductosTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR INICIO
+      document.getElementById("InicioTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR VENTAS
+      document.getElementById("VentasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR REPORTES
+      document.getElementById("ReportesTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR AGREGAR CONFIGURACION
+      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
+      //ANIADO OCULTAR AGREGAR CATEGORIAS
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+    break;
+
+    //CATEGORIAS
     case 8:
       //AGREGA EL ACTIVE A CATEGORIAS
       document.getElementById("Categorias").classList.add('active')
@@ -151,7 +181,9 @@ var selected=0;
       //ANIADO OCULTAR AGREGAR REPORTES
       document.getElementById("ReportesTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CONFIGURACION
-      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
+      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
       break;
 
   
@@ -169,7 +201,7 @@ var selected=0;
     aux = aux - discount;
     document.getElementById("Precio").value= new Number(JSON.parse(aux));
     }
-  
+
 
       function LimpiarForm(){
         

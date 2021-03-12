@@ -31,6 +31,26 @@ if (isset($_POST['SubirAWeb'])) {
     $conn->close();}
     }
 
+    //EDITAR PRODUCTO
+    //SIN TERMINAR
+        if (isset($_POST['EditarProductoBoton'])) {
+        
+        $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Precio, Oferta, Mostrar)
+        VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '.$Costo.', '.$Margen.', '$Precio', '.$Oferta.', '$Mostrar')";
+        $result = $conn->query($sql);
+        
+        if ($result) {
+        header("Location: ../index.php");
+        $conn->close();
+        exit();
+        }
+        else 
+        {
+        header("Location: ../signin.html");
+        $conn->close();}
+        }
+
+
    //ELIMINAR PRODUCTO
     if (isset($_POST['EliminarProducto'])) {
 
