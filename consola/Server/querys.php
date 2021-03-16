@@ -32,22 +32,32 @@ if (isset($_POST['SubirAWeb'])) {
     }
 
     //EDITAR PRODUCTO
-    //SIN TERMINAR
-        if (isset($_POST['EditarProductoBoton'])) {
+    $Operacion="Productos";
+        if (isset($_POST['EditarProducto'])) {
+            $ID=$_POST['ID'];    
+        $Codigo= $_POST['Codigo'];
+        $Nombre=$_POST['Nombre'];
+        $Descripcion=$_POST['Descripcion'];
+        $Stock=$_POST['Stock'];
+        $Categoria=$_POST['Categoria'];
+        $Costo=$_POST['Costo'];
+        $Margen=$_POST['Margen'];
+        $Precio=$_POST['Precio'];
+        $Oferta=$_POST['Oferta'];    
         
-        $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Precio, Oferta, Mostrar)
-        VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Cantidad', '$Categoria', '.$Costo.', '.$Margen.', '$Precio', '.$Oferta.', '$Mostrar')";
+        $sql = "UPDATE ".$DBN."_".$Operacion." SET  Codigo='".$Codigo."' , Nombre='".$Nombre."' , Descripcion='".$Descripcion."' ,
+        Stock='".$Stock."' , Categoria='".$Categoria."' , Costo='".$Costo."' , Margen='".$Margen."' , Precio='".$Precio."' , Oferta='".$Oferta."' , Mostrar='".$Mostrar."'  WHERE ID='".$ID."' ";
         $result = $conn->query($sql);
-        
+        echo $sql;
         if ($result) {
-        header("Location: ../index.php");
-        $conn->close();
-        exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
+            header("Location: ../index.php#Productos");
+            $conn->close();
+            exit();
+            }
+            else 
+            {
+            header("Location: ../signin.html");
+            $conn->close();}
         }
 
 

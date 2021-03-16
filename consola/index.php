@@ -23,6 +23,7 @@ function URLChecker(){
     if(URL.indexOf('Reportes') > -1){Seleccionar(selected=3);}
     if(URL.indexOf('Categorias') > -1){Seleccionar(selected=8);}
     if(URL.indexOf('Configuracion') > -1){Seleccionar(selected=5);}
+    if(URL.indexOf('EditarProducto') > -1){Seleccionar(selected=6);}
     if(URL.indexOf('Agregar') > -1){Seleccionar(selected=4)}
 }
 </script>
@@ -174,8 +175,12 @@ function URLChecker(){
         <input type="hidden" name="EditarProducto" value="set" />
     </form>
     <td> 
-        <button class="btn btn-light" id="MenuEditarProducto" name="MenuEditarProducto" onclick="Seleccionar(selected=6), window.location='#EditarProducto';"><span data-feather="edit"></span></button>
-    </td> 
+    <form action="index.php#EditarProducto" method="post">
+    <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
+        <button class="btn btn-light" id="MenuEditarProducto" name="MenuEditarProducto" onclick=".submit()"><span data-feather="edit"></span></button>
+        
+        </form>  
+   </td> 
     <td>                 
         <form action="index.php#Productos" method="post">
             <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
@@ -300,7 +305,6 @@ if (isset($_POST['MenuEditarProducto'])) {
   
   $sql = "SELECT * FROM TERRA_Productos WHERE ID ='".$ID."'";
         $result = $conn->query($sql);
-        echo $ID;
         if($result){
           $conn->close();
           $fila = mysqli_fetch_object($result);
@@ -315,7 +319,6 @@ if (isset($_POST['MenuEditarProducto'])) {
           $Oferta=$fila->Oferta;
           $Mostrar=$fila->Mostrar;
           }
-          echo $Codigo;
         }
 ?>
 <div class="Ocultar" id="EditarProducto">
@@ -324,6 +327,9 @@ if (isset($_POST['MenuEditarProducto'])) {
             <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=2),window.location='#Productos'">X</button>
             </div>
             <form method="POST">
+
+            <input type="hidden" name="ID" value="<?php echo $ID; ?>" />
+
               <div class="form-row">
                 <div class="col-1">
                   <label for="Codigo">Codigo</label>
@@ -332,35 +338,23 @@ if (isset($_POST['MenuEditarProducto'])) {
 
                 <div class="col">
                 <label for="Nombre">Nombre</label>
-                  <input type="text" class="form-control mb-2" name="Nombre" id="Nombre" placeholder="Nombre" required>
+                  <input type="text" class="form-control mb-2" name="Nombre" id="Nombre" value="<?php echo $Nombre;?>" required>
                   </div>
                   <div class="col">
                   <label for="Descripcion">Descripcion</label>
-                  <input type="text" class="form-control mb-2" id="Descripcion" placeholder="Descripcion" name="Descripcion" required>
+                  <input type="text" class="form-control mb-2" id="Descripcion" value="<?php echo $Descripcion;?>" name="Descripcion" required>
                 </div>
                 </div>
                
                 <div class="form-row">
                  <div class="col-1">
                   <label for="Stock">Cantidad</label>
-                    <input type="text" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
+                    <input type="text" class="form-control mb-2" id="Stock" name="Stock" value="<?php echo $Stock;?>" required>
                 </div>
                 <div class="col">
                   <label for="Categoria">Categoria</label>
                     <select class="form-control" id="Categoria" name="Categoria" required>
-                    <?php 
-                        //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
-                        $sql ="SELECT Nombre FROM TERRA_Categorias";
-                        $result= $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                              echo "<option>" .$row["Nombre"]. "</option>";
-                            }
-                          } else {
-                            echo "<option> - </option>";
-                          }
-                    ?>
+                    <option> <?php echo $Categoria;?> </option>
                     </select>
                 </div>
                 </div>
@@ -371,7 +365,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                    <input type="text" class="form-control" id="Costo" name="Costo" value="" placeholder="Costo" onchange="CalculoPrecio()" >
+                    <input type="text" class="form-control" id="Costo" name="Costo" value="<?php echo $Costo; ?>" onchange="CalculoPrecio()" >
                   </div>
                 </div>
                 
@@ -381,7 +375,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="0" onchange="CalculoPrecio()">
+                    <input type="text" class="form-control" id="Margen" name="Margen" value="<?php echo $Margen; ?>" onchange="CalculoPrecio()">
                   </div>
                 </div>
              
@@ -391,7 +385,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="Oferta" name="Oferta" placeholder="Oferta" value="0" onchange="CalculoPrecio()">
+                    <input type="text" class="form-control" id="Oferta" name="Oferta" value="<?php echo $Oferta; ?>"  onchange="CalculoPrecio()">
                   </div>
                 </div>
 
@@ -401,7 +395,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
                     </div>
-                    <input type="text" class="form-control" id="Precio" name="Precio" placeholder="Precio">
+                    <input type="text" class="form-control" id="Precio" name="Precio" value="<?php echo $Precio; ?>">
                   </div>
                 </div>
                 </div>
@@ -410,7 +404,7 @@ if (isset($_POST['MenuEditarProducto'])) {
               
                 <div class="form-row">
                 <div class="col">
-                  <button type="submit" class="btn btn-primary mb-2" name="EditarProductoBoton" onclick="LimpiarForm(), Seleccionar(selected=5)">Confirmar Cambios</button>
+                  <button type="submit" class="btn btn-primary mb-2" name="EditarProducto" onclick="">Guardar Cambios</button>
                 </div>
               </div>
             </form>
