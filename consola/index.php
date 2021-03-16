@@ -48,7 +48,7 @@ function URLChecker(){
 
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0"> 
-      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">Demo Terracosmetica</a>
+      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">Consola Terracosmetica</a>
       
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -205,7 +205,7 @@ function URLChecker(){
             <h1 class="h2">Agregar Producto</h1>
             <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=2),window.location='#Productos'">X</button>
             </div>
-            <form method="POST">
+            <form method="POST" action='' enctype='multipart/form-data'>
               <div class="form-row">
                 <div class="col-1">
                   <label for="Codigo">Codigo</label>
@@ -287,7 +287,9 @@ function URLChecker(){
                   </div>
                 </div>
                 </div>
-    
+                <br>
+                <input type="file" name="file[]" id="file" multiple>
+                <br>
                 <div class="form-row">
                 <div class="col">
                   <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Subir</button>
@@ -528,7 +530,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                                    ?>                     
                                         <tr>
                                            <td><?php echo $row["ID"]; ?></td>
-                                            <form action="index.php#Usuarios" method="post" id="EditarUsuario<?php echo $row["ID"]; ?>">                    
+                                            <form action="index.php#Configuracion" method="post" id="EditarUsuario<?php echo $row["ID"]; ?>">                    
                                                 <td><input name="UsuarioNombre" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Nombre"]; ?>"></td>
                                                 <td><input name="UsuarioEmail" type="email"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Email"]; ?>"></td>
                                                 <td><input name="UsuarioContrasena" type="password"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Contrasena"]; ?>"></td>
@@ -538,7 +540,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                                                 <input type="hidden" name="EditarUsuario" value="set" />
                                             </form>                                            
                                             <td>                 
-                                                <form action="index.php#Usuarios" method="post">
+                                                <form action="index.php#Configuracion" method="post">
                                                     <input type="hidden" name="IDUsuario" value="<?php echo $row["ID"]; ?>" />
                                                     <button class="btn btn-light" name="EliminarUsuario" onclick=".submit()"><span data-feather="trash-2"></span></button>
                                                 </form>                                    
