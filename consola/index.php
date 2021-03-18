@@ -155,13 +155,19 @@ function URLChecker(){
                                 </thead>
                                 <tbody>
                   <?php 
-                        //MOSTRADOR DE PRODUCTOS (LISTADO)
-                        $class="FormLista";
-                        $sql ="SELECT * FROM ".$DBN."_Productos";
-                        $result= $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while($row = $result->fetch_assoc()) {
+                  //MOSTRADOR DE PRODUCTOS (LISTADO)
+                  $class="FormLista";
+                  $sql ="SELECT * FROM ".$DBN."_Productos";
+                  $result= $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                  // output data of each row
+                  while($row = $result->fetch_assoc()) {
+                    $search=$row["Categoria"];
+                    //Obtencion de Nombre categoria by ID
+                    $sqlID = "SELECT * FROM TERRA_Categorias WHERE Nombre = '$search'";
+                    $resultID= $conn->query($sqlID);
+                    $rowe = $resultID->fetch_assoc();
+                    $NombreCategoria=$rowe["Nombre"];
                                ?>                     
 <tr>
 
@@ -175,7 +181,7 @@ function URLChecker(){
         <td><?php echo $row["Codigo"]; ?></td>
         <td><?php echo $row["Nombre"]; ?></td>                            
         <td><?php echo $row["Stock"]; ?></td>
-        <td><?php echo $row["Categoria"]; ?></td>
+        <td><?php echo $NombreCategoria; ?></td>
         <td>$<input name="CostoProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Costo"]; ?>"></td>
         <td>%<input name="MargenProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Margen"]; ?>"></td>
         <td>%<input name="OfertaProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Oferta"]; ?>"></td>
@@ -200,7 +206,7 @@ function URLChecker(){
         </form>                                    
     </td> 
 </tr>
-                         <?php   } } else {  ?>
+                         <?php   } }else {  ?>
                             <tr>
                             NO HAY PRODUCTOS
                             <tr>
@@ -275,7 +281,7 @@ function URLChecker(){
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="0" onchange="CalculoPrecio()">
+                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="" onchange="CalculoPrecio()">
                   </div>
                 </div>
 
@@ -285,7 +291,7 @@ function URLChecker(){
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="Oferta" name="Oferta" placeholder="Oferta" value="0" onchange="CalculoPrecio()">
+                    <input type="text" class="form-control" id="Oferta" name="Oferta" placeholder="Oferta" value="" onchange="CalculoPrecio()">
                   </div>
                 </div>
 
@@ -316,7 +322,7 @@ function URLChecker(){
                 </div>
                 <div class="form-row">
                 <div class="col">
-                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Subir</button>
+                  <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Cargar</button>
                 </div>
               </div>
             </form>
@@ -343,6 +349,12 @@ if (isset($_POST['MenuEditarProducto'])) {
           $Precio=$fila->Precio;
           $Oferta=$fila->Oferta;
           $Mostrar=$fila->Mostrar;
+
+        $sqlname="SELECT * FROM  TERRA_Categorias WHERE ID = '$Categoria'";
+        $resultname=$conn->query($sqlname);
+        $row = $resultname->fetch_assoc();
+        $NombreCategoria=$row["Nombre"];
+
           }
         }
 ?>
@@ -379,7 +391,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                 <div class="col">
                   <label for="Categoria">Categoria</label>
                     <select class="form-control" id="Categoria" name="Categoria" required>
-                    <option> <?php echo $Categoria;?> </option>
+                    <option> <?php echo $NombreCategoria;?> </option>
                     <?php 
                         //MOSTRADOR DE CATEGORIAS EN EDICION DE PRODUCTOS
                         $sql ="SELECT Nombre FROM TERRA_Categorias WHERE Nombre!='$Categoria'";

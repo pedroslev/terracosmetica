@@ -16,6 +16,14 @@ if (isset($_POST['SubirAWeb'])) {
     $Oferta=$_POST['Oferta'];
     $Mostrar=$_POST['Mostrar'];
     
+    //Obtencion de id categoria
+    $sqlID ="SELECT ID FROM TERRA_Categorias WHERE Nombre = '$Categoria'";
+    $resultID= $conn->query($sqlID);
+    $row = $resultID->fetch_assoc();
+    if ($resultID->num_rows > 0) {
+        $IdCategoria=$row["ID"];
+      }
+
     // Conteo total de archivos
     $countfiles = count($_FILES['file']['name']);
     if($countfiles>5)
@@ -98,7 +106,7 @@ if (isset($_POST['SubirAWeb'])) {
     if($countfiles)
     //mysql query
     $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Precio, Oferta, Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Mostrar)
-    VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Stock', '$Categoria', '.$Costo.', '.$Margen.', '$Precio', '.$Oferta.', '$imagen1', '$imagen2', '$imagen3', '$imagen4', '$imagen5', '$Mostrar')";
+    VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Stock', '$IdCategoria', '.$Costo.', '.$Margen.', '$Precio', '.$Oferta.', '$imagen1', '$imagen2', '$imagen3', '$imagen4', '$imagen5', '$Mostrar')";
     $result = $conn->query($sql);
     
        
