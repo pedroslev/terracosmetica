@@ -157,14 +157,14 @@ function URLChecker(){
                   <?php 
                   //MOSTRADOR DE PRODUCTOS (LISTADO)
                   $class="FormLista";
-                  $sql ="SELECT * FROM ".$DBN."_Productos";
+                  $sql ="SELECT * FROM TERRA_Productos";
                   $result= $conn->query($sql);
                   if ($result->num_rows > 0) {
                   // output data of each row
                   while($row = $result->fetch_assoc()) {
                     $search=$row["Categoria"];
                     //Obtencion de Nombre categoria by ID
-                    $sqlID = "SELECT * FROM TERRA_Categorias WHERE Nombre = '$search'";
+                    $sqlID = "SELECT * FROM TERRA_Categorias WHERE ID = '$search'";
                     $resultID= $conn->query($sqlID);
                     $rowe = $resultID->fetch_assoc();
                     $NombreCategoria=$rowe["Nombre"];

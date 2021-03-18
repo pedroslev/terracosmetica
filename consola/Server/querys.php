@@ -124,7 +124,7 @@ if (isset($_POST['SubirAWeb'])) {
     //EDITAR PRODUCTO
     $Operacion="Productos";
         if (isset($_POST['EditarProducto'])) {
-            $ID=$_POST['ID'];    
+        $ID=$_POST['ID'];    
         $Codigo= $_POST['Codigo'];
         $Nombre=$_POST['Nombre'];
         $Descripcion=$_POST['Descripcion'];
@@ -134,10 +134,18 @@ if (isset($_POST['SubirAWeb'])) {
         $Margen=$_POST['Margen'];
         $Precio=$_POST['Precio'];
         $Oferta=$_POST['Oferta'];
-        $Mostrar=$_POST['Mostrar'];    
+        $Mostrar=$_POST['Mostrar'];  
+        
+        //Obtencion de id categoria
+        $sqlID ="SELECT ID FROM TERRA_Categorias WHERE Nombre = '$Categoria'";
+        $resultID= $conn->query($sqlID);
+        $row = $resultID->fetch_assoc();
+        if ($resultID->num_rows > 0) {
+            $IdCategoria=$row["ID"];
+        }
         
         $sql = "UPDATE ".$DBN."_".$Operacion." SET  Codigo='".$Codigo."' , Nombre='".$Nombre."' , Descripcion='".$Descripcion."' ,
-        Stock='".$Stock."' , Categoria='".$Categoria."' , Costo='".$Costo."' , Margen='".$Margen."' , Precio='".$Precio."' , Oferta='".$Oferta."' , Mostrar='".$Mostrar."'  WHERE ID='".$ID."' ";
+        Stock='".$Stock."' , Categoria='".$IdCategoria."' , Costo='".$Costo."' , Margen='".$Margen."' , Precio='".$Precio."' , Oferta='".$Oferta."' , Mostrar='".$Mostrar."'  WHERE ID='".$ID."' ";
         $result = $conn->query($sql);
         echo $sql;
         if ($result) {
