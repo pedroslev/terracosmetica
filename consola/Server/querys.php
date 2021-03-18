@@ -14,7 +14,7 @@ if (isset($_POST['SubirAWeb'])) {
     $Margen=$_POST['Margen'];
     $Precio=$_POST['Precio'];
     $Oferta=$_POST['Oferta'];
-    $Mostrar='1';
+    $Mostrar=$_POST['Mostrar'];;
     
     // Conteo total de archivos
     $countfiles = count($_FILES['file']['name']);
@@ -125,7 +125,8 @@ if (isset($_POST['SubirAWeb'])) {
         $Costo=$_POST['Costo'];
         $Margen=$_POST['Margen'];
         $Precio=$_POST['Precio'];
-        $Oferta=$_POST['Oferta'];    
+        $Oferta=$_POST['Oferta'];
+        $Mostrar=$_POST['Mostrar'];    
         
         $sql = "UPDATE ".$DBN."_".$Operacion." SET  Codigo='".$Codigo."' , Nombre='".$Nombre."' , Descripcion='".$Descripcion."' ,
         Stock='".$Stock."' , Categoria='".$Categoria."' , Costo='".$Costo."' , Margen='".$Margen."' , Precio='".$Precio."' , Oferta='".$Oferta."' , Mostrar='".$Mostrar."'  WHERE ID='".$ID."' ";

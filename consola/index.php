@@ -127,7 +127,7 @@ function URLChecker(){
             </div>
              En desarrollo...
             </div>
- 
+     
         
           <!-- PRODUCTOS -->
             <div class="Ocultar" id="ProductosTitulo">
@@ -139,14 +139,16 @@ function URLChecker(){
                               <table class="table table-striped table-sm">
                                 <thead>
                                   <tr>
+                                    <th><input class="" type="checkbox" value="" id="flexCheckDefault" title="Seleccionar Todos"></th>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
                                     <th>Categoria</th>
                                     <th>Costo</th>                                    
-                                    <th>Margen</th>                                   
-                                    <th>Precio</th>
+                                    <th>Margen</th> 
                                     <th>Oferta</th>
+                                    <th>Precio</th>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                   </tr>
@@ -162,15 +164,25 @@ function URLChecker(){
                             while($row = $result->fetch_assoc()) {
                                ?>                     
 <tr>
-    <form action="index.php#Productos" method="post" id="EditarProducto<?php echo $row["ID"]; ?>">                    
+
+    <td>
+      <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" title="Seleccionar Item">                                      
+      </div>
+    </td>                         
+    <form action="index.php#Productos" method="post" id="EditarProducto<?php echo $row["ID"]; ?>"> 
+                     
         <td><?php echo $row["Codigo"]; ?></td>
         <td><?php echo $row["Nombre"]; ?></td>                            
         <td><?php echo $row["Stock"]; ?></td>
         <td><?php echo $row["Categoria"]; ?></td>
         <td>$<input name="CostoProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Costo"]; ?>"></td>
         <td>%<input name="MargenProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Margen"]; ?>"></td>
-        <td>$<input name="OfertaProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Oferta"]; ?>"></td>
+        <td>%<input name="OfertaProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Oferta"]; ?>"></td>
         <td>$<input name="PrecioProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Precio"]; ?>"></td>
+        <td> 
+        <button disabled class="btn btn-light" title="<?php if ($row['Mostrar']!=1){echo "NO ";};?>Se Muestra"><span data-feather="eye<?php if ($row['Mostrar']!=1){echo "-off";}; ?>"></span></button>
+        </td>
         <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
         <input type="hidden" name="EditarProducto" value="set" />
     </form>
@@ -287,9 +299,21 @@ function URLChecker(){
                   </div>
                 </div>
                 </div>
-                <br>
-                <input type="file" name="file[]" id="file" multiple>
-                <br>
+               
+                <div class="form-row">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="file[]" id="file" multiple >
+                  <label class="custom-file-label" for="customFile">Elegir Cinco Imagenes</label>
+                </div>
+                </div>
+                <div class="form-row">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" checked>
+                  <label class="form-check-label" for="defaultCheck1">
+                    Mostrar en el Ecomerce
+                  </label>
+                </div>
+                </div>
                 <div class="form-row">
                 <div class="col">
                   <button type="submit" class="btn btn-primary mb-2" name="SubirAWeb" onclick="LimpiarForm(), Seleccionar(selected=5)">Subir</button>
@@ -399,6 +423,15 @@ if (isset($_POST['MenuEditarProducto'])) {
                     </div>
                     <input type="text" class="form-control" id="Precio" name="Precio" value="<?php echo $Precio; ?>">
                   </div>
+                </div>
+                </div>
+
+                <div class="form-row">
+                <div class="form-check">
+                  <input class="form-check-input" name="Mostrar" type="checkbox" value="1" id="defaultCheck1" <?php if($Mostrar==1){echo "checked"; }; ?>>
+                  <label class="form-check-label" for="defaultCheck1">
+                    Mostrar en el Ecomerce 
+                  </label>
                 </div>
                 </div>
 
