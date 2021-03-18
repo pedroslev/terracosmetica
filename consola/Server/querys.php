@@ -14,7 +14,7 @@ if (isset($_POST['SubirAWeb'])) {
     $Margen=$_POST['Margen'];
     $Precio=$_POST['Precio'];
     $Oferta=$_POST['Oferta'];
-    $Mostrar=$_POST['Mostrar'];;
+    $Mostrar=$_POST['Mostrar'];
     
     // Conteo total de archivos
     $countfiles = count($_FILES['file']['name']);
@@ -185,13 +185,13 @@ if (isset($_POST['Subir'.$Operacion.''])) {
     $conn->close();
 
     if ($result) {
-        header("Location: ../consola/index.php#'.$Operacion.'");
+        header("Location: ../index.php#Categorias");
         
         exit();
     }
     else 
     {
-        header("Location: ../consola/login.php");
+        header("Location: ../login.php");
         
         exit();
     }
@@ -219,11 +219,11 @@ if (isset($_POST['Editar'.$Operacion.''])) {
     $result = $conn->query($sql);
 
     if ($result) {
-        header("Location: ../consola/index.php#'.$Operacion.'");
+        header("Location: ../index.php#Categorias");
         $conn->close();
         exit();
     } else {
-        header("Location: ../consola/login.php");
+        header("Location: ../login.php");
         $conn->close();
         exit();
     }
@@ -240,13 +240,13 @@ if (isset($_POST['Eliminar'.$Operacion.''])) {
     $result = $conn->query($sql);
 
     if ($result) {
-        header("Location: ../consola/index.php#'.$Operacion.'");
+        header("Location: ../index.php#Categorias");
         $conn->close();
         exit();
     }
     else 
     {
-        header("Location: ../consola/login.php");
+        header("Location: ../login.php");
         $conn->close();
         exit();
     }
@@ -270,12 +270,12 @@ if (isset($_POST['Subir'.$Operacion.''])) {
     $conn->close();
 
     if ($result) {
-        header("Location: ../consola/index.php#Configuracion");
+        header("Location: ../index.php#Configuracion");
         exit();
     }
     else 
     {
-        header("Location: ../consola/login.php");
+        header("Location: ../login.php");
         exit();
     }
 }
@@ -305,11 +305,11 @@ if (isset($_POST['Editar'.$Operacion.''])) {
     $result = $conn->query($sql);
 
     if ($result) {
-        header("Location: ../consola/index.php#'.$Operacion.'");
+        header("Location: ../index.php#Configuracion");
         $conn->close();
         exit();
     } else {
-        header("Location: ../consola/login.php");
+        header("Location: ../login.php");
         $conn->close();
         exit();
     }
@@ -325,13 +325,13 @@ if (isset($_POST['Eliminar'.$Operacion.''])) {
     $result = $conn->query($sql);
 
     if ($result) {
-        header("Location: ../consola/index.php#Configuracion");
+        header("Location: ../index.php#Configuracion");
         $conn->close();
         exit();
     }
     else 
     {
-        header("Location: ../consola/login.php");
+        header("Location: ../login.php");
         $conn->close();
         exit();
     }

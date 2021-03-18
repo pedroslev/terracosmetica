@@ -139,7 +139,7 @@ function URLChecker(){
                               <table class="table table-striped table-sm">
                                 <thead>
                                   <tr>
-                                    <th><input class="" type="checkbox" value="" id="flexCheckDefault" title="Seleccionar Todos"></th>
+                                    <th><input class="" type="checkbox" value="" id="CheckBoxGlobal" onchange="CheckBoxGlobal();"title="Seleccionar Todos"></th>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
@@ -167,7 +167,7 @@ function URLChecker(){
 
     <td>
       <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" title="Seleccionar Item">                                      
+      <input class="form-check-input" type="checkbox" id="CheckBoxIndividual" title="Seleccionar Item">                                      
       </div>
     </td>                         
     <form action="index.php#Productos" method="post" id="EditarProducto<?php echo $row["ID"]; ?>"> 
@@ -308,7 +308,7 @@ function URLChecker(){
                 </div>
                 <div class="form-row">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" checked>
+                  <input class="form-check-input" type="checkbox" name="Mostrar" value="1" id="defaultCheck1" checked>
                   <label class="form-check-label" for="defaultCheck1">
                     Mostrar en el Ecomerce
                   </label>
@@ -332,7 +332,6 @@ if (isset($_POST['MenuEditarProducto'])) {
   $sql = "SELECT * FROM TERRA_Productos WHERE ID ='".$ID."'";
         $result = $conn->query($sql);
         if($result){
-          $conn->close();
           $fila = mysqli_fetch_object($result);
           $Codigo= $fila->Codigo;
           $Nombre= $fila->Nombre;
@@ -381,6 +380,19 @@ if (isset($_POST['MenuEditarProducto'])) {
                   <label for="Categoria">Categoria</label>
                     <select class="form-control" id="Categoria" name="Categoria" required>
                     <option> <?php echo $Categoria;?> </option>
+                    <?php 
+                        //MOSTRADOR DE CATEGORIAS EN EDICION DE PRODUCTOS
+                        $sql ="SELECT Nombre FROM TERRA_Categorias WHERE Nombre!='$Categoria'";
+                        $result= $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                              echo "<option>" .$row["Nombre"]. "</option>";
+                            }
+                          } else {
+                            echo "<option> - </option>";
+                          }
+                    ?>
                     </select>
                 </div>
                 </div>
@@ -507,13 +519,14 @@ if (isset($_POST['MenuEditarProducto'])) {
                                 </form>                                    
                             </td>                                                                          
                         </tr>
+                        </tbody>
+                        
                          <?php   } } else {  ?>
                             <tr>
                             NO HAY CATEGORIAS
-                            <tr>
+                            </tr>
                       <?php     }   ?>
-                  </tbody>
-                </table>
+                      </table>
               </div>
               </div> 
 
@@ -581,7 +594,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                                         </tr>
                              <?php   } } else {  ?>
                                 <tr>
-                                NO HAY Ususarios
+                                No hay Usuarios
                                 <tr>
                           <?php     }   ?>             
                       </tbody>
