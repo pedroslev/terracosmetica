@@ -8,7 +8,7 @@ var selected=0;
     if(document.getElementById("Reportes").classList.contains('active')){document.getElementById("Reportes").classList.remove('active')}
     if(document.getElementById("Configuracion").classList.contains('active')){document.getElementById("Configuracion").classList.remove('active')}
     if(document.getElementById("Categorias").classList.contains('active')){document.getElementById("Categorias").classList.remove('active')}
-    
+
   //Me fijo cual toque para agregarle su active(subrayado)
   switch(selected){
 
@@ -191,7 +191,7 @@ var selected=0;
     }
   }
 
-
+    //calculo automatico de precio a partir de margen
     function CalculoPrecio() {
     var margen = document.getElementById("Margen").value/100;
     var costo = document.getElementById("Costo").value;
@@ -201,9 +201,17 @@ var selected=0;
     aux = aux - discount;
     document.getElementById("Precio").value= new Number(JSON.parse(aux));
     }
-
-
       function LimpiarForm(){
-        
+      }
 
+      //CheckboxGlobales
+      function CheckBoxGlobal()
+      {
+        if(document.getElementById("CheckBoxGlobal").checked = true)
+        {
+          document.getElementById("CheckBoxIndividual").checked = true;
+        }else
+        {
+          document.getElementById("CheckBoxIndividual").checked = false;
+        }
       }
