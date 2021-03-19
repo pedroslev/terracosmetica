@@ -146,7 +146,9 @@ function URLChecker(){
                                     <th>Codigo</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
-                                    <th>Categoria</th>
+                                    <th>Categoria1</th>
+                                    <th>Categoria2</th>
+                                    <th>Categoria3</th>
                                     <th>Costo</th>                                    
                                     <th>Margen</th> 
                                     <th>Oferta</th>
@@ -165,12 +167,24 @@ function URLChecker(){
                   if ($result->num_rows > 0) {
                   // output data of each row
                   while($row = $result->fetch_assoc()) {
-                    $search=$row["Categoria"];
+                    $search1=$row["Categoria"];
+                    $search2=$row["Categoria2"];
+                    $search3=$row["Categoria3"];
                     //Obtencion de Nombre categoria by ID
-                    $sqlID = "SELECT * FROM TERRA_Categorias WHERE ID = '$search'";
+                    $sqlID = "SELECT * FROM TERRA_Categorias WHERE ID = '$search1'";
                     $resultID= $conn->query($sqlID);
-                    $rowe = $resultID->fetch_assoc();
-                    $NombreCategoria=$rowe["Nombre"];
+                    $row1 = $resultID->fetch_assoc();
+                    $NombreCategoria1=$row1["Nombre"];
+
+                    $sqlID2 = "SELECT * FROM TERRA_Categorias WHERE ID = '$search2'";
+                    $resultID2= $conn->query($sqlID2);
+                    $row2 = $resultID2->fetch_assoc();
+                    $NombreCategoria2=$row2["Nombre"];
+
+                    $sqlID3 = "SELECT * FROM TERRA_Categorias WHERE ID = '$search3'";
+                    $resultID3= $conn->query($sqlID3);
+                    $row3 = $resultID3->fetch_assoc();
+                    $NombreCategoria3=$row3["Nombre"];
                                ?>                     
 <tr>
 
@@ -184,7 +198,9 @@ function URLChecker(){
         <td><?php echo $row["Codigo"]; ?></td>
         <td><?php echo $row["Nombre"]; ?></td>                            
         <td><?php echo $row["Stock"]; ?></td>
-        <td><?php echo $NombreCategoria; ?></td>
+        <td><?php echo $NombreCategoria1; ?></td>
+        <td><?php echo $NombreCategoria2; ?></td>
+        <td><?php echo $NombreCategoria3; ?></td>
         <td>$<input name="CostoProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Costo"]; ?>"></td>
         <td>%<input name="MargenProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Margen"]; ?>"></td>
         <td>%<input name="OfertaProducto" type="text"  onchange="document.getElementById('EditarProducto<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Oferta"]; ?>"></td>
@@ -249,16 +265,54 @@ function URLChecker(){
                     <input type="text" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
                 </div>
                 <div class="col">
-                  <label for="Categoria">Categoria</label>
+                  <label for="Categoria">Categoria 1</label>
                     <select class="form-control" id="Categoria" name="Categoria" required>
                     <?php 
                         //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
-                        $sql ="SELECT Nombre FROM TERRA_Categorias";
+                        $sql ="SELECT * FROM TERRA_Categorias";
                         $result= $conn->query($sql);
                         if ($result->num_rows > 0) {
                             // output data of each row
                             while($row = $result->fetch_assoc()) {
-                              echo "<option>" .$row["Nombre"]. "</option>";
+                              echo "<option value=".$row["ID"].">" .$row["Nombre"]. "</option>";
+                            }
+                          } else {
+                            echo "<option> - </option>";
+                          }
+                    ?>
+                    </select>
+                </div>
+                <div class="col">
+                  <label for="Categoria">Categoria 2</label>
+                    <select class="form-control" id="Categoria2" name="Categoria2" required>
+                    <option> - </option>
+                    <?php 
+                        //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
+                        $sql ="SELECT * FROM TERRA_Categorias";
+                        $result= $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                              echo "<option value=".$row["ID"].">" .$row["Nombre"]. "</option>";
+                            }
+                          } else {
+                            echo "<option> - </option>";
+                          }
+                    ?>
+                    </select>
+                </div>
+                <div class="col">
+                  <label for="Categoria">Categoria 3</label>
+                    <select class="form-control" id="Categoria3" name="Categoria3" required>
+                    <option> - </option>
+                    <?php 
+                        //MOSTRADOR DE CATEGORIAS EN CARGA DE PRODUCTOS
+                        $sql ="SELECT * FROM TERRA_Categorias";
+                        $result= $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                              echo "<option value=".$row["ID"].">" .$row["Nombre"]. "</option>";
                             }
                           } else {
                             echo "<option> - </option>";
@@ -347,16 +401,28 @@ if (isset($_POST['MenuEditarProducto'])) {
           $Descripcion=$fila->Descripcion;
           $Stock=$fila->Stock;
           $Categoria=$fila->Categoria;
+          $Categoria2=$fila->Categoria2;
+          $Categoria3=$fila->Categoria3;
           $Costo=$fila->Costo;
           $Margen=$fila->Margen;
           $Precio=$fila->Precio;
           $Oferta=$fila->Oferta;
           $Mostrar=$fila->Mostrar;
 
-        $sqlname="SELECT * FROM  TERRA_Categorias WHERE ID = '$Categoria'";
-        $resultname=$conn->query($sqlname);
-        $row = $resultname->fetch_assoc();
-        $NombreCategoria=$row["Nombre"];
+        $sqlname1="SELECT * FROM  TERRA_Categorias WHERE ID = '$Categoria'";
+        $resultname1=$conn->query($sqlname1);
+        $row1 = $resultname1->fetch_assoc();
+        $NombreCategoria1=$row1["Nombre"];
+
+        $sqlname2="SELECT * FROM  TERRA_Categorias WHERE ID = '$Categoria2'";
+        $resultname2=$conn->query($sqlname2);
+        $row2 = $resultname2->fetch_assoc();
+        $NombreCategoria2=$row2["Nombre"];
+
+        $sqlname3="SELECT * FROM  TERRA_Categorias WHERE ID = '$Categoria3'";
+        $resultname3=$conn->query($sqlname3);
+        $row3 = $resultname3->fetch_assoc();
+        $NombreCategoria3=$row3["Nombre"];
 
           }
         }
@@ -392,17 +458,57 @@ if (isset($_POST['MenuEditarProducto'])) {
                     <input type="text" class="form-control mb-2" id="Stock" name="Stock" value="<?php echo $Stock;?>" required>
                 </div>
                 <div class="col">
-                  <label for="Categoria">Categoria</label>
-                    <select class="form-control" id="Categoria" name="Categoria" required>
-                    <option> <?php echo $NombreCategoria;?> </option>
+                  <label for="Categoria">Categoria 1</label>
+                    <select class="form-control" id="Categoria" name="Categoria" >
+                    <option value="<?php echo $Categoria; ?>" selected> <?php echo $NombreCategoria1;?> </option>
                     <?php 
                         //MOSTRADOR DE CATEGORIAS EN EDICION DE PRODUCTOS
-                        $sql ="SELECT Nombre FROM TERRA_Categorias WHERE Nombre!='$Categoria'";
-                        $result= $conn->query($sql);
-                        if ($result->num_rows > 0) {
+                        $sql4 ="SELECT * FROM TERRA_Categorias WHERE ID!='$Categoria'";
+                        $result4= $conn->query($sql4);
+                        if ($result4->num_rows > 0) {
                             // output data of each row
-                            while($row = $result->fetch_assoc()) {
-                              echo "<option>" .$row["Nombre"]. "</option>";
+                            while($row4 = $result4->fetch_assoc()) {
+                              echo "<option value=".$row4["ID"].">" .$row4["Nombre"]. "</option>";
+                            }
+                          } else {
+                            echo "<option> - </option>";
+                          }
+                    ?>
+                    </select>
+                </div>
+
+                <div class="col">
+                  <label for="Categoria2">Categoria 2</label>
+                    <select class="form-control" id="Categoria2" name="Categoria2" >
+                    <option value="<?php echo $Categoria2; ?>" selected> <?php echo $NombreCategoria2;?> </option>
+                    <?php 
+                        //MOSTRADOR DE CATEGORIAS EN EDICION DE PRODUCTOS
+                        $sql5 ="SELECT * FROM TERRA_Categorias WHERE ID!='$Categoria2'";
+                        $result5= $conn->query($sql5);
+                        if ($result5->num_rows > 0) {
+                            // output data of each row
+                            while($row5 = $result5->fetch_assoc()) {
+                              echo "<option value=".$row5["ID"].">" .$row5["Nombre"]. "</option>";
+                            }
+                          } else {
+                            echo "<option> - </option>";
+                          }
+                    ?>
+                    </select>
+                </div>
+
+                <div class="col">
+                  <label for="Categoria3">Categoria 3</label>
+                    <select class="form-control" id="Categoria3" name="Categoria3" >
+                    <option value="<?php echo $Categoria3; ?>" selected> <?php echo $NombreCategoria3;?> </option>
+                    <?php 
+                        //MOSTRADOR DE CATEGORIAS EN EDICION DE PRODUCTOS
+                        $sql6 ="SELECT * FROM TERRA_Categorias WHERE ID!='$Categoria3'";
+                        $result6= $conn->query($sql6);
+                        if ($result6->num_rows > 0) {
+                            // output data of each row
+                            while($row6 = $result6->fetch_assoc()) {
+                              echo "<option value=".$row6["ID"].">" .$row6["Nombre"]. "</option>";
                             }
                           } else {
                             echo "<option> - </option>";

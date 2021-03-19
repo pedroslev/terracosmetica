@@ -10,19 +10,13 @@ if (isset($_POST['SubirAWeb'])) {
     $Descripcion=$_POST['Descripcion'];
     $Stock=$_POST['Stock'];
     $Categoria=$_POST['Categoria'];
+    $Categoria2=$_POST['Categoria2'];
+    $Categoria3=$_POST['Categoria3'];
     $Costo=$_POST['Costo'];
     $Margen=$_POST['Margen'];
     $Precio=$_POST['Precio'];
     $Oferta=$_POST['Oferta'];
     $Mostrar=$_POST['Mostrar'];
-    
-    //Obtencion de id categoria
-    $sqlID ="SELECT ID FROM TERRA_Categorias WHERE Nombre = '$Categoria'";
-    $resultID= $conn->query($sqlID);
-    $row = $resultID->fetch_assoc();
-    if ($resultID->num_rows > 0) {
-        $IdCategoria=$row["ID"];
-      }
 
     // Conteo total de archivos
     $countfiles = count($_FILES['file']['name']);
@@ -105,8 +99,8 @@ if (isset($_POST['SubirAWeb'])) {
     }
     if($countfiles)
     //mysql query
-    $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Costo, Margen, Precio, Oferta, Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Mostrar)
-    VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Stock', '$IdCategoria', '.$Costo.', '.$Margen.', '$Precio', '.$Oferta.', '$imagen1', '$imagen2', '$imagen3', '$imagen4', '$imagen5', '$Mostrar')";
+    $sql = "INSERT INTO TERRA_Productos (Codigo, Nombre, Descripcion, Stock, Categoria, Categoria2, Categoria3, Costo, Margen, Precio, Oferta, Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Mostrar)
+    VALUES ('$Codigo', '$Nombre', '$Descripcion', '$Stock', '$Categoria', '$Categoria2', '$Categoria3', '.$Costo.', '.$Margen.', '$Precio', '.$Oferta.', '$imagen1', '$imagen2', '$imagen3', '$imagen4', '$imagen5', '$Mostrar')";
     $result = $conn->query($sql);
     
        
@@ -130,22 +124,25 @@ if (isset($_POST['SubirAWeb'])) {
         $Descripcion=$_POST['Descripcion'];
         $Stock=$_POST['Stock'];
         $Categoria=$_POST['Categoria'];
+        $Categoria2=$_POST['Categoria2'];
+        $Categoria3=$_POST['Categoria3'];
         $Costo=$_POST['Costo'];
         $Margen=$_POST['Margen'];
         $Precio=$_POST['Precio'];
         $Oferta=$_POST['Oferta'];
         $Mostrar=$_POST['Mostrar'];  
         
+        /*
         //Obtencion de id categoria
         $sqlID ="SELECT ID FROM TERRA_Categorias WHERE Nombre = '$Categoria'";
         $resultID= $conn->query($sqlID);
         $row = $resultID->fetch_assoc();
         if ($resultID->num_rows > 0) {
             $IdCategoria=$row["ID"];
-        }
+        }*/
         
         $sql = "UPDATE ".$DBN."_".$Operacion." SET  Codigo='".$Codigo."' , Nombre='".$Nombre."' , Descripcion='".$Descripcion."' ,
-        Stock='".$Stock."' , Categoria='".$IdCategoria."' , Costo='".$Costo."' , Margen='".$Margen."' , Precio='".$Precio."' , Oferta='".$Oferta."' , Mostrar='".$Mostrar."'  WHERE ID='".$ID."' ";
+        Stock='".$Stock."' , Categoria='".$Categoria."' , Categoria2='".$Categoria2."' , Categoria3='".$Categoria3."' , Costo='".$Costo."' , Margen='".$Margen."' , Precio='".$Precio."' , Oferta='".$Oferta."' , Mostrar='".$Mostrar."'  WHERE ID='".$ID."' ";
         $result = $conn->query($sql);
         echo $sql;
         if ($result) {
