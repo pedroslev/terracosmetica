@@ -133,7 +133,10 @@ function URLChecker(){
             <div class="Ocultar" id="ProductosTitulo">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Productos</h1>
-            <button type="button" class="btn btn-outline-dark" id="Agregar"onclick="Seleccionar(selected=4),window.location='#Agregar'">Agregar Producto</button>
+            <form class="form-inline">
+            <input id="SearchBox" type="search" class="form-control mb-2 mr-sm-2" placeholder="Buscador" aria-label="Search" onchange="window.find(document.getElementById('SearchBox').value,false,false,true);">
+            <button id="Agregar" type="button" class="btn btn-outline-dark mb-2" onclick="Seleccionar(selected=4),window.location='#Agregar'">Agregar Producto</button>
+            </form>
             </div>
             <div class="table-responsive">
                               <table class="table table-striped table-sm">
@@ -585,12 +588,6 @@ if (isset($_POST['MenuEditarProducto'])) {
             <!-- FORM DE CATEGORIA -->
             <form method="POST" class="form-inline">
             <input type="text" class="form-control mb-2 mr-sm-2" id="NombreCategoria" name="CategoriaNombre" required placeholder="NombreCategoria">
-                <div class="input-group  mb-2 mr-sm-2">
-                <input type="text" class="form-control" id="IconoCategoria" name="CategoriaIcono" placeholder="Pegue Aqui Nombre del icono">
-                <div class="input-group-append">
-    <a href="https://feathericons.com/" class="btn btn-outline-secondary" target="_blank">+</a>
-  </div>
-                </div>
            <button type="submit" class="btn btn-success mb-2" name="SubirCategoria">Agregar</button>
             </form>
             <!-- FIN DE FORM DE CATEGORIA -->
@@ -600,8 +597,7 @@ if (isset($_POST['MenuEditarProducto'])) {
             <div class="table-responsive">
                               <table class="table table-striped table-sm">
                                 <thead>
-                                  <tr>
-                                    <th>Icono</th>
+                                  <tr>                          
                                     <th>Nombre</th>
                                     <th></th>
                                   </tr>
@@ -617,17 +613,10 @@ if (isset($_POST['MenuEditarProducto'])) {
                               ?> 
                         <tr>
                              <form action="index.php#Categorias" method="post" id="EditarCategoria<?php echo $row["ID"]; ?>">
-                            <td>   
-                               
-                                <span data-feather="<?php echo $row["Icono"]; ?>"></span>
-                                <input class="FormLista" name="CategoriaEditIcono" type="text"  value="<?php echo $row["Icono"]; ?>" aria-label="..." onchange="document.getElementById('EditarCategoria<?php echo $row['ID']; ?>').submit()" >
-                            </td>
-                            <td>
-                                
+                              <td>                                
                                     <input class="FormLista" name="CategoriaEditNombre" type="text" required value="<?php echo $row["Nombre"]; ?>" aria-label="..." onchange="document.getElementById('EditarCategoria<?php echo $row['ID']; ?>').submit()">
                                     <input type="hidden" name="IDCategoria" value="<?php echo $row["ID"]; ?>" />
-                                    <input type="hidden" name="EditarCategoria" value="set" />
-                                
+                                    <input type="hidden" name="EditarCategoria" value="set" />                                
                             </td> 
                                 </form>
                             <td>                 
