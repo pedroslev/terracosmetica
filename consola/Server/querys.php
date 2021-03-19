@@ -185,20 +185,14 @@ if (isset($_POST['SubirAWeb'])) {
 //CARGAR CATEGORIA
 $Operacion="Categoria";
 if (isset($_POST['Subir'.$Operacion.''])) {
-    //Post de datos
-    $Nombre= $_POST[''.$Operacion.'Nombre'];
-    //Si el usuario no envia icono asiga un "?"
-    if (empty($_POST[''.$Operacion.'Icono'])){
-    $Icono="help-circle"; 
-    } else {
-    $Icono=$_POST[''.$Operacion.'Icono']; 
-    };
+//Post de datos
+$Nombre= $_POST[''.$Operacion.'Nombre'];
 
-    //Insert en Tabla - $DBN se modifica en:/server/datavase.php
-    $sql = "INSERT INTO ".$DBN."_".$Operacion.'s'." (Nombre,Icono)
-    VALUES ('$Nombre','$Icono')";
-    $result = $conn->query($sql);
-    $conn->close();
+//Insert en Tabla - $DBN se modifica en:/server/datavase.php
+$sql = "INSERT INTO ".$DBN."_".$Operacion.'s'." (Nombre)
+VALUES ('$Nombre')";
+$result = $conn->query($sql);
+$conn->close();
 
     if ($result) {
         header("Location: ../index.php#Categorias");
@@ -211,27 +205,21 @@ if (isset($_POST['Subir'.$Operacion.''])) {
         
         exit();
     }
+
 }
+
+
 
 //EDITAR: Categoria
 $Operacion="Categoria";
 if (isset($_POST['Editar'.$Operacion.''])) {
     //Post de datos
     $ID=$_POST['ID'.$Operacion.''];
-    
-    //Si el usuario no envia icono asiga un "?"
-    if (empty($_POST[''.$Operacion.'EditIcono'])){
-    $Icono="help-circle"; 
-    } else {
-    $Icono=$_POST[''.$Operacion.'EditIcono']; 
-    }; 
+    $Nombre=$_POST[''.$Operacion.'EditNombre'];
+ 
+    //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
+    $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."'  WHERE ID='".$ID."' ";
 
-     //Si el usuario cambia el nombre por un blank no lo modifica en DB
-    if (!empty($_POST[''.$Operacion.'EditNombre'])){
-        $Nombre=$_POST[''.$Operacion.'EditNombre'];
-        //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
-        $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."' , Icono='".$Icono."'  WHERE ID='".$ID."' ";
-    };
     $result = $conn->query($sql);
 
     if ($result) {
@@ -251,10 +239,34 @@ $Operacion="Categoria";
 if (isset($_POST['Eliminar'.$Operacion.''])) {
     //Post de datos
     $ID=$_POST['ID'.$Operacion.''];
+
+    $sqlSC1 = "SELECT ID FROM ".$DBN."_Productos WHERE Categoria='".$ID."' ";
+    $resultSC1 = $conn->query($sqlSC1);
+    $rowSC1 = $resultSC1->fetch_assoc();
+    if($resultSC1->num_rows > 0){
+        $sqlUC1 = "UPDATE ".$DBN."_Productos SET Categoria=NULL , aux1='1' WHERE ID='".$rowSC1['ID']."' ";
+        $resultUC1 = $conn->query($sqlUC1);
+    }
+
+    $sqlSC2 = "SELECT ID FROM ".$DBN."_Productos WHERE Categoria2='".$ID."' ";
+    $resultSC2 = $conn->query($sqlSC2);
+    $rowSC2 = $resultSC2->fetch_assoc();
+    if($resultSC2->num_rows > 0){
+        $sqlUC2 = "UPDATE ".$DBN."_Productos SET Categoria2=NULL , aux1='1' WHERE ID='".$rowSC2['ID']."' "; 
+        $resultUC2 = $conn->query($sqlUC2);
+    }
+
+    $sqlSC3 = "SELECT ID FROM ".$DBN."_Productos WHERE Categoria3='".$ID."' ";
+    $resultSC3 = $conn->query($sqlSC3);
+    $rowSC3 = $resultSC3->fetch_assoc();
+    if($resultSC3->num_rows > 0){
+        $sqlUC3 = "UPDATE ".$DBN."_Productos SET Categoria3=NULL , aux1='1' WHERE ID='".$rowSC3['ID']."' "; 
+        $resultUC3 = $conn->query($sqlUC3);
+    }
+
     //Delete de fila segun ID - $DBN se modifica en:/server/datavase.php
     $sql = "DELETE FROM ".$DBN."_".$Operacion.'s'." WHERE ID='".$ID."' ";
     $result = $conn->query($sql);
-
     if ($result) {
         header("Location: ../index.php#Categorias");
         $conn->close();
