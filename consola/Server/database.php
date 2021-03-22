@@ -2,6 +2,8 @@
 
 $DBN="TERRA";
 
+$VERSION="T 0.0.0";
+
 #$conn=new mysqli("localhost", "u839063682_terrauser", "Terrapassword1", "u839063682_TERRA");
 $conn=new mysqli("sql436.main-hosting.eu", "u839063682_terrauser", "Terrapassword1", "u839063682_TERRA");
 

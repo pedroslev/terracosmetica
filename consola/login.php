@@ -15,9 +15,9 @@
 </head>
 
 <?php
-if (isset($_POST['Login'])) {
+include './Server/database.php';
 
-    include './Server/database.php';
+if (isset($_POST['Login'])) {
  
     $EmailLogin = $_POST['EmailLogin'];
     $ContrasenaLogin = md5($_POST['ContrasenaLogin']);
@@ -67,7 +67,8 @@ if (isset($_POST['Login'])) {
       <label for="inputPassword" class="sr-only">Contraseña</label>
       <input type="password" id="ContrasenaLogin" name="ContrasenaLogin" class="form-control" placeholder="Contraseña" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit" name="Login">Ingresar</button>
-      <a href="http://hazear.com/" target="_blank"><p class="mt-5 mb-3 text-muted">&copy; S.O.V. 2020</p></a>
+      <a href="http://hazear.com/" target="_blank"><p class="mt-5 mb-3 text-muted">&copy; S.O.V. 2020 - <?php echo date("Y"); ?></p></a>
+      <p class="mt-1 mb-3 text-muted"> Versión <?php echo $VERSION; ?> </p>
     </form>
   </body>
 </html>

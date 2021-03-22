@@ -106,7 +106,7 @@ function URLChecker(){
             <div class="fixed-bottom Marca">
             <a href="http://hazear.com/" target="_blank"><strong>HAZE</strong></a>
             <h1 class="h2"><strong>S O V</strong></h1>
-            <p>Version T0.0.1</p>
+            <p>Versión <?php echo $VERSION; ?></p>
           </div>
           </div>
 
