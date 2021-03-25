@@ -1,6 +1,6 @@
-
-  var selected=0;
+var selected=0;
   function Seleccionar(selected){
+
     //Quito el active de todos los ids
     if(document.getElementById("Inicio").classList.contains('active')){document.getElementById("Inicio").classList.remove('active')}
     if(document.getElementById("Ventas").classList.contains('active')){document.getElementById("Ventas").classList.remove('active')}
@@ -8,11 +8,11 @@
     if(document.getElementById("Reportes").classList.contains('active')){document.getElementById("Reportes").classList.remove('active')}
     if(document.getElementById("Configuracion").classList.contains('active')){document.getElementById("Configuracion").classList.remove('active')}
     if(document.getElementById("Categorias").classList.contains('active')){document.getElementById("Categorias").classList.remove('active')}
-    
+
   //Me fijo cual toque para agregarle su active(subrayado)
   switch(selected){
 
-      //INICIO
+  //INICIO
   case 0:
       //AGREGA EL ACTIVE A INICIO
       document.getElementById("Inicio").classList.add('active')
@@ -29,10 +29,12 @@
       //ANIADO OCULTAR AGREGAR CONFIGURACION
       document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar') 
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
     break;
 
-      //VENTAS
+    //VENTAS
     case 1:
       //AGREGA EL ACTIVE A VENTAS
       document.getElementById("Ventas").classList.add('active')
@@ -49,15 +51,19 @@
       //ANIADO OCULTAR AGREGAR CONFIGURACION
       document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar')   
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar') 
     break;
 
-      //PRODUCTOS
+    //PRODUCTOS
     case 2:
       //AGREGA EL ACTIVE A PRODUCTOS
       document.getElementById("Productos").classList.add('active')
       //ANIADO OCULTAR PRODUCTOS
       document.getElementById("ProductosTitulo").classList.remove('Ocultar')
+      //ANIADO OCULTAR EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
       //ANIADO OCULTAR INICIO
       document.getElementById("InicioTitulo").classList.add('Ocultar')
       //ANIADO OCULTAR VENTAS
@@ -65,14 +71,14 @@
       //ANIADO OCULTAR REPORTES
       document.getElementById("ReportesTitulo").classList.add('Ocultar')
        //ANIADO OCULTAR AGREGAR PRODUCTO
-      document.getElementById("AgregarProducto").classList.add('Ocultar')   
+      document.getElementById("AgregarProducto").classList.add('Ocultar')
       //ANIADO OCULTAR AGREGAR CONFIGURACION
-      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
+      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar')
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar')   
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
       break;
 
-      //REPORTES
+    //REPORTES
     case 3:
       //AGREGA EL ACTIVE A REPORTES
       document.getElementById("Reportes").classList.add('active')
@@ -89,19 +95,34 @@
       //ANIADO OCULTAR AGREGAR CONFIGURACION
       document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar')  
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
     break;
-          
-      //AGREGAR PRODUCTO
+
+    //AGREGAR PRODUCTO
     case 4:
-      //ANIADO OCULTAR PRODUCTOS
+      //AGREGA EL ACTIVE A PRODUCTOS
+      document.getElementById("Productos").classList.add('active')
+      //SACO OCULTAR AGREGAR PRODUCTOS
       document.getElementById("AgregarProducto").classList.remove('Ocultar')
       //ANIADO OCULTAR PRODUCTOS
       document.getElementById("ProductosTitulo").classList.add('Ocultar')
-
+      //ANIADO OCULTAR INICIO
+      document.getElementById("InicioTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR VENTAS
+      document.getElementById("VentasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR REPORTES
+      document.getElementById("ReportesTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR AGREGAR CONFIGURACION
+      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
+      //ANIADO OCULTAR AGREGAR CATEGORIAS
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
     break;
 
-      //CONFIGURACION
+    //CONFIGURACION
     case 5:
       //AGREGA EL ACTIVE A CONFIGURACION
       document.getElementById("Configuracion").classList.add('active')
@@ -113,15 +134,37 @@
       document.getElementById("VentasTitulo").classList.add('Ocultar')
       //ANIADO OCULTAR PRODUCTOS
       document.getElementById("ProductosTitulo").classList.add('Ocultar')
-        //ANIADO OCULTAR AGREGAR PRODUCTO
+      //ANIADO OCULTAR AGREGAR PRODUCTO
       document.getElementById("AgregarProducto").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR REPORTES
       document.getElementById("ReportesTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CATEGORIAS
-      document.getElementById("CategoriasTitulo").classList.add('Ocultar')  
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+    document.getElementById("EditarProducto").classList.add('Ocultar')  
     break;
-      
-      //CATEGORIAS
+
+    //EDITAR PRODUCTO
+    case 6:
+      //AGREGA EL ACTIVE A PRODUCTOS
+      document.getElementById("Productos").classList.add('active')
+      //SACO OCULTAR EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.remove('Ocultar')
+      //ANIADO OCULTAR PRODUCTOS
+      document.getElementById("ProductosTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR INICIO
+      document.getElementById("InicioTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR VENTAS
+      document.getElementById("VentasTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR REPORTES
+      document.getElementById("ReportesTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR AGREGAR CONFIGURACION
+      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
+      //ANIADO OCULTAR AGREGAR CATEGORIAS
+      document.getElementById("CategoriasTitulo").classList.add('Ocultar')
+    break;
+
+    //CATEGORIAS
     case 8:
       //AGREGA EL ACTIVE A CATEGORIAS
       document.getElementById("Categorias").classList.add('active')
@@ -138,7 +181,9 @@
       //ANIADO OCULTAR AGREGAR REPORTES
       document.getElementById("ReportesTitulo").classList.add('Ocultar') 
       //ANIADO OCULTAR AGREGAR CONFIGURACION
-      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar') 
+      document.getElementById("ConfiguracionTitulo").classList.add('Ocultar')
+      //ANIADO OCULTAR A EDITAR PRODUCTOS
+      document.getElementById("EditarProducto").classList.add('Ocultar')
       break;
 
   
@@ -146,34 +191,29 @@
     }
   }
 
-
-    function CalculoPrecioSov() {
-    var margen = document.getElementById("MargenSov").value/100;
+    //calculo automatico de precio a partir de margen
+    function CalculoPrecio() {
+    var margen = document.getElementById("Margen").value/100;
     var costo = document.getElementById("Costo").value;
+    var oferta = document.getElementById("Oferta").value; 
     var aux = +costo+(+costo*margen);
-      //falta hacer que redondee  
-    //document.getElementById("PrecioSov").value = aux;
-    //document.getElementById("PrecioSov").setAttribute('value', aux);
-    document.getElementById("PrecioSov").value= new Number(JSON.parse(aux));
+    var discount = aux * (oferta/100);
+    aux = aux - discount;
+    document.getElementById("Precio").value= new Number(JSON.parse(aux));
     }
-
-
-
-    function CalculoPrecioML() {
-      var margen = document.getElementById("MargenML").value/100;
-      var costo = document.getElementById("Costo").value;
-      var aux = +costo+(+costo*margen);
-        //falta hacer que redonde
-        //document.getElementById("PrecioML").value = aux;
-        //document.getElementById("PrecioML").setAttribute('value', aux);
-        document.getElementById("PrecioML").value= new Number(JSON.parse(aux));
-
-
-
-      }
-  
-
       function LimpiarForm(){
-        
-
       }
+
+      //CheckboxGlobales
+      function CheckBoxGlobal()
+      {
+        if(document.getElementById("CheckBoxGlobal").checked = true)
+        {
+          document.getElementById("CheckBoxIndividual").checked = true;
+        }else
+        {
+          document.getElementById("CheckBoxIndividual").checked = false;
+        }
+      }
+
+
