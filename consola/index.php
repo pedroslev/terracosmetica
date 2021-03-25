@@ -1,11 +1,10 @@
 <?php 
+include './Server/sessionstart.php';
+
 include './Server/database.php';
 
 include './Server/querys.php';
 
-include './php/fnc.php';
-
-session_start();
 ?>
 <script>
 //Funcion que cada 100ms ejecuta Funcion URLChecker
@@ -52,7 +51,10 @@ function URLChecker(){
       
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="login.php">Sign out</a>
+          <form method="post" class="form-inline" style="margin-bottom: 0px;">
+          <button type="button" class="btn btn-primary rounded-circle" title="<?php echo $_SESSION['NombreUsuario']; ?>" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Se encuentra logueado con: <?php echo $_SESSION['NombreUsuario']; ?>"> <?php echo substr($_SESSION['NombreUsuario'], 0, 1); ?> </button>
+          <button type="submit" name="LogOut" class="btn nav-link" >Log out</button>
+          </form>
         </li>
       </ul>
     </nav>
@@ -104,7 +106,7 @@ function URLChecker(){
             <div class="fixed-bottom Marca">
             <a href="http://hazear.com/" target="_blank"><strong>HAZE</strong></a>
             <h1 class="h2"><strong>S O V</strong></h1>
-            <p>Version T0.0.1</p>
+            <p>Versión <?php echo $VERSION; ?></p>
           </div>
           </div>
 
@@ -117,7 +119,7 @@ function URLChecker(){
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Inicio</h1>
             </div>
-            Bienvenido a la interfaz de Administrador de HAZE S.O.V. (Sistema de Organización de Ventas)
+            Hola <?php echo $_SESSION['NombreUsuario']; ?> Bienvenido a la interfaz de Administrador de HAZE S.O.V. (Sistema de Organización de Ventas)
             </div>
             
           <!-- VENTAS -->
