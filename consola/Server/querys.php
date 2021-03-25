@@ -356,11 +356,24 @@ if (isset($_POST['Eliminar'.$Operacion.''])) {
     }
     else 
     {
-        header("Location: ../login.php");
+        header("Location: ../../../login.php");
         $conn->close();
         exit();
     }
 }
 
+//Logout
+if (isset($_POST['LogOut'])) {
+
+unset($_SESSION['IDUsuario']);
+unset($_SESSION['NombreUsuario']);
+unset($_SESSION['NivelUsuario']);
+
+// destroy the session
+session_destroy();
+
+header("Location: ../../../login.php");
+$conn->close();}
+   
 
 ?>
