@@ -1,3 +1,8 @@
+<?php 
+
+include './consola/Server/database.php';
+
+?>
 <html lang="es"><head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -219,6 +224,15 @@
 
 
 										</div> <!-- .et_pb_row -->
+
+										<?php 
+										//MOSTRADOR DE PRODUCTOS EN OFERTA            
+										$sql ="SELECT * FROM ".$DBN."_Productos WHERE Mostrar='1' ";
+										$result= $conn->query($sql);
+										if ($result->num_rows > 0) {										
+										while($row = $result->fetch_assoc()) { 										
+										?>
+
 										<div class="et_pb_row et_pb_row_3 et_clickable">
 											<div class="et_pb_column et_pb_column_1_2 et_pb_column_5 et_clickable  et_pb_css_mix_blend_mode_passthrough">
 
@@ -226,7 +240,7 @@
 												<div class="et_pb_module et_pb_image et_pb_image_0">
 
 
-													<a href="home.html"><span class="et_pb_image_wrap "><img src="images/AGUA-DE-ROSAS-TÓNICO-FACIAL-NATURAL.jpg" alt="" title="AGUA-DE-ROSAS--TÓNICO-FACIAL-NATURAL"></span></a>
+													<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
 												</div>
 											</div> <!-- .et_pb_column -->
 											<div class="et_pb_column et_pb_column_1_2 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
@@ -239,7 +253,7 @@
 
 													<div class="et_pb_module_inner">
 
-														<h1>Agua De Rosas</h1>
+														<h1><?php echo $row["Nombre"]; ?></h1>
 													</div>
 												</div>
 												<div class="et_pb_module et_pb_wc_price et_pb_wc_price_0">
@@ -248,7 +262,7 @@
 
 
 													<div class="et_pb_module_inner">
-														<p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>250,00</span>
+														<p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $row["Precio"]; ?></span>
 														</p>
 
 													</div>
@@ -260,12 +274,11 @@
 
 													<div class="et_pb_module_inner">
 
-
-														<form class="cart" action="home.html" method="post" enctype="multipart/form-data">
+													<!-- HAY QUE REEVER ESTE FORM PARA HACERLO FUNCIONAR -->
+														<form class="cart" action="#" method="post" enctype="multipart/form-data">
 
 															<div class="quantity">
-																<label class="screen-reader-text" for="quantity_60402626b783d">Agua De Rosas
-																	cantidad</label>
+																<label class="screen-reader-text" for="quantity_60402626b783d"><?php echo $row["Nombre"]; ?></label>
 																<input type="number" id="quantity_60402626b783d" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Cantidad" size="4" placeholder="" inputmode="numeric">
 															</div>
 
@@ -284,6 +297,13 @@
 										</div> <!-- .et_pb_row -->
 										 <!-- .et_pb_row -->
 										 <!-- .et_pb_row -->
+
+
+										 <?php  }  } else { //deberia mostrarlo mas lindo ?>
+
+											NO HAY PRODUCTOS
+
+											<?php }  ?> 
 
 
 									</div> <!-- .et_pb_section -->

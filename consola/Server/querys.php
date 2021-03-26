@@ -293,11 +293,10 @@ if (isset($_POST['Subir'.$Operacion.''])) {
     $Nombre = $_POST[''.$Operacion.'Nombre'];
     $Email = $_POST[''.$Operacion.'Email'];
     $Contrasena = md5($_POST[''.$Operacion.'Contrasena']);
-    $Nivel= $_POST[''.$Operacion.'Nivel'];
-
+    
     //Insert en Tabla - $DBN se modifica en:/server/datavase.php
-    $sql = "INSERT INTO ".$DBN."_".$Operacion.'s'." (Nombre, Email, Contrasena, Level)
-    VALUES ('$Nombre', '$Email', '$Contrasena' , '$Nivel')";
+    $sql = "INSERT INTO ".$DBN."_".$Operacion.'s'." (Nombre, Email, Contrasena)
+    VALUES ('$Nombre', '$Email', '$Contrasena')";
     $result = $conn->query($sql);
     $conn->close();
 
@@ -321,16 +320,16 @@ if (isset($_POST['Editar'.$Operacion.''])) {
     $Nombre = $_POST[''.$Operacion.'Nombre'];
     $Email = $_POST[''.$Operacion.'Email'];
     //Falta que chequee si es vacia no cargarla
-    $Nivel= $_POST[''.$Operacion.'Nivel'];
+    
     if ($_POST[''.$Operacion.'Contrasena']==$_POST[''.$Operacion.'ContrasenaOld']) {
         //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
-    $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."' , Email='".$Email."' , Level='".$Nivel."'  WHERE ID='".$ID."' ";
+    $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."' , Email='".$Email."'  WHERE ID='".$ID."' ";
     }
     else 
     {
         $Contrasena = md5($_POST[''.$Operacion.'Contrasena']);
         //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
-    $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."' , Email='".$Email."' , Contrasena='".$Contrasena."' , Level='".$Nivel."'  WHERE ID='".$ID."' ";
+    $sql = "UPDATE ".$DBN."_".$Operacion.'s'." SET  Nombre='".$Nombre."' , Email='".$Email."' , Contrasena='".$Contrasena."'  WHERE ID='".$ID."' ";
     }
 
     
@@ -369,7 +368,7 @@ if (isset($_POST['Eliminar'.$Operacion.''])) {
     }
 }
 
-//Logout
+//---------------LOGOUT--------------------
 if (isset($_POST['LogOut'])) {
 
 unset($_SESSION['IDUsuario']);
@@ -379,7 +378,7 @@ unset($_SESSION['NivelUsuario']);
 // destroy the session
 session_destroy();
 
-header("Location: ../../../login.php");
+header("Location: ./login.php");
 $conn->close();}
    
 
