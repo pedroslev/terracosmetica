@@ -42,6 +42,9 @@ function URLChecker(){
 	
   <link rel="stylesheet" href="./css/style.css">
   <script src="./js/index.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   
 </head>
 
@@ -129,17 +132,72 @@ function URLChecker(){
             </div>
              En desarrollo...
             </div>
+            
+          
      
         
           <!-- PRODUCTOS -->
             <div class="Ocultar" id="ProductosTitulo">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Productos</h1>
+            <h1 class="h2">Productos</h1>           
             <form class="form-inline">
             <input id="SearchBox" type="search" class="form-control mb-2 mr-sm-2" placeholder="Buscador" aria-label="Search" onchange="window.find(document.getElementById('SearchBox').value,false,false,true);">
             <button id="Agregar" type="button" class="btn btn-outline-dark mb-2" onclick="Seleccionar(selected=4),window.location='#Agregar'">Agregar Producto</button>
+            <button id="modal" type="button" class="btn btn-outline-primary mb-2" data-toggle="modal" data-target="#EdicionRapida">Edicion Rapida <span class="badge badge-light">4</span></button>
             </form>
             </div>
+
+<!-- Modal -->
+<div class="modal fade" id="EdicionRapida" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">EdicionRapida</h5>
+                  <p>Productos seleccionados:4</p>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                <div class="form-row">
+                 <div class="col">
+                  <label for="Stock">Cantidad</label>
+                    <input type="text" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
+                </div>
+
+                <div class="col">
+                  <label for="MargenML">Margen</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">%</div>
+                    </div>
+                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="" onchange="CalculoPrecio()">
+                  </div>
+                </div>
+
+                <div class="col">
+                  <label for="Precio">Oferta</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">%</div>
+                    </div>
+                    <input type="text" class="form-control" id="Oferta" name="Oferta" placeholder="Oferta" value="" onchange="CalculoPrecio()">
+                  </div>
+                </div>
+                </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                  <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+              </div>
+            </div>
+          </div>  
+
             <div class="table-responsive">
                               <table class="table table-striped table-sm">
                                 <thead>
@@ -655,8 +713,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                     <form method="POST" class="form-inline">
                         <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioNombre" name="UsuarioNombre" required placeholder="Nombre">
                         <input type="email" class="form-control mb-2 mr-sm-2" id="UsuarioEmail" name="UsuarioEmail" required placeholder="Email">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioContrasena" name="UsuarioContrasena" required placeholder="Contraseña">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioNivel" name="UsuarioNivel" required placeholder="Nivel">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioContrasena" name="UsuarioContrasena" required placeholder="Contraseña">                        
                         <button type="submit" class="btn btn-success mb-2" name="SubirUsuario">Agregar</button>
                    </form>
                     <!-- FIN DE FORM DE Ususarios-->
@@ -669,7 +726,6 @@ if (isset($_POST['MenuEditarProducto'])) {
                                         <th>Nombre</th>
                                         <th>Email</th>
                                         <th>Contraseña</th>
-                                        <th>Nivel</th>
                                         <th></th>
                                       </tr>
                                     </thead>
@@ -688,8 +744,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                                             <form action="index.php#Configuracion" method="post" id="EditarUsuario<?php echo $row["ID"]; ?>">                    
                                                 <td><input name="UsuarioNombre" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Nombre"]; ?>"></td>
                                                 <td><input name="UsuarioEmail" type="email"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Email"]; ?>"></td>
-                                                <td><input name="UsuarioContrasena" type="password"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Contrasena"]; ?>"></td>
-                                                <td><input name="UsuarioNivel" type="text"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Level"]; ?>"></td>
+                                                <td><input name="UsuarioContrasena" type="password"  onchange="document.getElementById('EditarUsuario<?php echo $row['ID']; ?>').submit()" class="FormLista" value="<?php echo $row["Contrasena"]; ?>"></td>                      
                                                 <input type="hidden" name="IDUsuario" value="<?php echo $row["ID"]; ?>" />
                                                 <input type="hidden" name="UsuarioContrasenaOld" value="<?php echo $row["Contrasena"]; ?>" />
                                                 <input type="hidden" name="EditarUsuario" value="set" />
@@ -720,6 +775,7 @@ if (isset($_POST['MenuEditarProducto'])) {
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
