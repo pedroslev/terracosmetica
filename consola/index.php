@@ -16,7 +16,6 @@ function URLChecker(){
   const URL=window.location.href;
   //Ifs continuos buscando la cadena de valor de cada href para ejecutar la funcion "Selected();" 
   //Selected(); esta en index.js y determina el movimiento de la pagina
-    if(URL.indexOf('Inicio') > -1){Seleccionar(selected=0);}
     if(URL.indexOf('Ventas') > -1){Seleccionar(selected=1);}
     if(URL.indexOf('Productos') > -1){Seleccionar(selected=2);}
     if(URL.indexOf('Reportes') > -1){Seleccionar(selected=3);}
@@ -66,14 +65,7 @@ function URLChecker(){
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#Inicio" id="Inicio" name="Inicio" onclick="Seleccionar(selected=0)">
-                  <span data-feather="home"></span>
-                  Inicio
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#Ventas" id="Ventas" onclick="Seleccionar(selected=1)">
+                <a class="nav-link active" href="#Ventas" id="Ventas" onclick="Seleccionar(selected=1)">
                   <span data-feather="dollar-sign"></span>
                   Ventas
                 </a>
@@ -113,17 +105,9 @@ function URLChecker(){
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          
-          <!-- INICIO -->
-          <div class="" id="InicioTitulo">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Inicio</h1>
-            </div>
-            Hola <?php echo $_SESSION['NombreUsuario']; ?> Bienvenido a la interfaz de Administrador de HAZE S.O.V. (Sistema de Organización de Ventas)
-            </div>
             
           <!-- VENTAS -->
-          <div class="Ocultar" id="VentasTitulo">
+          <div class="" id="VentasTitulo">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Ventas</h1>
             </div>
@@ -164,10 +148,21 @@ function URLChecker(){
                   <?php 
                   //MOSTRADOR DE PRODUCTOS (LISTADO)
                   $class="FormLista";
-                  $sql ="SELECT * FROM TERRA_Productos";
+                  //Checkeo si hay producto con categoria que haya sido previamente eliminada
+                  $categoriaFaltante="SELECT * FROM TERRA_Productos where aux1='1'";
+                  $resultado= $conn->query($categoriaFaltante);
+                  if($resultado->num_rows >0){
+                  //Si el resultado es mayor a cero muestro los productos sin categoria por eliminacion primero
+                  $sql ="SELECT * FROM TERRA_Productos order by aux1 desc";
                   $result= $conn->query($sql);
+                  }else
+                  {
+                  //En caso de no haber productos con categorias eliminadas previamente ordeno por bloques de Categoria1
+                  $sql ="SELECT * FROM TERRA_Productos order by Categoria desc";
+                  $result= $conn->query($sql);
+                  }
                   if ($result->num_rows > 0) {
-                  // output data of each row
+                  //Output data of each row
                   while($row = $result->fetch_assoc()) {
                     $search1=$row["Categoria"];
                     $search2=$row["Categoria2"];
