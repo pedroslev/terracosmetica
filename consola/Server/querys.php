@@ -29,10 +29,17 @@ if (isset($_POST['SubirAWeb'])) {
     // Loopeo por la cantidad de fotos que hay
     for($i=0;$i<$countfiles;$i++)
         {
-    
+            $anio=date('y');
+            $mes=date('n');
+            $dia=date('d');
+            $hora=date('g');
+            $minutos=date('');
+            $segundos=date('i');
+            $milisegundos=date('v');
+            $unique=$anio.$mes.$dia.$hora.$minuto.$segundos.$milisegundos."_";
             //Seteo carpeta a guardar y nombres
             $target_dir = "/home/u839063682/public_html/pedro_html/media/";
-            $basename = basename($_FILES['file']['name'][$i]);
+            $basename = basename($unique.$_FILES['file']['name'][$i]);
             $target_file[$i] = $target_dir . $basename;
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file[$i],PATHINFO_EXTENSION));
