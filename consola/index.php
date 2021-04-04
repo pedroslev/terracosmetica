@@ -122,7 +122,7 @@ function URLChecker(){
         
           <!-- PRODUCTOS -->
             <div class="Ocultar" id="ProductosTitulo">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
             <h1 class="h2">Productos</h1>           
             <form class="form-inline mb-0">
             <input id="SearchBox" type="search" class="form-control mr-sm-2" placeholder="Buscador" aria-label="Search" onchange="window.find(document.getElementById('SearchBox').value,false,false,true);">
@@ -463,6 +463,11 @@ if (isset($_POST['MenuEditarProducto'])) {
           $Precio=$fila->Precio;
           $Oferta=$fila->Oferta;
           $Mostrar=$fila->Mostrar;
+          $Imagen1=$fila->Imagen1; 
+          $Imagen2=$fila->Imagen2; 
+          $Imagen3=$fila->Imagen3;
+          $Imagen4=$fila->Imagen4;
+          $Imagen5=$fila->Imagen5;
 
         $sqlname1="SELECT * FROM  TERRA_Categorias WHERE ID = '$Categoria'";
         $resultname1=$conn->query($sqlname1);
@@ -615,6 +620,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                 </div>
 
                 <div class="form-row">
+                <div class="col">
                 <div class="form-check">
                   <input class="form-check-input" name="Mostrar" type="checkbox" value="1" id="defaultCheck1" <?php if($Mostrar==1){echo "checked"; }; ?>>
                   <label class="form-check-label" for="defaultCheck1">
@@ -622,14 +628,131 @@ if (isset($_POST['MenuEditarProducto'])) {
                   </label>
                 </div>
                 </div>
+                </div>
 
                 
               
-                <div class="form-row">
-                <div class="col">
+               
+
+<!-- FOTOS -->
+<div class="card-deck">
+  
+<div class="card">
+    <div class="card-header">Imagen 1</div>
+      <?php if($Imagen1==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen1;?>" alt="Card image cap">
+      <?php } ?>
+    </div>  
+
+
+    <div class="card">
+    <div class="card-header">Imagen 2</div>
+      <?php if($Imagen2==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen2;?>" alt="Card image cap">
+      <?php } ?>
+    </div>
+   
+    <div class="card">
+    <div class="card-header">Imagen 3</div>
+      <?php if($Imagen3==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen3;?>" alt="Card image cap">
+      <?php } ?>
+    </div>
+
+    <div class="card">
+    <div class="card-header">Imagen 4</div>
+      <?php if($Imagen4==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen4;?>" alt="Card image cap">
+      <?php } ?>
+    </div>
+
+    <div class="card">
+    <div class="card-header">Imagen 5</div>
+      <?php if($Imagen5==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen5;?>" alt="Card image cap">
+      <?php } ?>
+    </div>
+</div>     
+
+
                   <button type="submit" class="btn btn-primary mb-2" name="EditarProducto" onclick="">Guardar Cambios</button>
-                </div>
-              </div>
+                
+
             </form>
             </div>
           
@@ -638,7 +761,7 @@ if (isset($_POST['MenuEditarProducto'])) {
 
           <!--CATEGORIAS -->
           <div class="Ocultar" id="CategoriasTitulo">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-2">
             <h1 class="h2">Categorias</h1>
             <!-- FORM DE CATEGORIA 
             
