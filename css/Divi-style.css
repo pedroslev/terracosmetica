@@ -27802,4 +27802,9 @@ screen and (max-width:800px) and (orientation:landscape) {
     color: #9a4a9ab5;
 }
 
+.text-color {
+    color:#666;
+    background-color:transparent;
+}
+
 /*This file was exported by "Export WP Page to Static HTML" plugin which created by ReCorp (https://myrecorp.com) */
