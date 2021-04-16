@@ -13,6 +13,12 @@
 		document.documentElement.className = 'js';
 	</script>
 
+    <!-- Bootstrap core CSS -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
 	<meta content="Divi v.4.4.8" name="generator">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
@@ -25,13 +31,25 @@
 	<script type='text/javascript' src='js/jquery.js' async></script>
 	<link rel="stylesheet" href="css/global-et-divi-customizer-global-1614728849082.min.css">
 	<link rel='stylesheet' href='css/home.css'>
+	<script type="text/javascript" src="js/modal.js"></script>
 </head>
 
 <body
 	class="home page-template-default page page-id-14 custom-background theme-Divi woocommerce-no-js et_pb_button_helper_class et_fullwidth_nav et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_centered et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css">
 	<div id="page-container">
 
-
+		<div class="row fixed-bottom mb-3 ml-1">
+			<div class="col">
+				<div class="float-left">
+					<div class="float-left">
+						<button type="button" class="btn btn-cart et-cart-info" data-toggle="modal" data-target="#cart"><span class="total-count m-2"></span></button>
+					</div>
+	
+					<div class="d-none">
+						<button class="clear-cart btn btn-danger">Clear Cart</button></div>
+				</div>
+			</div>
+		</div>
 
 		<header id="main-header" data-height-onload="150">
 			<div class="container clearfix et_menu_container">
@@ -47,7 +65,8 @@
 						<ul id="top-menu" class="nav">
 							<li id="menu-item-117"
 								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117">
-								<a href="index.html" aria-current="page">INICIO</a></li>
+								<a href="index.html" aria-current="page">INICIO</a>
+							</li>
 							<li id="menu-item-280"
 								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a
 									href="quienes-somos.html">QUIÉNES SOMOS</a></li>
@@ -57,22 +76,28 @@
 								<ul class="sub-menu">
 									<li id="menu-item-1320"
 										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320">
-										<a href="aromas.html">AROMAS</a></li>
+										<a href="aromas.html">AROMAS</a>
+									</li>
 									<li id="menu-item-974"
 										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974">
-										<a href="aromas.html">CUIDADO CAPILAR</a></li>
+										<a href="aromas.html">CUIDADO CAPILAR</a>
+									</li>
 									<li id="menu-item-1323"
 										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1323">
-										<a href="aromas.html">CUIDADO DE LA PIEL</a></li>
+										<a href="aromas.html">CUIDADO DE LA PIEL</a>
+									</li>
 									<li id="menu-item-1025"
 										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1025">
-										<a href="aromas.html">CUIDADOS DIARIOS</a></li>
+										<a href="aromas.html">CUIDADOS DIARIOS</a>
+									</li>
 									<li id="menu-item-1322"
 										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1322">
-										<a href="aromas.html">JABONES</a></li>
+										<a href="aromas.html">JABONES</a>
+									</li>
 									<li id="menu-item-1321"
 										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1321">
-										<a href="aromas.html">PROMOCIONES</a></li>
+										<a href="aromas.html">PROMOCIONES</a>
+									</li>
 								</ul>
 							</li>
 							<li id="menu-item-294"
@@ -104,7 +129,8 @@
 				<div class="container et_search_form_container">
 					<form role="search" method="get" class="et-search-form" action="index.html">
 						<input type="search" class="et-search-field" placeholder="Búsqueda &hellip;" value="" name="s"
-							title="Buscar:" /> </form>
+							title="Buscar:" />
+					</form>
 					<span class="et_close_search_field"></span>
 				</div>
 			</div>
@@ -162,14 +188,14 @@
 
 															<div class="et_pb_slide_description">
 																<h1 class="et_pb_slide_title"><a
-																		href="/promociones/">Promoción del mes</a></h1>
+																		href="nuestros-productos.html">Promoción del mes</a></h1>
 																<div class="et_pb_slide_content">
 																	<p>Todos los meses te traemos</p>
 																	<p>una promo ideal</p>
 																</div>
 																<div class="et_pb_button_wrapper"><a
 																		class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																		href="/promociones/"
+																		href="nuestros-productos.html"
 																		data-icon="&#x35;">Conocela</a></div>
 															</div> <!-- .et_pb_slide_description -->
 														</div>
@@ -213,14 +239,14 @@
 
 															<div class="et_pb_slide_description">
 																<h3 class="et_pb_slide_title"><a
-																		href="/promociones/">Promoción del mes</a></h3>
+																		href="nuestros-productos.html">Promoción del mes</a></h3>
 																<div class="et_pb_slide_content">
 																	<p>Todos los meses traemos</p>
 																	<p>una propuesta ideal</p>
 																</div>
 																<div class="et_pb_button_wrapper"><a
 																		class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																		href="/promociones/"
+																		href="nuestros-productos.html"
 																		data-icon="&#x35;">Conocela</a></div>
 															</div> <!-- .et_pb_slide_description -->
 														</div>
@@ -324,11 +350,12 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/cuidado-de-la-piel/">CUIDADO DE
+																				href="nuestros-productos.html">CUIDADO
+																				DE
 																				LA PIEL</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/cuidado-de-la-piel/"
+																				href="nuestros-productos.html"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -361,11 +388,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/cuidados-diarios/">CUIDADOS
+																				href="nuestros-productos.html">CUIDADOS
 																				DIARIOS</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/cuidados-diarios/"
+																				href="nuestros-productos.html"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -394,11 +421,12 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/cuidado-capilar/">CUIDADO CAPILAR
+																				href="nuestros-productos.html">CUIDADO
+																				CAPILAR
 																			</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/cuidado-capilar/"
+																				href="nuestros-productos.html"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -431,10 +459,10 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/jabones/">JABONES</a></h2>
+																				href="nuestros-productos.html">JABONES</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/jabones/" data-icon="&#x24;">VER
+																				href="nuestros-productos.html" data-icon="&#x24;">VER
 																				MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -463,10 +491,10 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/aromas/">AROMAS</a></h2>
+																				href="nuestros-productos.html">AROMAS</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/aromas/" data-icon="&#x24;">VER
+																				href="nuestros-productos.html" data-icon="&#x24;">VER
 																				MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -499,11 +527,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/promociones/">PROMOCIONES DEL
+																				href="nuestros-productos.html">PROMOCIONES DEL
 																				MES</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/promociones/"
+																				href="nuestros-productos.html"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -544,11 +572,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/cuidado-de-la-piel/">CUIDADO DE
+																				href="nuestros-productos.html">CUIDADO DE
 																				LA PIEL</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/cuidado-de-la-piel/"
+																				href="nuestros-productos.html"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -571,11 +599,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/cuidados-diarios/">CUIDADOS
+																				href="nuestros-productos.html">CUIDADOS
 																				DIARIOS</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/cuidados-diarios/"
+																				href="nuestros-productos.html"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -604,11 +632,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/cuidado-capilar/">CUIDADO CAPILAR
+																				href="nuestros-productos.html">CUIDADO CAPILAR
 																			</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/cuidado-capilar/"
+																				href="nuestros-productos.html"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -641,10 +669,10 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/jabones/">JABONES</a></h2>
+																				href="nuestros-productos.html">JABONES</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/jabones/" data-icon="&#x24;">VER
+																				href="nuestros-productos.html" data-icon="&#x24;">VER
 																				MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -673,10 +701,10 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/aromas/">AROMAS</a></h2>
+																				href="nuestros-productos.html">AROMAS</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/aromas/" data-icon="&#x24;">VER
+																				href="nuestros-productos.html" data-icon="&#x24;">VER
 																				MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -709,11 +737,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="/promociones/">PROMOCIONES</br>
+																				href="nuestros-productos.html">PROMOCIONES</br>
 																				DEL MES</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="/promociones/"
+																				href="nuestros-productos.html"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -747,7 +775,9 @@
 
 
 													<div class="et_pb_text_inner">
-														<a href="nuestros-envases.html"><p class="text-color">Nuestros envases</p></a>
+														<a href="nuestros-envases.html">
+															<p class="text-color">Nuestros envases</p>
+														</a>
 													</div>
 												</div> <!-- .et_pb_text -->
 											</div> <!-- .et_pb_column -->
@@ -760,7 +790,9 @@
 
 
 													<div class="et_pb_text_inner">
-														<a href="nuestros-ingredentes.html"><p class="text-color">Nuestros ingredientes</p></a>
+														<a href="nuestros-ingredentes.html">
+															<p class="text-color">Nuestros ingredientes</p>
+														</a>
 														<h6></h6>
 													</div>
 												</div> <!-- .et_pb_text -->
@@ -774,7 +806,9 @@
 
 
 													<div class="et_pb_text_inner">
-														<a href="testimonios.html"><p class="text-color">Testimonios</p></a>
+														<a href="testimonios.html">
+															<p class="text-color">Testimonios</p>
+														</a>
 													</div>
 												</div> <!-- .et_pb_text -->
 											</div> <!-- .et_pb_column -->
@@ -943,13 +977,15 @@
 									<a href='https://www.instagram.com/terra_cosmeticanatural/'
 										class='icon et_pb_with_border' title='Seguir en Instagram' target="_blank"><span
 											class='et_pb_social_media_follow_network_name'
-											aria-hidden='true'>Seguir</span></a></li>
+											aria-hidden='true'>Seguir</span></a>
+								</li>
 								<li
 									class='et_pb_social_media_follow_network_1 et_pb_social_icon et_pb_social_network_link  et-social-facebook et_pb_social_media_follow_network_1'>
 									<a href='https://www.facebook.com/Terra-Cosm%C3%A9tica-Natural-873989496300527'
 										class='icon et_pb_with_border' title='Seguir en Facebook' target="_blank"><span
 											class='et_pb_social_media_follow_network_name'
-											aria-hidden='true'>Seguir</span></a></li>
+											aria-hidden='true'>Seguir</span></a>
+								</li>
 							</ul> <!-- .et_pb_counters -->
 						</div> <!-- .et_pb_column -->
 
@@ -959,10 +995,10 @@
 
 				</div> <!-- .et_pb_section -->
 
- <!-- .container -->
-				</div>
-			</footer> <!-- #main-footer -->
-		</div> <!-- #et-main-area -->
+				<!-- .container -->
+		</div>
+		</footer> <!-- #main-footer -->
+	</div> <!-- #et-main-area -->
 
 
 	</div> <!-- #page-container -->
@@ -987,7 +1023,7 @@
 			"starting_opacity": "0%",
 			"speed_curve": "ease-in-out"
 		}];
-		
+
 	</script>
 	<div class="joinchat joinchat--right"
 		data-settings='{"telephone":"5491121929076","mobile_only":false,"button_delay":3,"whatsapp_web":false,"message_views":2,"message_delay":10,"message_badge":false,"message_send":"","message_hash":""}'>
@@ -1065,6 +1101,7 @@
 	<script type='text/javascript' src='js/joinchat.min.js'></script>
 	<script type='text/javascript' src='js/common.js' async></script>
 	<script type='text/javascript' src='js/wp-embed.min.js' async></script>
+	
 </body>
 
 </html>

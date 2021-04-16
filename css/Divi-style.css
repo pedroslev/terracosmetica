@@ -27807,4 +27807,24 @@ screen and (max-width:800px) and (orientation:landscape) {
     background-color:transparent;
 }
 
+
+.btn-cart {
+    background-color: white;
+        color:black;
+    }
+    
+
+    
+    .btn-cart:hover{
+            transition-duration: 0.3s;
+        transition-property: transform;
+        transform: scale(1.05);
+        box-shadow: 0px 4px 20px rgba(5, 5, 5, 0.3);
+        color: black;
+        background-color: white;
+    }
+    
+    
+  
+
 /*This file was exported by "Export WP Page to Static HTML" plugin which created by ReCorp (https://myrecorp.com) */
