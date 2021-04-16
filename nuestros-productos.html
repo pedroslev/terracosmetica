@@ -25,6 +25,13 @@
 	<link rel="stylesheet" href="css/creame-whatsapp-me-public-css-joinchat.min.css">
 	<link rel="stylesheet" href="css/global-et-divi-customizer-global-1614728849082.min.css">
 
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
 	<!-- 
 	<link rel="stylesheet" href="css/minimum-purchase-for-woocommerce-core-css-vtmin-error-style.css">
 	<link rel="stylesheet" href="css/woocommerce-assets-css-photoswipe-photoswipe.min.css">
@@ -81,7 +88,18 @@
 	class="page-template-default page page-id-966 custom-background theme-Divi woocommerce-js et_pb_button_helper_class et_fullwidth_nav et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_centered et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_full_width_page et_divi_theme et-db et_minified_js et_minified_css chrome">
 	<div id="page-container" class="et-animated-content" style="margin-top: -32px; padding-top: 196px;">
 
-
+		<div class="row fixed-bottom mb-3 ml-1">
+			<div class="col">
+				<div class="float-left">
+					<div class="float-left">
+						<button type="button" class="btn btn-cart et-cart-info" data-toggle="modal" data-target="#cart"><span class="total-count m-2"></span></button>
+					</div>
+	
+					<div class="d-none">
+						<button class="clear-cart btn btn-danger">Clear Cart</button></div>
+				</div>
+			</div>
+		</div>
 
 		<header id="main-header" data-height-onload="196" class="et-fixed-header" data-height-loaded="true"
 			data-fixed-height-onload="116" style="top: 0px;">
@@ -508,40 +526,8 @@
 
 
 	</div> <!-- #page-container -->
-	<script type="text/javascript">
-		var c = document.body.className;
-		c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
-		document.body.className = c;
-	</script>
-	<!-- <script type="text/template" id="tmpl-variation-template">
-		<div class="woocommerce-variation-description">{{{ data.variation.variation_description }}}</div>
-	<div class="woocommerce-variation-price">{{{ data.variation.price_html }}}</div>
-	<div class="woocommerce-variation-availability">{{{ data.variation.availability_html }}}</div>
-</script>
-	<script type="text/template" id="tmpl-unavailable-variation-template">
-		<p>Lo sentimos, este producto no está disponible. Por favor elige otra combinación.</p>
-</script>
-	<script type="text/javascript" src="js/jquery.blockUI.min.js"></script>
-	<script type="text/javascript" src="js/js.cookie.min.js"></script>
-	<script type="text/javascript" src="js/woocommerce.min.js"></script>
-	<script type="text/javascript" src="js/country-select.min.js"></script>
-	<script type="text/javascript" src="js/address-i18n.min.js"></script>
-	<script type="text/javascript" src="js/checkout.min.js"></script>
-	<script type="text/javascript" src="js/fee.js"></script>
-	<script type="text/javascript" src="js/add-to-cart.min.js"></script>
-	<script type="text/javascript" src="js/cart-fragments.min.js"></script>
-	<script type="text/javascript" src="js/custom.unified.js"></script>
-	<script type="text/javascript" src="js/joinchat.min.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/jquery.zoom.min.js"></script>
-	<script type="text/javascript" src="js/jquery.flexslider.min.js"></script>
-	<script type="text/javascript" src="js/photoswipe.min.js"></script>
-	<script type="text/javascript" src="js/photoswipe-ui-default.min.js"></script>
-	<script type="text/javascript" src="js/single-product.min.js"></script>
-	<script type="text/javascript" src="js/wp-embed.min.js"></script>
-	<script type="text/javascript" src="js/underscore.min.js"></script>
-	<script type="text/javascript" src="js/wp-util.min.js"></script>
-	<script type="text/javascript" src="js/add-to-cart-variation.min.js"></script> -->
+<script type="text/javascript" src="js/script.js"></script>
+
 </body>
 
 </html>
