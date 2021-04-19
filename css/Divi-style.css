@@ -27823,7 +27823,14 @@ screen and (max-width:800px) and (orientation:landscape) {
         color: black;
         background-color: white;
     }
-    
+
+    .modal-height {
+        margin-top: 200px;
+    }
+
+    div button a {
+        color: black;
+    }
     
   
 
