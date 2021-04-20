@@ -4,6 +4,12 @@
 			min-height: 400px
 		}
 
+		@media(min-width:700px) {
+			.height-container {
+				height: 300px;
+			}
+		}
+
 		.et_pb_row_0.et_pb_row {
 			margin-bottom: 0px !important
 		}
