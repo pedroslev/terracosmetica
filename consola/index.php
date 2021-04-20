@@ -122,12 +122,12 @@ function URLChecker(){
         
           <!-- PRODUCTOS -->
             <div class="Ocultar" id="ProductosTitulo">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
             <h1 class="h2">Productos</h1>           
-            <form class="form-inline">
-            <input id="SearchBox" type="search" class="form-control mb-2 mr-sm-2" placeholder="Buscador" aria-label="Search" onchange="window.find(document.getElementById('SearchBox').value,false,false,true);">
-            <button id="Agregar" type="button" class="btn btn-outline-dark mb-2" onclick="Seleccionar(selected=4),window.location='#Agregar'">Agregar Producto</button>
-            <button id="modal" type="button" class="btn btn-outline-primary mb-2" data-toggle="modal" data-target="#EdicionRapida">Edicion Rapida <span class="badge badge-light">4</span></button>
+            <form class="form-inline mb-0">
+            <input id="SearchBox" type="search" class="form-control mr-sm-2" placeholder="Buscador" aria-label="Search" onchange="window.find(document.getElementById('SearchBox').value,false,false,true);">
+            <button id="Agregar" type="button" class="btn btn-outline-dark mr-2" onclick="Seleccionar(selected=4),window.location='#Agregar'">Agregar Producto</button>
+            <button id="modal" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#EdicionRapida">Edicion Rapida <span class="badge badge-light">4</span></button>
             </form>
             </div>
 
@@ -267,14 +267,14 @@ function URLChecker(){
         <input type="hidden" name="EditarProducto" value="set" />
     </form>
     <td> 
-    <form action="index.php#EditarProducto" method="post">
+    <form action="index.php#EditarProducto" class="mb-0" method="post">
     <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
         <button class="btn btn-light" id="MenuEditarProducto" name="MenuEditarProducto" onclick=".submit()"><span data-feather="edit"></span></button>
         
         </form>  
    </td> 
     <td>                 
-        <form action="index.php#Productos" method="post">
+        <form action="index.php#Productos" class="mb-0" method="post">
             <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
             <button class="btn btn-light" name="EliminarProducto" onclick=".submit()"><span data-feather="trash-2"></span></button>
         </form>                                    
@@ -463,6 +463,11 @@ if (isset($_POST['MenuEditarProducto'])) {
           $Precio=$fila->Precio;
           $Oferta=$fila->Oferta;
           $Mostrar=$fila->Mostrar;
+          $Imagen1=$fila->Imagen1; 
+          $Imagen2=$fila->Imagen2; 
+          $Imagen3=$fila->Imagen3;
+          $Imagen4=$fila->Imagen4;
+          $Imagen5=$fila->Imagen5;
 
         $sqlname1="SELECT * FROM  TERRA_Categorias WHERE ID = '$Categoria'";
         $resultname1=$conn->query($sqlname1);
@@ -615,6 +620,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                 </div>
 
                 <div class="form-row">
+                <div class="col">
                 <div class="form-check">
                   <input class="form-check-input" name="Mostrar" type="checkbox" value="1" id="defaultCheck1" <?php if($Mostrar==1){echo "checked"; }; ?>>
                   <label class="form-check-label" for="defaultCheck1">
@@ -622,28 +628,149 @@ if (isset($_POST['MenuEditarProducto'])) {
                   </label>
                 </div>
                 </div>
+                </div>
 
                 
               
-                <div class="form-row">
-                <div class="col">
+               
+
+<!-- FOTOS -->
+<div class="card-deck">
+  
+<div class="card">
+    <div class="card-header">Imagen 1</div>
+      <?php if($Imagen1==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen1;?>" alt="Card image cap">
+      <?php } ?>
+    </div>  
+
+
+    <div class="card">
+    <div class="card-header">Imagen 2</div>
+      <?php if($Imagen2==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen2;?>" alt="Card image cap">
+      <?php } ?>
+    </div>
+   
+    <div class="card">
+    <div class="card-header">Imagen 3</div>
+      <?php if($Imagen3==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen3;?>" alt="Card image cap">
+      <?php } ?>
+    </div>
+
+    <div class="card">
+    <div class="card-header">Imagen 4</div>
+      <?php if($Imagen4==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen4;?>" alt="Card image cap">
+      <?php } ?>
+    </div>
+
+    <div class="card">
+    <div class="card-header">Imagen 5</div>
+      <?php if($Imagen5==NULL){ ?>        
+        <div class="card-body">
+          <h5 class="card-title">Sin Asignar</h5>
+          <div class="form-row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file">
+            <label class="custom-file-label" for="customFile">Elegir Imagen</label>
+          </div>
+          </div>
+        </div>
+      <?php } else{ ?>
+      <div class="card-img-overlay">
+      <br><br>
+        <button class="btn btn-light"><span data-feather="edit"></span></button>
+        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+      </div>
+      <img class="card-img-bottom" src="./../<?php echo $Imagen5;?>" alt="Card image cap">
+      <?php } ?>
+    </div>
+</div>     
+
+
                   <button type="submit" class="btn btn-primary mb-2" name="EditarProducto" onclick="">Guardar Cambios</button>
-                </div>
-              </div>
+                
+
             </form>
             </div>
           
           <!-- FIN DEL FORMULARIO DE EDICION DE PRODUCTOS -->
 
 
-          <!-- CATEGORIAS -->
+          <!--CATEGORIAS -->
           <div class="Ocultar" id="CategoriasTitulo">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-2">
             <h1 class="h2">Categorias</h1>
-            <!-- FORM DE CATEGORIA -->
-            <form method="POST" class="form-inline">
-            <input type="text" class="form-control mb-2 mr-sm-2" id="NombreCategoria" name="CategoriaNombre" required placeholder="NombreCategoria">
-           <button type="submit" class="btn btn-success mb-2" name="SubirCategoria">Agregar</button>
+            <!-- FORM DE CATEGORIA 
+            
+            SI SE HABILITA LA FUNCIONALIDAD DE CARGA Y EDICION DE CATEGORIAS HAY QUE SACAR LOS "DISABLED" y modificar "TITTLE" DE LOS INPUTS,SPANS Y FORMULARIOS POSTERIORES
+            
+            -->
+            <form method="POST" class="form-inline mb-0">
+            <input disabled title="Deshabilitado en esta versión"     type="text" class="form-control mr-sm-2" id="NombreCategoria" name="CategoriaNombre" required placeholder="NombreCategoria">
+           <button disabled title="Deshabilitado en esta versión"     type="submit" class="btn btn-success" name="SubirCategoria">Agregar</button>
             </form>
             <!-- FIN DE FORM DE CATEGORIA -->
             </div>
@@ -667,19 +794,21 @@ if (isset($_POST['MenuEditarProducto'])) {
                               //HAY QUE AGREGAR ENCABEZADO PARA QUE SI NO HAY CATEGORIAS NO LO MUESTRE
                               ?> 
                         <tr>
-                             <form action="index.php#Categorias" method="post" id="EditarCategoria<?php echo $row["ID"]; ?>">
+                             <form action="index.php#Categorias" class="mb-0" method="post" id="EditarCategoria<?php echo $row["ID"]; ?>">
                               <td>                                
-                                    <input class="FormLista" name="CategoriaEditNombre" type="text" required value="<?php echo $row["Nombre"]; ?>" aria-label="..." onchange="document.getElementById('EditarCategoria<?php echo $row['ID']; ?>').submit()">
-                                    <input type="hidden" name="IDCategoria" value="<?php echo $row["ID"]; ?>" />
-                                    <input type="hidden" name="EditarCategoria" value="set" />                                
+                                    <input disabled title="Deshabilitado en esta versión" class="FormLista" style="max-width: fit-content;" name="CategoriaEditNombre" type="text" required value="<?php echo $row["Nombre"]; ?>" aria-label="..." onchange="document.getElementById('EditarCategoria<?php echo $row['ID']; ?>').submit()">
+                                    <input disabled type="hidden" name="IDCategoria" value="<?php echo $row["ID"]; ?>" />
+                                    <input disabled type="hidden" name="EditarCategoria" value="set" />                                
                             </td> 
                                 </form>
+                                 
                             <td>                 
-                                <form action="index.php#Categorias" method="post">
+                                <form title="Deshabilitado en esta versión" class="mb-0" action="index.php#Categorias" method="post">
                                     <input type="hidden" name="IDCategoria" value="<?php echo $row["ID"]; ?>" />
-                                    <button class="btn btn-light" name="EliminarCategoria" onclick=".submit()"><span data-feather="trash-2"></span></button>
+                                    <button disabled title="Deshabilitado en esta versión"     class="btn btn-light" name="EliminarCategoria" onclick=".submit()"><span title="Deshabilitado en esta versión" data-feather="trash-2"></span></button>
                                 </form>                                    
-                            </td>                                                                          
+                            </td> 
+                                                                                                    
                         </tr>
                         </tbody>
                         
@@ -705,11 +834,11 @@ if (isset($_POST['MenuEditarProducto'])) {
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">Usuarios</h1>
                  <!-- FORM DE Ususarios -->
-                    <form method="POST" class="form-inline">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioNombre" name="UsuarioNombre" required placeholder="Nombre">
-                        <input type="email" class="form-control mb-2 mr-sm-2" id="UsuarioEmail" name="UsuarioEmail" required placeholder="Email">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="UsuarioContrasena" name="UsuarioContrasena" required placeholder="Contraseña">                        
-                        <button type="submit" class="btn btn-success mb-2" name="SubirUsuario">Agregar</button>
+                    <form method="POST" class="form-inline mb-0">
+                        <input type="text" class="form-control mr-sm-2" id="UsuarioNombre" name="UsuarioNombre" required placeholder="Nombre">
+                        <input type="email" class="form-control mr-sm-2" id="UsuarioEmail" name="UsuarioEmail" required placeholder="Email">
+                        <input type="text" class="form-control mr-sm-2" id="UsuarioContrasena" name="UsuarioContrasena" required placeholder="Contraseña">                        
+                        <button type="submit" class="btn btn-success" name="SubirUsuario">Agregar</button>
                    </form>
                     <!-- FIN DE FORM DE Ususarios-->
                 </div>
