@@ -2,6 +2,9 @@
 
 $DBN="TERRA";
 
+$PWD="./consola/img/";
+$PWDConsola="./img/";
+
 $VERSION="T 0.0.0";
 
 #$conn=new mysqli("localhost", "u839063682_terrauser", "Terrapassword1", "u839063682_TERRA");

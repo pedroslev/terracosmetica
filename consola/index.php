@@ -630,11 +630,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                 </div>
                 </div>
 
-                
-              
-               
-
-<!-- FOTOS -->
+<!-- FOTOS EN EDICION DE PRODUCTO -->
 <div class="card-deck">
   
 <div class="card">
@@ -652,10 +648,9 @@ if (isset($_POST['MenuEditarProducto'])) {
       <?php } else{ ?>
       <div class="card-img-overlay">
       <br><br>
-        <button class="btn btn-light"><span data-feather="edit"></span></button>
-        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+        <button class="btn btn-light" name="EliminarImagen1"><span data-feather="trash-2"></span></button>
       </div>
-      <img class="card-img-bottom" src="./../<?php echo $Imagen1;?>" alt="Card image cap">
+      <img class="card-img-bottom" src="<?php echo $PWDConsola . $Imagen1;?>" alt="Card image cap">
       <?php } ?>
     </div>  
 
@@ -675,10 +670,9 @@ if (isset($_POST['MenuEditarProducto'])) {
       <?php } else{ ?>
       <div class="card-img-overlay">
       <br><br>
-        <button class="btn btn-light"><span data-feather="edit"></span></button>
-        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+        <button class="btn btn-light" name="EliminarImagen2"><span data-feather="trash-2"></span></button>
       </div>
-      <img class="card-img-bottom" src="./../<?php echo $Imagen2;?>" alt="Card image cap">
+      <img class="card-img-bottom" src="<?php echo $PWDConsola.$Imagen2;?>" alt="Card image cap">
       <?php } ?>
     </div>
    
@@ -697,10 +691,9 @@ if (isset($_POST['MenuEditarProducto'])) {
       <?php } else{ ?>
       <div class="card-img-overlay">
       <br><br>
-        <button class="btn btn-light"><span data-feather="edit"></span></button>
-        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+        <button class="btn btn-light" name="EliminarImagen3"><span data-feather="trash-2"></span></button>
       </div>
-      <img class="card-img-bottom" src="./../<?php echo $Imagen3;?>" alt="Card image cap">
+      <img class="card-img-bottom" src="<?php echo $PWDConsola.$Imagen3;?>" alt="Card image cap">
       <?php } ?>
     </div>
 
@@ -719,10 +712,9 @@ if (isset($_POST['MenuEditarProducto'])) {
       <?php } else{ ?>
       <div class="card-img-overlay">
       <br><br>
-        <button class="btn btn-light"><span data-feather="edit"></span></button>
-        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+        <button class="btn btn-light" name="EliminarImagen4"><span data-feather="trash-2"></span></button>
       </div>
-      <img class="card-img-bottom" src="./../<?php echo $Imagen4;?>" alt="Card image cap">
+      <img class="card-img-bottom" src="<?php echo $PWDConsola.$Imagen4;?>" alt="Card image cap">
       <?php } ?>
     </div>
 
@@ -741,10 +733,9 @@ if (isset($_POST['MenuEditarProducto'])) {
       <?php } else{ ?>
       <div class="card-img-overlay">
       <br><br>
-        <button class="btn btn-light"><span data-feather="edit"></span></button>
-        <button class="btn btn-light"><span data-feather="trash-2"></span></button>
+        <button class="btn btn-light" name="EliminarImagen5"><span data-feather="trash-2"></span></button>
       </div>
-      <img class="card-img-bottom" src="./../<?php echo $Imagen5;?>" alt="Card image cap">
+      <img class="card-img-bottom" src="/<?php echo $PWDConsola.$Imagen5;?>" alt="Card image cap">
       <?php } ?>
     </div>
 </div>     
