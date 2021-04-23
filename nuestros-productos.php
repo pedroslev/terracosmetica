@@ -86,7 +86,7 @@ include './consola/Server/database.php';
 					<nav id="top-menu-nav">
 						<ul id="top-menu" class="nav"><li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117"><a href="home.html" aria-current="page">INICIO</a></li>
 <li id="menu-item-280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a href="quienes-somos.html">QUIÉNES SOMOS</a></li>
-<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.html">NUESTROS PRODUCTOS</a>
+<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.php">NUESTROS PRODUCTOS</a>
 <ul class="sub-menu">
 	<li id="menu-item-1320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320"><a href="aromas.html">AROMAS</a></li>
 	<li id="menu-item-974" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974"><a href="aromas.html">CUIDADO CAPILAR</a></li>
@@ -112,7 +112,7 @@ include './consola/Server/database.php';
 							<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
 						<ul id="mobile_menu" class="et_mobile_menu"><li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117 et_first_mobile_item"><a href="home.html" aria-current="page">INICIO</a></li>
 <li id="menu-item-280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a href="quienes-somos.html">QUIÉNES SOMOS</a></li>
-<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.html">NUESTROS PRODUCTOS</a>
+<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.php">NUESTROS PRODUCTOS</a>
 <ul class="sub-menu">
 	<li id="menu-item-1320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320"><a href="aromas.html">AROMAS</a></li>
 	<li id="menu-item-974" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974"><a href="aromas.html">CUIDADO CAPILAR</a></li>
