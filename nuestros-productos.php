@@ -2,6 +2,7 @@
 
 include './consola/Server/database.php';
 
+
 ?>
 <html lang="es"><head>
 	<meta charset="UTF-8">
@@ -21,9 +22,24 @@ include './consola/Server/database.php';
 	<link rel="stylesheet" href="css/dist-block-library-style.min.css">
 -->
 
-	<link rel="stylesheet" href="css/Divi-style.css">
-	<link rel="stylesheet" href="css/creame-whatsapp-me-public-css-joinchat.min.css">
+ <!-- Bootstrap core CSS -->
+ <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<meta content="Divi v.4.4.8" name="generator">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+	<link rel="alternate" type="application/rss+xml" title="Terra Cosmética Natural &raquo; Feed" href="index.html" />
+	<link rel='stylesheet' href='css/Divi-style.css'>
+	<!--no borrar-->
+
+	<!--no borrar-->
+	<link rel='stylesheet' href='css/creame-whatsapp-me-public-css-joinchat.min.css'>
+	<script type='text/javascript' src='js/jquery.js' async></script>
 	<link rel="stylesheet" href="css/global-et-divi-customizer-global-1614728849082.min.css">
+	
 	
 	<!-- 
 	<link rel="stylesheet" href="css/minimum-purchase-for-woocommerce-core-css-vtmin-error-style.css">
@@ -54,7 +70,7 @@ include './consola/Server/database.php';
 <style>[data-columns]::before{visibility:hidden;position:absolute;font-size:1px;}</style><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
 
 <body class="page-template-default page page-id-966 custom-background theme-Divi woocommerce-js et_pb_button_helper_class et_fullwidth_nav et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_centered et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_full_width_page et_divi_theme et-db et_minified_js et_minified_css chrome">
-	<div id="page-container" class="et-animated-content" style="margin-top: -32px; padding-top: 196px;">
+	<div id="page-container" class="et-animated-content" style="margin-top: -32px;">
 
 
 
@@ -148,7 +164,7 @@ include './consola/Server/database.php';
 
 
 													<div class="et_pb_text_inner">
-														<h1>Nuestros productos</h1>
+														<h1>Nuestros Productos</h1>
 													</div>
 												</div> <!-- .et_pb_text -->
 												<div class="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_center et_pb_bg_layout_light">
@@ -240,7 +256,7 @@ include './consola/Server/database.php';
 												<div class="et_pb_module et_pb_image et_pb_image_0">
 
 
-													<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
+													<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $PWD . $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
 												</div>
 											</div> <!-- .et_pb_column -->
 											<div class="et_pb_column et_pb_column_1_2 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
