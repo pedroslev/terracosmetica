@@ -38,7 +38,7 @@ if (isset($_POST['SubirAWeb'])) {
             $milisegundos=date('v');
             $unique=$anio.$mes.$dia.$hora.$minuto.$segundos.$milisegundos."_";
             //Seteo carpeta a guardar y nombres
-            $target_dir = "/home/u839063682/public_html/pedro_html/media/";
+            $target_dir = "/home/u839063682/public_html/pedro_html/consola/img/";
             $basename = basename($unique.$_FILES['file']['name'][$i]);
             $target_file[$i] = $target_dir . $basename;
             $uploadOk = 1;
@@ -381,5 +381,27 @@ session_destroy();
 header("Location: ./login.php");
 $conn->close();}
    
+
+// continuar para siguientes imagenes, tambien eliminar imagen del ftp
+// TRIVIAL -> HACER QUE CUANDO SE ELIMINE VUELVA A LA ANTERIOR DATA --> hoy deja todo vacio
+if (isset($_POST['EliminarImagen1'])) {
+    $ID= $_POST['ID'];
+    $sql = "UPDATE TERRA_Productos SET Imagen1= NULL WHERE ID='".$ID."' ";
+    $result = $conn->query($sql);
+    
+    if ($result) {
+    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
+    $str = 'MenuEditarProducto'; 
+    var_dump(isset($str));
+    header("Location: ../index.php#EditarProducto");
+    $conn->close();
+    exit();
+    }
+    else 
+    {
+    header("Location: ../signin.html");
+    $conn->close();}
+
+}
 
 ?>
