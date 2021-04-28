@@ -2,6 +2,7 @@
 
 include './consola/Server/database.php';
 
+
 ?>
 <html lang="es"><head>
 	<meta charset="UTF-8">
@@ -21,8 +22,23 @@ include './consola/Server/database.php';
 	<link rel="stylesheet" href="css/dist-block-library-style.min.css">
 -->
 
-	<link rel="stylesheet" href="css/Divi-style.css">
-	<link rel="stylesheet" href="css/creame-whatsapp-me-public-css-joinchat.min.css">
+ <!-- Bootstrap core CSS -->
+   <!-- Bootstrap core CSS -->
+   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<meta content="Divi v.4.4.8" name="generator">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+	<link rel="alternate" type="application/rss+xml" title="Terra Cosmética Natural &raquo; Feed" href="index.html" />
+	<link rel='stylesheet' href='css/Divi-style.css'>
+	<!--no borrar-->
+
+	<!--no borrar-->
+	<link rel='stylesheet' href='css/creame-whatsapp-me-public-css-joinchat.min.css'>
+	<script type='text/javascript' src='js/jquery.js' async></script>
 	<link rel="stylesheet" href="css/global-et-divi-customizer-global-1614728849082.min.css">
 	
 	<!-- 
@@ -54,23 +70,34 @@ include './consola/Server/database.php';
 <style>[data-columns]::before{visibility:hidden;position:absolute;font-size:1px;}</style><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
 
 <body class="page-template-default page page-id-966 custom-background theme-Divi woocommerce-js et_pb_button_helper_class et_fullwidth_nav et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_centered et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_full_width_page et_divi_theme et-db et_minified_js et_minified_css chrome">
-	<div id="page-container" class="et-animated-content" style="margin-top: -32px; padding-top: 196px;">
+	<div id="page-container" class="et-animated-content" style="margin-top: -32px;">
 
-
+	<div class="row fixed-bottom mb-3 ml-1">
+			<div class="col">
+				<div class="float-left">
+					<div class="float-left">
+						<button type="button" class="btn btn-cart et-cart-info" data-toggle="modal" data-target="#cart"><span class="total-count m-2"></span></button>
+					</div>
+	
+					<div class="d-none">
+						<button class="clear-cart btn btn-danger">Clear Cart</button></div>
+				</div>
+			</div>
+		</div>
 
 		<header id="main-header" data-height-onload="196" class="et-fixed-header" data-height-loaded="true" data-fixed-height-onload="116" style="top: 0px;">
 			<div class="container clearfix et_menu_container">
 				<div class="logo_container">
 					<span class="logo_helper"></span>
-					<a href="home.html">
+					<a href="index.html">
 						<img src="images/logo-fondo-transparente.jpg" alt="Terra Cosmética Natural" id="logo" data-height-percentage="90" data-actual-width="650" data-actual-height="654">
 					</a>
 				</div>
 				<div id="et-top-navigation" data-height="150" data-fixed-height="40">
 					<nav id="top-menu-nav">
-						<ul id="top-menu" class="nav"><li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117"><a href="home.html" aria-current="page">INICIO</a></li>
+						<ul id="top-menu" class="nav"><li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117"><a href="index.html" aria-current="page">INICIO</a></li>
 <li id="menu-item-280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a href="quienes-somos.html">QUIÉNES SOMOS</a></li>
-<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.html">NUESTROS PRODUCTOS</a>
+<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.php">NUESTROS PRODUCTOS</a>
 <ul class="sub-menu">
 	<li id="menu-item-1320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320"><a href="aromas.html">AROMAS</a></li>
 	<li id="menu-item-974" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974"><a href="aromas.html">CUIDADO CAPILAR</a></li>
@@ -85,18 +112,14 @@ include './consola/Server/database.php';
 <li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="contacto.html">CONTACTO</a></li>
 </ul>						</nav>
 
-					<a href="carrito.html" class="et-cart-info">
-						<span></span>
-					</a>
-
 
 					<div id="et_mobile_nav_menu">
 						<div class="mobile_nav closed">
 							<span class="select_page">Seleccionar página</span>
 							<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
-						<ul id="mobile_menu" class="et_mobile_menu"><li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117 et_first_mobile_item"><a href="home.html" aria-current="page">INICIO</a></li>
+						<ul id="mobile_menu" class="et_mobile_menu"><li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117 et_first_mobile_item"><a href="index.html" aria-current="page">INICIO</a></li>
 <li id="menu-item-280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a href="quienes-somos.html">QUIÉNES SOMOS</a></li>
-<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.html">NUESTROS PRODUCTOS</a>
+<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.php">NUESTROS PRODUCTOS</a>
 <ul class="sub-menu">
 	<li id="menu-item-1320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320"><a href="aromas.html">AROMAS</a></li>
 	<li id="menu-item-974" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974"><a href="aromas.html">CUIDADO CAPILAR</a></li>
@@ -115,7 +138,7 @@ include './consola/Server/database.php';
 			</div> <!-- .container -->
 			<div class="et_search_outer">
 				<div class="container et_search_form_container">
-					<form role="search" method="get" class="et-search-form" action="home.html">
+					<form role="search" method="get" class="et-search-form" action="index.html">
 						<input type="search" class="et-search-field" placeholder="Búsqueda …" value="" name="s" title="Buscar:"> </form>
 					<span class="et_close_search_field"></span>
 				</div>
@@ -148,7 +171,7 @@ include './consola/Server/database.php';
 
 
 													<div class="et_pb_text_inner">
-														<h1>Nuestros productos</h1>
+														<h1>Nuestros Productos</h1>
 													</div>
 												</div> <!-- .et_pb_text -->
 												<div class="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_center et_pb_bg_layout_light">
@@ -240,7 +263,7 @@ include './consola/Server/database.php';
 												<div class="et_pb_module et_pb_image et_pb_image_0">
 
 
-													<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
+													<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $PWD . $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
 												</div>
 											</div> <!-- .et_pb_column -->
 											<div class="et_pb_column et_pb_column_1_2 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
@@ -282,7 +305,7 @@ include './consola/Server/database.php';
 																<input type="number" id="quantity_60402626b783d" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Cantidad" size="4" placeholder="" inputmode="numeric">
 															</div>
 
-															<button type="submit" name="add-to-cart" value="225" class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon" data-icon="5" data-icon-tablet="" data-icon-phone="">Añadir al
+															<button type="submit" name="add-to-cart" value="225" class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon add-to-cart " data-icon="5" data-icon-tablet="" data-icon-phone="">Añadir al
 																carrito</button>
 
 														</form>
@@ -394,9 +417,34 @@ include './consola/Server/database.php';
 			</footer> <!-- #main-footer -->
 		</div> <!-- #et-main-area -->
 
+		 <!-- Modal -->
+		 <div class="modal fade modal-height" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<table class="show-cart table">
+				
+										</table>
+										<div>Precio total: $<span class="total-cart"></span></div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+										<button type="button" class="btn btn btn-cart"> <a href="checkouts.html">Ordenar</a></button>
+									</div>
+								</div>
+							</div>
+						</div>
+
 
 
 	</div> <!-- #page-container -->
+	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript">
 		var c = document.body.className;
 		c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
