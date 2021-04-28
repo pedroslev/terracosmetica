@@ -114,7 +114,44 @@ function URLChecker(){
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Ventas</h1>
             </div>
-             En desarrollo...
+            <div class="table-responsive">
+                              <table class="table table-striped table-sm">
+                                <thead>
+                                  <tr>
+                                    <th>Codigo Envio</th>
+                                    <th>Nombre Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Pago</th>                                    
+                                    <th></th>                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                  <?php 
+                  //MOSTRADOR DE VENTAS (LISTADO)
+                  
+                  $sql ="SELECT * FROM TERRA_Ventas order by Fecha desc";
+                  $result= $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                  //Output data of each row
+                  while($row = $result->fetch_assoc()) {                   
+                               ?>                     
+                                  <tr>
+                                         <td><?php echo $row["Codigo"]; ?></td>
+                                        <td><?php echo $row["Nombre"]; ?> <?php echo $row["Apellido"]; ?></td>                            
+                                        <td><?php echo $row["Fecha"]; ?></td>
+                                        <td><?php echo $row["Pago"]; ?></td>
+                                        <td> 
+                                        <button class="btn btn-light" title="Ver Mas"><span data-feather="eye"></span></button>
+                                        </td>
+                                  </tr>
+                         <?php   } }else {  ?>
+                            <tr>
+                            NO HAY Ventas
+                            <tr>
+                      <?php     }   ?>             
+                  </tbody>
+                </table>
+              </div>
             </div>
             
           
