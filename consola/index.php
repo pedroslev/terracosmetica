@@ -114,14 +114,15 @@ function URLChecker(){
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Ventas</h1>
             </div>
+
+
             <div class="table-responsive">
                               <table class="table table-striped table-sm">
                                 <thead>
                                   <tr>
-                                    <th>Codigo Envio</th>
-                                    <th>Nombre Cliente</th>
+                                    <th>Codigo Envio</th>                                    
                                     <th>Fecha</th>
-                                    <th>Pago</th>                                    
+                                    <th>Estado</th>                                    
                                     <th></th>                                    
                                   </tr>
                                 </thead>
@@ -136,14 +137,76 @@ function URLChecker(){
                   while($row = $result->fetch_assoc()) {                   
                                ?>                     
                                   <tr>
-                                         <td><?php echo $row["Codigo"]; ?></td>
-                                        <td><?php echo $row["Nombre"]; ?> <?php echo $row["Apellido"]; ?></td>                            
-                                        <td><?php echo $row["Fecha"]; ?></td>
-                                        <td><?php echo $row["Pago"]; ?></td>
-                                        <td> 
-                                        <button class="btn btn-light" title="Ver Mas"><span data-feather="eye"></span></button>
+                                        <td><?php echo $row["CodigoPedido"]; ?></td>                                                                    
+                                        <td><?php echo $row["Fecha"]; ?></td>                                        
+                                        <td>
+                                        <?php
+                                              switch ($row["Estado"]) {
+                                              case "0": ?>
+                                                  <span class="badge badge-danger">ERROR</span>
+                                              <?php break;
+                                              case "1": ?>
+                                                  <span class="badge badge-secondary">FALTA DE PAGO</span> 
+                                              <?php break;
+                                              case "2": ?>
+                                                  <span class="badge badge-warning">PENDIENTE</span>
+                                              <?php break;
+                                              case "3": ?>
+                                                  <span class="badge badge-primary">EN CAMINO</span>
+                                              <?php break;
+                                              case "4": ?>
+                                                  <span class="badge badge-success">ENTREGADO</span>
+                                              <?php break;
+                                              }
+                                              ?>
+                                        </td>
+                                        <td>                                         
+                                        <button class="btn btn-light" title="Ver Mas" data-toggle="modal" data-target="#modalVentas"><span data-feather="eye"></span></button>
                                         </td>
                                   </tr>
+
+                                  <!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="modalVentas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Informacion</h5>
+                 
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <?php $sql1 ="SELECT * FROM TERRA_Clientes WHERE ID='".$row["IDCliente"]."' ";
+                  $result1= $conn1->query($sql1);
+                  if ($result1->num_rows > 0) {
+                  //Output data of each row
+                  while($row1 = $result1->fetch_assoc()) {
+                   echo $row1["Nombre"];
+                   echo $row1["Apellido"];
+                   echo $row1["TipoDoc"];
+                   echo $row1["Doc"];
+                   echo $row1["Email"];
+                   echo $row1["Calle"];
+                   echo $row1["Altura"];
+                   echo $row11["Postal"];
+                   echo $row1["Departamento"];
+                   echo $row1["Provincia"];
+                   echo $row1["Localidad"];
+                   echo $row1["Observaciones"];
+                  } }else { echo"NO HAY Ventas";}
+                    ?>
+         
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary">Imprimir comprobante</button>
+                  <button type="button" class="btn btn-primary">Actualizar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- FIN Modal -->
                          <?php   } }else {  ?>
                             <tr>
                             NO HAY Ventas
@@ -152,6 +215,7 @@ function URLChecker(){
                   </tbody>
                 </table>
               </div>
+
             </div>
             
           
@@ -218,7 +282,7 @@ function URLChecker(){
               </div>
             </div>
           </div>  
-
+<!-- FIN Modal -->
             <div class="table-responsive">
                               <table class="table table-striped table-sm">
                                 <thead>
