@@ -111,7 +111,7 @@ function URLChecker(){
             
           <!-- VENTAS -->
           <div class="" id="VentasTitulo">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
             <h1 class="h2">Ventas</h1>
             </div>
 
@@ -122,6 +122,7 @@ function URLChecker(){
                                   <tr>
                                     <th>Codigo Envio</th>                                    
                                     <th>Fecha</th>
+                                    <th>Monto</th>
                                     <th>Estado</th>                                    
                                     <th></th>                                    
                                   </tr>
@@ -130,7 +131,7 @@ function URLChecker(){
                   <?php 
                   //MOSTRADOR DE VENTAS (LISTADO)
                   
-                  $sql ="SELECT * FROM TERRA_Ventas order by Fecha desc";
+                  $sql ="SELECT * FROM TERRA_Ventas order by Estado desc";
                   $result= $conn->query($sql);
                   if ($result->num_rows > 0) {
                   //Output data of each row
@@ -138,7 +139,8 @@ function URLChecker(){
                                ?>                     
                                   <tr>
                                         <td><?php echo $row["CodigoPedido"]; ?></td>                                                                    
-                                        <td><?php echo $row["Fecha"]; ?></td>                                        
+                                        <td><?php echo $row["Fecha"]; ?></td>
+                                        <td>$ <?php echo $row["PrecioTotal"]; ?></td>                                        
                                         <td>
                                         <?php
                                               switch ($row["Estado"]) {
@@ -157,51 +159,77 @@ function URLChecker(){
                                               case "4": ?>
                                                   <span class="badge badge-success">ENTREGADO</span>
                                               <?php break;
-                                              }
+                                              } 
                                               ?>
                                         </td>
                                         <td>                                         
-                                        <button class="btn btn-light" title="Ver Mas" data-toggle="modal" data-target="#modalVentas"><span data-feather="eye"></span></button>
+                                        <button class="btn btn-light" title="Ver Mas" data-toggle="modal" data-target="#modalVentas<?php echo $row["ID"]; ?>"><span data-feather="plus"></span></button>
                                         </td>
                                   </tr>
 
                                   <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="modalVentas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="modalVentas<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Informacion</h5>
-                 
+                  <h5 class="modal-title" id="exampleModalLongTitle">Pedido N° <?php echo $row["CodigoPedido"]; ?>
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        <?php if($row["Estado"]==0){ ?>                                      
+                                        <option selected><span class="badge badge-danger">ERROR</span></option>
+                                        <?php } else{ ?>                                                                                 
+                                        <option value="1" <?php if($row["Estado"]==1){echo "selected";}; ?>><span class="badge badge-secondary">FALTA DE PAGO</span></option>
+                                        <option value="2" <?php if($row["Estado"]==2){echo "selected";}; ?>><span class="badge badge-warning">PENDIENTE</span></option>
+                                        <option value="3" <?php if($row["Estado"]==3){echo "selected";}; ?>><span class="badge badge-primary">EN CAMINO</span></option>
+                                        <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>><span class="badge badge-success">ENTREGADO</span></option>
+                                        <?php }; ?>
+                                        </select>
+                  </h5>
+
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                <?php $sql1 ="SELECT * FROM TERRA_Clientes WHERE ID='".$row["IDCliente"]."' ";
-                  $result1= $conn1->query($sql1);
-                  if ($result1->num_rows > 0) {
-                  //Output data of each row
-                  while($row1 = $result1->fetch_assoc()) {
-                   echo $row1["Nombre"];
-                   echo $row1["Apellido"];
-                   echo $row1["TipoDoc"];
-                   echo $row1["Doc"];
-                   echo $row1["Email"];
-                   echo $row1["Calle"];
-                   echo $row1["Altura"];
-                   echo $row11["Postal"];
-                   echo $row1["Departamento"];
-                   echo $row1["Provincia"];
-                   echo $row1["Localidad"];
-                   echo $row1["Observaciones"];
-                  } }else { echo"NO HAY Ventas";}
+                
+                <?php
+                $sqlV ="SELECT * FROM TERRA_Clientes WHERE ID='".$row["IDCliente"]."' ";
+                
+                  $resultV= $conn->query($sqlV);
+                  if ($resultV->num_rows > 0) {
+                    $filaV = mysqli_fetch_object($resultV);
                     ?>
-         
+                   
+                  <h6>Datos Personales</h6>
+                  <p>Cliente: <?php echo $filaV->Nombre ." ". $filaV->Nombre; ?></p>
+                  <p> <?php 
+                  switch ($filaV->TipoDoc) {
+                  case "0": echo "DNI"; 
+                  break;
+                  case "1": echo "Libreta Civica"; 
+                  break;
+                  case "2": echo "Pasaporte"; 
+                  break;
+                  default: echo "N/A";  
+                  break;}
+                  ?>: <?php echo $filaV->Doc; ?></p>
 
+                  <h6>Datos De Contacto</h6>
+                  <p>Email: <?php echo $filaV->Email; ?></p>
+                  <p>Telefono: <?php echo $filaV->Telefono; ?></p>
+                  <p>Direccion: <?php echo $filaV->Calle ." ". $filaV->Altura ." ".$filaV->Localidad ." ". $filaV->Provincia;?></p>
+                  <p>Codigo Postal: <?php echo $filaV->Postal; ?></p>
+                  <p>Departamento: <?php echo $filaV->Departamento; ?></p>
+
+                  <h6>Observaciones</h6>
+                  <p><?php echo $filaV->Observaciones; ?></p>
+
+                  
+                  <?php
+                }else { echo"Cliente no Registrado"; }
+                ?>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary">Imprimir comprobante</button>
-                  <button type="button" class="btn btn-primary">Actualizar</button>
+                  <button disabled type="button" class="btn btn-primary">Descargar comprobante</button>
                 </div>
               </div>
             </div>
