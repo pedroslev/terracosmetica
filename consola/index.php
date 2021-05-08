@@ -42,9 +42,10 @@ function URLChecker(){
   <link rel="stylesheet" href="./css/style.css">
   <script src="./js/index.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <!-- PDF Ventas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -172,24 +173,12 @@ function URLChecker(){
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Pedido N° <?php echo $row["CodigoPedido"]; ?>
-                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                        <?php if($row["Estado"]==0){ ?>                                      
-                                        <option selected><span class="badge badge-danger">ERROR</span></option>
-                                        <?php } else{ ?>                                                                                 
-                                        <option value="1" <?php if($row["Estado"]==1){echo "selected";}; ?>><span class="badge badge-secondary">FALTA DE PAGO</span></option>
-                                        <option value="2" <?php if($row["Estado"]==2){echo "selected";}; ?>><span class="badge badge-warning">PENDIENTE</span></option>
-                                        <option value="3" <?php if($row["Estado"]==3){echo "selected";}; ?>><span class="badge badge-primary">EN CAMINO</span></option>
-                                        <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>><span class="badge badge-success">ENTREGADO</span></option>
-                                        <?php }; ?>
-                                        </select>
-                  </h5>
-
+                <h5 class="modal-title" id="exampleModalLongTitle">Pedido N° <?php echo $row["CodigoPedido"]; ?></h5>                
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
+                <div id="Ticket" class="modal-body">
                 
                 <?php
                 $sqlV ="SELECT * FROM TERRA_Clientes WHERE ID='".$row["IDCliente"]."' ";
@@ -198,6 +187,7 @@ function URLChecker(){
                   if ($resultV->num_rows > 0) {
                     $filaV = mysqli_fetch_object($resultV);
                     ?>
+
                    
                   <h6>Datos Personales</h6>
                   <p>Cliente: <?php echo $filaV->Nombre ." ". $filaV->Nombre; ?></p>
@@ -224,12 +214,70 @@ function URLChecker(){
                   <p><?php echo $filaV->Observaciones; ?></p>
 
                   
+                <?php
+                switch ($row["Estado"]) {
+                case "0": ?>
+                    <span class="badge badge-danger">ERROR</span>
+                <?php break;
+                case "1": ?>
+                    <span class="badge badge-secondary">FALTA DE PAGO</span> 
+                <?php break;
+                case "2": ?>
+                    <span class="badge badge-warning">PENDIENTE</span>
+                <?php break;
+                case "3": ?>
+                    <span class="badge badge-primary">EN CAMINO</span>
+                <?php break;
+                case "4": ?>
+                    <span class="badge badge-success">ENTREGADO</span>
+                <?php break;
+                } 
+                ?>
+
+                  
                   <?php
                 }else { echo"Cliente no Registrado"; }
                 ?>
                 </div>
-                <div class="modal-footer">
-                  <button disabled type="button" class="btn btn-primary">Descargar comprobante</button>
+                <div id="elementH"></div>
+                <div class="modal-footer d-flex justify-content-between">
+                <select class="form-select" aria-label="">
+                                        <?php if($row["Estado"]==0){ ?>                                      
+                                        <option selected>ERROR</option>
+                                        <?php } else{ ?>                                                                                 
+                                        <option value="1" <?php if($row["Estado"]==1){echo "selected";}; ?>>FALTA DE PAGO</option>
+                                        <option value="2" <?php if($row["Estado"]==2){echo "selected";}; ?>>PENDIENTE</option>
+                                        <option value="3" <?php if($row["Estado"]==3){echo "selected";}; ?>>EN CAMINO</option>
+                                        <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>>ENTREGADO</option>
+                                        <?php }; ?>
+                  </select>
+
+   
+
+                  <button type="button" class="btn btn-primary" onclick="pruebaDivAPdf()">Descargar comprobante</button>
+
+             
+
+                  <script>
+    function pruebaDivAPdf() {
+      
+      var doc = new jsPDF();
+      var elementHTML = $('#content').html();
+      var specialElementHandlers = {
+          '#elementH': function (element, renderer) {
+              return true;
+          }
+      };
+      doc.fromHTML(elementHTML, 15, 15, {
+          'width': 170,
+          'elementHandlers': specialElementHandlers
+      });
+
+      // Save the PDF
+      doc.save('sample-document.pdf');
+    }
+</script>
+
                 </div>
               </div>
             </div>
