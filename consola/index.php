@@ -166,15 +166,36 @@ function URLChecker(){
                                         <td>                                         
                                         <button class="btn btn-light" title="Ver Mas" data-toggle="modal" data-target="#modalVentas<?php echo $row["ID"]; ?>"><span data-feather="plus"></span></button>
                                         </td>
-                                  </tr>
-
+                                  
+                                        <td>
                                   <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="modalVentas<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Pedido N° <?php echo $row["CodigoPedido"]; ?></h5>                
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header row align-items-center m-0">
+                <h5 class="modal-title col-6" id="exampleModalLongTitle">Pedido N° <?php echo $row["CodigoPedido"]; ?></h5>
+
+                <?php
+                switch ($row["Estado"]) {
+                case "0": ?>
+                    <span class="badge badge-danger col-3">ERROR</span>
+                <?php break;
+                case "1": ?>
+                    <span class="badge badge-secondary col-3">FALTA DE PAGO</span> 
+                <?php break;
+                case "2": ?>
+                    <span class="badge badge-warning col-3">PENDIENTE</span>
+                <?php break;
+                case "3": ?>
+                    <span class="badge badge-primary col-3">EN CAMINO</span>
+                <?php break;
+                case "4": ?>
+                    <span class="badge badge-success col-3">ENTREGADO</span>
+                <?php break;
+                } 
+                ?>
+
+                  <button type="button" class="close col-3" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -189,8 +210,8 @@ function URLChecker(){
                     ?>
 
                    
-                  <h6>Datos Personales</h6>
-                  <p>Cliente: <?php echo $filaV->Nombre ." ". $filaV->Nombre; ?></p>
+                  <h5>Datos De Cliente</h5>
+                  <p>Nombre: <?php echo $filaV->Nombre ." ". $filaV->Apellido; ?></p>
                   <p> <?php 
                   switch ($filaV->TipoDoc) {
                   case "0": echo "DNI"; 
@@ -213,31 +234,54 @@ function URLChecker(){
                   <h6>Observaciones</h6>
                   <p><?php echo $filaV->Observaciones; ?></p>
 
-                  
-                <?php
-                switch ($row["Estado"]) {
-                case "0": ?>
-                    <span class="badge badge-danger">ERROR</span>
-                <?php break;
-                case "1": ?>
-                    <span class="badge badge-secondary">FALTA DE PAGO</span> 
-                <?php break;
-                case "2": ?>
-                    <span class="badge badge-warning">PENDIENTE</span>
-                <?php break;
-                case "3": ?>
-                    <span class="badge badge-primary">EN CAMINO</span>
-                <?php break;
-                case "4": ?>
-                    <span class="badge badge-success">ENTREGADO</span>
-                <?php break;
-                } 
-                ?>
+                <hr>
+                <h5>Datos De Pedido</h5>
 
+                <table class="table table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>Codigo</th>
+                        <th>Producto</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                   
                   <?php
                 }else { echo"Cliente no Registrado"; }
+
+                $sqlPedidos ="SELECT * FROM TERRA_Pedidos WHERE CodigoPedido='".$row["CodigoPedido"]."' ";
+                $resultPedidos= $conn->query($sqlPedidos);
+                if ($resultPedidos->num_rows > 0) {
+                //Output data of each row
+                while($rowPedidos = $resultPedidos->fetch_assoc()) {
+
+                $sqlP ="SELECT * FROM TERRA_Productos WHERE ID='".$rowPedidos["IDProducto"]."' ";
+                
+                $resultP= $conn->query($sqlP);
+                if ($resultP->num_rows > 0) {
+                  $filaP = mysqli_fetch_object($resultP);
                 ?>
+
+                  
+                      <tr>
+                        <td><?php echo $filaP->Codigo; ?></td>
+                        <td><?php echo $filaP->Nombre; ?></td>
+                      </tr>                     
+                   
+
+                <?php
+                } 
+              else { echo"Productos no Registrados"; }
+              }
+            } else { echo"Pedido no Registrado"; }
+                ?>
+
+
+                </tbody>
+                  </table>
+
+
+
                 </div>
                 <div id="elementH"></div>
                 <div class="modal-footer d-flex justify-content-between">
@@ -283,6 +327,8 @@ function URLChecker(){
             </div>
           </div>
 <!-- FIN Modal -->
+</td>
+</tr>
                          <?php   } }else {  ?>
                             <tr>
                             NO HAY Ventas
