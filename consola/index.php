@@ -432,16 +432,16 @@ function URLChecker(){
                   //MOSTRADOR DE PRODUCTOS (LISTADO)
                   $class="FormLista";
                   //Checkeo si hay producto con categoria que haya sido previamente eliminada
-                  $categoriaFaltante="SELECT * FROM TERRA_Productos where aux1='1'";
+                  $categoriaFaltante="SELECT * FROM TERRA_Productos where aux1='1' AND Eliminar<>'1'";
                   $resultado= $conn->query($categoriaFaltante);
                   if($resultado->num_rows >0){
                   //Si el resultado es mayor a cero muestro los productos sin categoria por eliminacion primero
-                  $sql ="SELECT * FROM TERRA_Productos order by aux1 desc";
+                  $sql ="SELECT * FROM TERRA_Productos WHERE Eliminar<>'1' order by aux1 desc";
                   $result= $conn->query($sql);
                   }else
                   {
                   //En caso de no haber productos con categorias eliminadas previamente ordeno por bloques de Categoria1
-                  $sql ="SELECT * FROM TERRA_Productos order by Categoria desc";
+                  $sql ="SELECT * FROM TERRA_Productos WHERE Eliminar<>'1' order by Categoria desc";
                   $result= $conn->query($sql);
                   }
                   if ($result->num_rows > 0) {

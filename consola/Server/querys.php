@@ -159,7 +159,7 @@ if (isset($_POST['SubirAWeb'])) {
             }
             else 
             {
-            header("Location: ../signin.html");
+            header("Location: ../login.php");
             $conn->close();}
         }
 
@@ -168,19 +168,21 @@ if (isset($_POST['SubirAWeb'])) {
     if (isset($_POST['EliminarProducto'])) {
 
         $IDProducto= $_POST['IDProducto'];
-        
-        $sql = "DELETE FROM TERRA_Productos WHERE ID='".$IDProducto."' ";
-        $result = $conn->query($sql);
-        
-        if ($result) {
-        header("Location: ../index.php");
+      
+    $sql = "UPDATE ".$DBN."_Productos SET  Eliminar='1' WHERE ID='".$IDProducto."' ";
+
+    $result = $conn->query($sql);
+
+    if ($result) {
+        header("Location: ../index.php#Productos");
         $conn->close();
         exit();
-        }
-        else 
-        {
-        header("Location: ../signin.html");
-        $conn->close();}
+    } else {
+        header("Location: ../login.php");
+        $conn->close();
+        exit();
+    }
+        
         }
 
 
