@@ -44,8 +44,7 @@ function URLChecker(){
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
- <!-- PDF Ventas -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+ 
 </head>
 
 <body>
@@ -125,14 +124,16 @@ function URLChecker(){
                                     <th>Fecha</th>
                                     <th>Monto</th>
                                     <th>Estado</th>                                    
-                                    <th></th>                                    
+                                    <th></th>       
+                                    <th></th>
+                                    <th></th>                              
                                   </tr>
                                 </thead>
                                 <tbody>
                   <?php 
                   //MOSTRADOR DE VENTAS (LISTADO)
                   
-                  $sql ="SELECT * FROM TERRA_Ventas order by Estado desc";
+                  $sql ="SELECT * FROM TERRA_Ventas ORDER BY 'Estado' ASC";
                   $result= $conn->query($sql);
                   if ($result->num_rows > 0) {
                   //Output data of each row
@@ -140,7 +141,13 @@ function URLChecker(){
                                ?>                     
                                   <tr>
                                         <td><?php echo $row["CodigoPedido"]; ?></td>                                                                    
-                                        <td><?php echo $row["Fecha"]; ?></td>
+                                        <td>
+                                          <?php
+                                                $source = $row["Fecha"];
+                                                $date = new DateTime($source);
+                                                echo $date->format('d/m/Y');
+                                            ?>                                        
+                                        </td>
                                         <td>$ <?php echo $row["PrecioTotal"]; ?></td>                                        
                                         <td>
                                         <?php
@@ -166,14 +173,19 @@ function URLChecker(){
                                         <td>                                         
                                         <button class="btn btn-light" title="Ver Mas" data-toggle="modal" data-target="#modalVentas<?php echo $row["ID"]; ?>"><span data-feather="plus"></span></button>
                                         </td>
+                                        <td>                                         
+                                        <button class="btn btn-light" title="Descargar" onclick="DivAPdf()"><span data-feather="download"></span></button>
+                                        </td>
+
+
                                   
                                         <td>
                                   <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="modalVentas<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div id="Ticket" class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header row align-items-center m-0">
-                <h5 class="modal-title col-6" id="exampleModalLongTitle">Pedido N° <?php echo $row["CodigoPedido"]; ?></h5>
+                <h5 class="modal-title col-6">Pedido N° <span id="CodigoPedido" ><?php echo $row["CodigoPedido"]; ?></span></h5>
 
                 <?php
                 switch ($row["Estado"]) {
@@ -199,7 +211,7 @@ function URLChecker(){
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div id="Ticket" class="modal-body">
+                <div class="modal-body">
                 
                 <?php
                 $sqlV ="SELECT * FROM TERRA_Clientes WHERE ID='".$row["IDCliente"]."' ";
@@ -209,8 +221,11 @@ function URLChecker(){
                     $filaV = mysqli_fetch_object($resultV);
                     ?>
 
-                   
-                  <h5>Datos De Cliente</h5>
+                <div class="row">
+                <h6 class="col-6">Datos De Cliente</h6>
+                <h6 class="col-6">Fecha: <?php echo $date->format('d/m/Y'); ?></h6>
+                </div>
+                  
                   <p>Nombre: <?php echo $filaV->Nombre ." ". $filaV->Apellido; ?></p>
                   <p> <?php 
                   switch ($filaV->TipoDoc) {
@@ -234,9 +249,7 @@ function URLChecker(){
                   <h6>Observaciones</h6>
                   <p><?php echo $filaV->Observaciones; ?></p>
 
-                <hr>
-                <h5>Datos De Pedido</h5>
-
+                
                 <table class="table table-striped table-sm">
                     <thead>
                       <tr>
@@ -283,9 +296,13 @@ function URLChecker(){
 
 
                 </div>
+
+
                 <div id="elementH"></div>
                 <div class="modal-footer d-flex justify-content-between">
-                <select class="form-select" aria-label="">
+                <!-- Cambio de estado en tabla ventas -->
+                <form action="index.php#Ventas" method="post">
+                <select class="form-select" name="EditarEstado" aria-label="" onchange="this.form.submit()">
                                         <?php if($row["Estado"]==0){ ?>                                      
                                         <option selected>ERROR</option>
                                         <?php } else{ ?>                                                                                 
@@ -295,32 +312,17 @@ function URLChecker(){
                                         <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>>ENTREGADO</option>
                                         <?php }; ?>
                   </select>
+                  <input type="hidden" name="IDVentas" value="<?php echo $row["ID"]; ?>" />
+                  </form>
 
-   
 
-                  <button type="button" class="btn btn-primary" onclick="pruebaDivAPdf()">Descargar comprobante</button>
+                  <button type="button" class="btn btn-primary" onclick="DivAPdf()">Descargar comprobante</button>
 
              
 
-                  <script>
-    function pruebaDivAPdf() {
-      
-      var doc = new jsPDF();
-      var elementHTML = $('#content').html();
-      var specialElementHandlers = {
-          '#elementH': function (element, renderer) {
-              return true;
-          }
-      };
-      doc.fromHTML(elementHTML, 15, 15, {
-          'width': 170,
-          'elementHandlers': specialElementHandlers
-      });
 
-      // Save the PDF
-      doc.save('sample-document.pdf');
-    }
-</script>
+
+                 
 
                 </div>
               </div>
@@ -492,14 +494,14 @@ function URLChecker(){
     <td> 
     <form action="index.php#EditarProducto" class="mb-0" method="post">
     <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
-        <button class="btn btn-light" id="MenuEditarProducto" name="MenuEditarProducto" onclick=".submit()"><span data-feather="edit"></span></button>
+        <button class="btn btn-light" id="MenuEditarProducto" name="MenuEditarProducto" onclick="this.form.submit()"><span data-feather="edit"></span></button>
         
         </form>  
    </td> 
     <td>                 
         <form action="index.php#Productos" class="mb-0" method="post">
             <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
-            <button class="btn btn-light" name="EliminarProducto" onclick=".submit()"><span data-feather="trash-2"></span></button>
+            <button class="btn btn-light" name="EliminarProducto" onclick="this.form.submit()"><span data-feather="trash-2"></span></button>
         </form>                                    
     </td> 
 </tr>
@@ -1019,7 +1021,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                             <td>                 
                                 <form title="Deshabilitado en esta versión" class="mb-0" action="index.php#Categorias" method="post">
                                     <input type="hidden" name="IDCategoria" value="<?php echo $row["ID"]; ?>" />
-                                    <button disabled title="Deshabilitado en esta versión"     class="btn btn-light" name="EliminarCategoria" onclick=".submit()"><span title="Deshabilitado en esta versión" data-feather="trash-2"></span></button>
+                                    <button disabled title="Deshabilitado en esta versión"     class="btn btn-light" name="EliminarCategoria" onclick="this.form.submit()"><span title="Deshabilitado en esta versión" data-feather="trash-2"></span></button>
                                 </form>                                    
                             </td> 
                                                                                                     
@@ -1090,7 +1092,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                                             <td>                 
                                                 <form action="index.php#Configuracion" method="post">
                                                     <input type="hidden" name="IDUsuario" value="<?php echo $row["ID"]; ?>" />
-                                                    <button class="btn btn-light" name="EliminarUsuario" onclick=".submit()"><span data-feather="trash-2"></span></button>
+                                                    <button class="btn btn-light" name="EliminarUsuario" onclick="this.form.submit()"><span data-feather="trash-2"></span></button>
                                                 </form>                                    
                                             </td> 
                                         </tr>
@@ -1118,6 +1120,9 @@ if (isset($_POST['MenuEditarProducto'])) {
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- PDF Ventas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

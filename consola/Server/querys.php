@@ -404,4 +404,27 @@ if (isset($_POST['EliminarImagen1'])) {
 
 }
 
+//---------------VENTAS--------------------
+
+//EDITAR: Estado Ventas
+if (isset($_POST['EditarEstado'])) {
+    //Post de datos
+    $ID=$_POST['IDVentas'];
+    $Estado=$_POST['EditarEstado'];
+ 
+    //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
+    $sql = "UPDATE ".$DBN."_Ventas SET Estado='".$Estado."'  WHERE ID='".$ID."' ";
+
+    $result = $conn->query($sql);
+
+    if ($result) {
+        header("Location: ../index.php#Ventas");
+        $conn->close();
+        exit();
+    } else {
+        header("Location: ../login.php");
+        $conn->close();
+        exit();
+    }
+} 
 ?>
