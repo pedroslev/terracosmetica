@@ -38,7 +38,7 @@ if (isset($_POST['SubirAWeb'])) {
             $milisegundos=date('v');
             $unique=$anio.$mes.$dia.$hora.$minuto.$segundos.$milisegundos."_";
             //Seteo carpeta a guardar y nombres
-            $target_dir = "/home/u839063682/public_html/pedro_html/consola/img/";
+            
             $basename = basename($unique.$_FILES['file']['name'][$i]);
             $target_file[$i] = $target_dir . $basename;
             $uploadOk = 1;

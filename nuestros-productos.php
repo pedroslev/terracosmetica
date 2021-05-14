@@ -1,6 +1,6 @@
 <?php 
 
-include './consola/Server/database.php';
+include './server/database.php';
 
 
 ?>
