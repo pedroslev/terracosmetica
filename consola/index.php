@@ -42,9 +42,9 @@ function URLChecker(){
   <link rel="stylesheet" href="./css/style.css">
   <script src="./js/index.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
 </head>
 
 <body>
@@ -111,10 +111,235 @@ function URLChecker(){
             
           <!-- VENTAS -->
           <div class="" id="VentasTitulo">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
             <h1 class="h2">Ventas</h1>
             </div>
-             En desarrollo...
+
+
+            <div class="table-responsive">
+                              <table class="table table-striped table-sm">
+                                <thead>
+                                  <tr>
+                                    <th>Codigo Envio</th>                                    
+                                    <th>Fecha</th>
+                                    <th>Monto</th>
+                                    <th>Estado</th>                                    
+                                    <th></th>       
+                                    <th></th>
+                                    <th></th>                              
+                                  </tr>
+                                </thead>
+                                <tbody>
+                  <?php 
+                  //MOSTRADOR DE VENTAS (LISTADO)
+                  
+                  $sql ="SELECT * FROM TERRA_Ventas ORDER BY 'Estado' ASC";
+                  $result= $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                  //Output data of each row
+                  while($row = $result->fetch_assoc()) {                   
+                               ?>                     
+                                  <tr>
+                                        <td><?php echo $row["CodigoPedido"]; ?></td>                                                                    
+                                        <td>
+                                          <?php
+                                                $source = $row["Fecha"];
+                                                $date = new DateTime($source);
+                                                echo $date->format('d/m/Y');
+                                            ?>                                        
+                                        </td>
+                                        <td>$ <?php echo $row["PrecioTotal"]; ?></td>                                        
+                                        <td>
+                                        <?php
+                                              switch ($row["Estado"]) {
+                                              case "0": ?>
+                                                  <span class="badge badge-danger">ERROR</span>
+                                              <?php break;
+                                              case "1": ?>
+                                                  <span class="badge badge-secondary">FALTA DE PAGO</span> 
+                                              <?php break;
+                                              case "2": ?>
+                                                  <span class="badge badge-warning">PENDIENTE</span>
+                                              <?php break;
+                                              case "3": ?>
+                                                  <span class="badge badge-primary">EN CAMINO</span>
+                                              <?php break;
+                                              case "4": ?>
+                                                  <span class="badge badge-success">ENTREGADO</span>
+                                              <?php break;
+                                              } 
+                                              ?>
+                                        </td>
+                                        <td>                                         
+                                        <button class="btn btn-light" title="Ver Mas" data-toggle="modal" data-target="#modalVentas<?php echo $row["ID"]; ?>"><span data-feather="plus"></span></button>
+                                        </td>
+                                        <td>                                         
+                                        <button class="btn btn-light" title="Descargar" onclick="DivAPdf()"><span data-feather="download"></span></button>
+                                        </td>
+
+
+                                  
+                                        <td>
+                                  <!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="modalVentas<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div id="Ticket" class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header row align-items-center m-0">
+                <h5 class="modal-title col-6">Pedido N° <span id="CodigoPedido" ><?php echo $row["CodigoPedido"]; ?></span></h5>
+
+                <?php
+                switch ($row["Estado"]) {
+                case "0": ?>
+                    <span class="badge badge-danger col-3">ERROR</span>
+                <?php break;
+                case "1": ?>
+                    <span class="badge badge-secondary col-3">FALTA DE PAGO</span> 
+                <?php break;
+                case "2": ?>
+                    <span class="badge badge-warning col-3">PENDIENTE</span>
+                <?php break;
+                case "3": ?>
+                    <span class="badge badge-primary col-3">EN CAMINO</span>
+                <?php break;
+                case "4": ?>
+                    <span class="badge badge-success col-3">ENTREGADO</span>
+                <?php break;
+                } 
+                ?>
+
+                  <button type="button" class="close col-3" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                
+                <?php
+                $sqlV ="SELECT * FROM TERRA_Clientes WHERE ID='".$row["IDCliente"]."' ";
+                
+                  $resultV= $conn->query($sqlV);
+                  if ($resultV->num_rows > 0) {
+                    $filaV = mysqli_fetch_object($resultV);
+                    ?>
+
+                <div class="row">
+                <h6 class="col-6">Datos De Cliente</h6>
+                <h6 class="col-6">Fecha: <?php echo $date->format('d/m/Y'); ?></h6>
+                </div>
+                  
+                  <p>Nombre: <?php echo $filaV->Nombre ." ". $filaV->Apellido; ?></p>
+                  <p> <?php 
+                  switch ($filaV->TipoDoc) {
+                  case "0": echo "DNI"; 
+                  break;
+                  case "1": echo "Libreta Civica"; 
+                  break;
+                  case "2": echo "Pasaporte"; 
+                  break;
+                  default: echo "N/A";  
+                  break;}
+                  ?>: <?php echo $filaV->Doc; ?></p>
+
+                  <h6>Datos De Contacto</h6>
+                  <p>Email: <?php echo $filaV->Email; ?></p>
+                  <p>Telefono: <?php echo $filaV->Telefono; ?></p>
+                  <p>Direccion: <?php echo $filaV->Calle ." ". $filaV->Altura ." ".$filaV->Localidad ." ". $filaV->Provincia;?></p>
+                  <p>Codigo Postal: <?php echo $filaV->Postal; ?></p>
+                  <p>Departamento: <?php echo $filaV->Departamento; ?></p>
+
+                  <h6>Observaciones</h6>
+                  <p><?php echo $filaV->Observaciones; ?></p>
+
+                
+                <table class="table table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>Codigo</th>
+                        <th>Producto</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                  
+                  <?php
+                }else { echo"Cliente no Registrado"; }
+
+                $sqlPedidos ="SELECT * FROM TERRA_Pedidos WHERE CodigoPedido='".$row["CodigoPedido"]."' ";
+                $resultPedidos= $conn->query($sqlPedidos);
+                if ($resultPedidos->num_rows > 0) {
+                //Output data of each row
+                while($rowPedidos = $resultPedidos->fetch_assoc()) {
+
+                $sqlP ="SELECT * FROM TERRA_Productos WHERE ID='".$rowPedidos["IDProducto"]."' ";
+                
+                $resultP= $conn->query($sqlP);
+                if ($resultP->num_rows > 0) {
+                  $filaP = mysqli_fetch_object($resultP);
+                ?>
+
+                  
+                      <tr>
+                        <td><?php echo $filaP->Codigo; ?></td>
+                        <td><?php echo $filaP->Nombre; ?></td>
+                      </tr>                     
+                   
+
+                <?php
+                } 
+              else { echo"Productos no Registrados"; }
+              }
+            } else { echo"Pedido no Registrado"; }
+                ?>
+
+
+                </tbody>
+                  </table>
+
+
+
+                </div>
+
+
+                <div id="elementH"></div>
+                <div class="modal-footer d-flex justify-content-between">
+                <!-- Cambio de estado en tabla ventas -->
+                <form action="index.php#Ventas" method="post">
+                <select class="form-select" name="EditarEstado" aria-label="" onchange="this.form.submit()">
+                                        <?php if($row["Estado"]==0){ ?>                                      
+                                        <option selected>ERROR</option>
+                                        <?php } else{ ?>                                                                                 
+                                        <option value="1" <?php if($row["Estado"]==1){echo "selected";}; ?>>FALTA DE PAGO</option>
+                                        <option value="2" <?php if($row["Estado"]==2){echo "selected";}; ?>>PENDIENTE</option>
+                                        <option value="3" <?php if($row["Estado"]==3){echo "selected";}; ?>>EN CAMINO</option>
+                                        <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>>ENTREGADO</option>
+                                        <?php }; ?>
+                  </select>
+                  <input type="hidden" name="IDVentas" value="<?php echo $row["ID"]; ?>" />
+                  </form>
+
+
+                  <button type="button" class="btn btn-primary" onclick="DivAPdf()">Descargar comprobante</button>
+
+             
+
+
+
+                 
+
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- FIN Modal -->
+</td>
+</tr>
+                         <?php   } }else {  ?>
+                            <tr>
+                            NO HAY Ventas
+                            <tr>
+                      <?php     }   ?>             
+                  </tbody>
+                </table>
+              </div>
+
             </div>
             
           
@@ -181,7 +406,7 @@ function URLChecker(){
               </div>
             </div>
           </div>  
-
+<!-- FIN Modal -->
             <div class="table-responsive">
                               <table class="table table-striped table-sm">
                                 <thead>
@@ -207,16 +432,16 @@ function URLChecker(){
                   //MOSTRADOR DE PRODUCTOS (LISTADO)
                   $class="FormLista";
                   //Checkeo si hay producto con categoria que haya sido previamente eliminada
-                  $categoriaFaltante="SELECT * FROM TERRA_Productos where aux1='1'";
+                  $categoriaFaltante="SELECT * FROM TERRA_Productos where aux1='1' AND Eliminar<>'1'";
                   $resultado= $conn->query($categoriaFaltante);
                   if($resultado->num_rows >0){
                   //Si el resultado es mayor a cero muestro los productos sin categoria por eliminacion primero
-                  $sql ="SELECT * FROM TERRA_Productos order by aux1 desc";
+                  $sql ="SELECT * FROM TERRA_Productos WHERE Eliminar<>'1' order by aux1 desc";
                   $result= $conn->query($sql);
                   }else
                   {
                   //En caso de no haber productos con categorias eliminadas previamente ordeno por bloques de Categoria1
-                  $sql ="SELECT * FROM TERRA_Productos order by Categoria desc";
+                  $sql ="SELECT * FROM TERRA_Productos WHERE Eliminar<>'1' order by Categoria desc";
                   $result= $conn->query($sql);
                   }
                   if ($result->num_rows > 0) {
@@ -269,14 +494,14 @@ function URLChecker(){
     <td> 
     <form action="index.php#EditarProducto" class="mb-0" method="post">
     <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
-        <button class="btn btn-light" id="MenuEditarProducto" name="MenuEditarProducto" onclick=".submit()"><span data-feather="edit"></span></button>
+        <button class="btn btn-light" id="MenuEditarProducto" name="MenuEditarProducto" onclick="this.form.submit()"><span data-feather="edit"></span></button>
         
         </form>  
    </td> 
     <td>                 
         <form action="index.php#Productos" class="mb-0" method="post">
             <input type="hidden" name="IDProducto" value="<?php echo $row["ID"]; ?>" />
-            <button class="btn btn-light" name="EliminarProducto" onclick=".submit()"><span data-feather="trash-2"></span></button>
+            <button class="btn btn-light" name="EliminarProducto" onclick="this.form.submit()"><span data-feather="trash-2"></span></button>
         </form>                                    
     </td> 
 </tr>
@@ -796,7 +1021,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                             <td>                 
                                 <form title="Deshabilitado en esta versión" class="mb-0" action="index.php#Categorias" method="post">
                                     <input type="hidden" name="IDCategoria" value="<?php echo $row["ID"]; ?>" />
-                                    <button disabled title="Deshabilitado en esta versión"     class="btn btn-light" name="EliminarCategoria" onclick=".submit()"><span title="Deshabilitado en esta versión" data-feather="trash-2"></span></button>
+                                    <button disabled title="Deshabilitado en esta versión"     class="btn btn-light" name="EliminarCategoria" onclick="this.form.submit()"><span title="Deshabilitado en esta versión" data-feather="trash-2"></span></button>
                                 </form>                                    
                             </td> 
                                                                                                     
@@ -867,7 +1092,7 @@ if (isset($_POST['MenuEditarProducto'])) {
                                             <td>                 
                                                 <form action="index.php#Configuracion" method="post">
                                                     <input type="hidden" name="IDUsuario" value="<?php echo $row["ID"]; ?>" />
-                                                    <button class="btn btn-light" name="EliminarUsuario" onclick=".submit()"><span data-feather="trash-2"></span></button>
+                                                    <button class="btn btn-light" name="EliminarUsuario" onclick="this.form.submit()"><span data-feather="trash-2"></span></button>
                                                 </form>                                    
                                             </td> 
                                         </tr>
@@ -895,6 +1120,9 @@ if (isset($_POST['MenuEditarProducto'])) {
     <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- PDF Ventas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
