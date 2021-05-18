@@ -961,7 +961,7 @@ if (isset($_POST['MenuEditarProducto'])) {
       <br><br>
         <button class="btn btn-light" name="EliminarImagen5"><span data-feather="trash-2"></span></button>
       </div>
-      <img class="card-img-bottom" src="/<?php echo $PWDConsola.$Imagen5;?>" alt="Card image cap">
+      <img class="card-img-bottom" src="<?php echo $PWDConsola . $Imagen5;?>" alt="Card image cap">
       <?php } ?>
     </div>
 </div>     
