@@ -1,9 +1,9 @@
 <?php 
-include './Server/sessionstart.php';
+include './server/sessionstart.php';
 
-include './Server/database.php';
+include './server/database.php';
 
-include './Server/querys.php';
+include './server/querys.php';
 
 ?>
 <script>
@@ -878,6 +878,7 @@ if (isset($_POST['MenuEditarProducto'])) {
       <img class="card-img-bottom" src="<?php echo $PWDConsola . $Imagen1;?>" alt="Card image cap">
       <?php } ?>
     </div>  
+
 
 
     <div class="card">

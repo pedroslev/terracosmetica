@@ -3,7 +3,7 @@
 //Directorio Fotos Ecommerce
 $PWD="./productos/";
 //Directorio Fotos Consola
-$PWDConsola="../terracosmetica_html/productos/";
+$PWDConsola="http://terracosmetica.hazear.com/productos/";
 //Directorio Carga Productos
 $target_dir = "/home/u839063682/public_html/terracosmetica_html/productos/";
 //Versión
