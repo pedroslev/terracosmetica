@@ -349,6 +349,15 @@ function URLChecker(){
             <div class="Ocultar" id="ProductosTitulo">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
             <h1 class="h2">Productos</h1>           
+            <form class="form-inline mr-auto mb-0" method="POST" action='index.php#Productos'>
+            <select class="custom-select my-1 mr-sm-2" id="Filtro" name="Filtro" onchange="this.form.submit()">
+              <option <?php if($Filtro=="10000"){echo"selected";}; ?> value="10000">Todos</option>
+              <option <?php if($Filtro=="20"){echo"selected";}; ?> value="20">20</option>
+              <option <?php if($Filtro=="50"){echo"selected";}; ?> value="50">50</option>
+              <option <?php if($Filtro=="100"){echo"selected";}; ?> value="100">100</option>
+              <option <?php if($Filtro=="500"){echo"selected";}; ?> value="500">500</option>              
+            </select>
+            </form>
             <form class="form-inline mb-0">
             <input id="SearchBox" type="search" class="form-control mr-sm-2" placeholder="Buscador" aria-label="Search" onchange="window.find(document.getElementById('SearchBox').value,false,false,true);">
             <button id="Agregar" type="button" class="btn btn-outline-dark mr-2" onclick="Seleccionar(selected=4),window.location='#Agregar'">Agregar Producto</button>
@@ -428,20 +437,24 @@ function URLChecker(){
                                   </tr>
                                 </thead>
                                 <tbody>
-                  <?php 
+                  <?php
                   //MOSTRADOR DE PRODUCTOS (LISTADO)
+
+                  //Cuando la pagina carga por primera vez setea el filtro para mostrar 19 productos(pantalla completa)
+                  if (isset($_POST['Filtro'])){$Filtro=$_POST['Filtro'];}else{$Filtro="19";};
+                  
                   $class="FormLista";
                   //Checkeo si hay producto con categoria que haya sido previamente eliminada
-                  $categoriaFaltante="SELECT * FROM TERRA_Productos where aux1='1' AND Eliminar<>'1'";
+                  $categoriaFaltante="SELECT * FROM TERRA_Productos where aux1='1' AND Eliminar!='1' LIMIT ".$Filtro." ";                  
                   $resultado= $conn->query($categoriaFaltante);
                   if($resultado->num_rows >0){
                   //Si el resultado es mayor a cero muestro los productos sin categoria por eliminacion primero
-                  $sql ="SELECT * FROM TERRA_Productos WHERE Eliminar<>'1' order by aux1 desc";
+                  $sql ="SELECT * FROM TERRA_Productos WHERE Eliminar!='1' order by aux1 desc LIMIT ".$Filtro."";
                   $result= $conn->query($sql);
                   }else
                   {
                   //En caso de no haber productos con categorias eliminadas previamente ordeno por bloques de Categoria1
-                  $sql ="SELECT * FROM TERRA_Productos WHERE Eliminar<>'1' order by Categoria desc";
+                  $sql ="SELECT * FROM TERRA_Productos WHERE Eliminar!='1' order by Categoria desc LIMIT ".$Filtro."";
                   $result= $conn->query($sql);
                   }
                   if ($result->num_rows > 0) {
