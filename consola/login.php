@@ -15,7 +15,7 @@
 </head>
 
 <?php
-include './Server/database.php';
+include './server/database.php';
 
 if (isset($_POST['Login'])) {
  
