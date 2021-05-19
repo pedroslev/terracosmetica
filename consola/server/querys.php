@@ -395,7 +395,7 @@ if (isset($_POST['EliminarImagen1'])) {
     ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
     $str = 'MenuEditarProducto'; 
     var_dump(isset($str));
-    header("Location: ../index.php#EditarProducto");
+    header("Location: ../index.php#EditarProducto?idprod=".$ID);
     $conn->close();
     exit();
     }
@@ -403,7 +403,83 @@ if (isset($_POST['EliminarImagen1'])) {
     {
     header("Location: ../signin.html");
     $conn->close();}
+}
 
+if (isset($_POST['EliminarImagen2'])) {
+    $ID= $_POST['ID'];
+    $sql = "UPDATE TERRA_Productos SET Imagen2= NULL WHERE ID='".$ID."' ";
+    $result = $conn->query($sql);
+    
+    if ($result) {
+    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
+    $str = 'MenuEditarProducto'; 
+    var_dump(isset($str));
+    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    $conn->close();
+    exit();
+    }
+    else 
+    {
+    header("Location: ../signin.html");
+    $conn->close();}
+}
+
+if (isset($_POST['EliminarImagen3'])) {
+    $ID= $_POST['ID'];
+    $sql = "UPDATE TERRA_Productos SET Imagen3= NULL WHERE ID='".$ID."' ";
+    $result = $conn->query($sql);
+    
+    if ($result) {
+    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
+    $str = 'MenuEditarProducto'; 
+    var_dump(isset($str));
+    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    $conn->close();
+    exit();
+    }
+    else 
+    {
+    header("Location: ../signin.html");
+    $conn->close();}
+}
+
+if (isset($_POST['EliminarImagen4'])) {
+    $ID= $_POST['ID'];
+    $sql = "UPDATE TERRA_Productos SET Imagen4= NULL WHERE ID='".$ID."' ";
+    $result = $conn->query($sql);
+    
+    if ($result) {
+    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
+    $str = 'MenuEditarProducto'; 
+    var_dump(isset($str));
+    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    $conn->close();
+    exit();
+    }
+    else 
+    {
+    header("Location: ../signin.html");
+    $conn->close();}
+}
+
+
+if (isset($_POST['EliminarImagen5'])) {
+    $ID= $_POST['ID'];
+    $sql = "UPDATE TERRA_Productos SET Imagen5= NULL WHERE ID='".$ID."' ";
+    $result = $conn->query($sql);
+    
+    if ($result) {
+    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
+    $str = 'MenuEditarProducto'; 
+    var_dump(isset($str));
+    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    $conn->close();
+    exit();
+    }
+    else 
+    {
+    header("Location: ../signin.html");
+    $conn->close();}
 }
 
 //---------------VENTAS--------------------

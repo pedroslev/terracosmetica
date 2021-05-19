@@ -668,11 +668,16 @@ function URLChecker(){
 
 
 <!-- FORMULARIO DE EDICION DE PRODUCTOS-->
-<?php 
+<?php
+
+if($_GET){
+  $idget=$_GET['idprod'];
+  $sql = "SELECT * FROM TERRA_Productos WHERE ID ='".$idget."'";
+} 
 if (isset($_POST['MenuEditarProducto'])) {
   $ID = $_POST['IDProducto'];
-  
   $sql = "SELECT * FROM TERRA_Productos WHERE ID ='".$ID."'";
+}   
         $result = $conn->query($sql);
         if($result){
           $fila = mysqli_fetch_object($result);
@@ -710,7 +715,8 @@ if (isset($_POST['MenuEditarProducto'])) {
         $NombreCategoria3=$row3["Nombre"];
 
           }
-        }
+
+        
 ?>
 <div class="Ocultar" id="EditarProducto">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
