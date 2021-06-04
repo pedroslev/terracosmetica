@@ -47,11 +47,11 @@ function URLChecker(){
  
 </head>
 
-<body>
+<body onload="showTime()">
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0"> 
       <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">Consola Terracosmetica</a>
-      
-      <ul class="navbar-nav px-3">
+      <p id="MyClockDisplay" class="text-center col-sm-3 col-md-2 mr-0" style="color:white;margin: 0;"></p>
+      <ul class="navbar-nav px-3">      
         <li class="nav-item text-nowrap">
           <form method="post" class="form-inline" style="margin-bottom: 0px;">
           <button type="button" class="btn btn-primary rounded-circle" title="<?php echo $_SESSION['NombreUsuario']; ?>" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Se encuentra logueado con: <?php echo $_SESSION['NombreUsuario']; ?>"> <?php echo substr($_SESSION['NombreUsuario'], 0, 1); ?> </button>
