@@ -210,7 +210,7 @@ include './server/database.php';
 
 
 									</div> <!-- .et_pb_section -->
-									<div class="et_pb_section et_pb_section_1 et_section_regular">
+									<div class="et_pb_section et_section_regular">
 
 
 
@@ -256,7 +256,7 @@ include './server/database.php';
 										while($row = $result->fetch_assoc()) { 										
 										?>
 
-<div class="et_pb_row et_pb_row_3 et_clickable">
+<div class="" style="display:flex;">
 											<div class="et_pb_column et_pb_column_1_2 et_pb_column_5 et_clickable  et_pb_css_mix_blend_mode_passthrough">
 
 
