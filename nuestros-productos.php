@@ -305,8 +305,7 @@ include './server/database.php';
 																<input type="number" id="quantity_60402626b783d" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Cantidad" size="4" placeholder="" inputmode="numeric">
 															</div>
 
-															<button type="submit" name="add-to-cart" value="225" style="color:black; border-color:lightgray; border-width: 1px;"class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon add-to-cart " data-icon="5" data-icon-tablet="" data-icon-phone="">Añadir al
-																carrito</button>
+															<button type="submit" value="225" style="color:black; border-color:lightgray; border-width: 1px;"class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon">  <a href="#" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a></button>
 
 														</form>
 
