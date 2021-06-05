@@ -723,7 +723,7 @@ if(!empty($_GET['idprod'])){
             <h1 class="h2">Editar Producto</h1>
             <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=2),window.location='#Productos'">X</button>
             </div>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
             
             <input type="hidden" name="ID" value="<?php if(!empty($_GET['idprod'])){echo $idget;} else{echo $ID;} ?>" />
 
@@ -871,7 +871,7 @@ if(!empty($_GET['idprod'])){
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen1" id="CargarImagen1">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
@@ -894,7 +894,7 @@ if(!empty($_GET['idprod'])){
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen2" id="CargarImagen2">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
@@ -915,7 +915,7 @@ if(!empty($_GET['idprod'])){
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen3" id="CargarImagen3">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
@@ -936,7 +936,7 @@ if(!empty($_GET['idprod'])){
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen4" id="CargarImagen4">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
@@ -957,7 +957,7 @@ if(!empty($_GET['idprod'])){
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen5" id="CargarImagen5">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>

@@ -125,6 +125,8 @@ if (isset($_POST['SubirAWeb'])) {
     //EDITAR PRODUCTO
     $Operacion="Productos";
         if (isset($_POST['EditarProducto'])) {
+$CargaImagen=0;
+
         $ID=$_POST['ID'];    
         $Codigo= $_POST['Codigo'];
         $Nombre=$_POST['Nombre'];
@@ -138,7 +140,6 @@ if (isset($_POST['SubirAWeb'])) {
         $Precio=$_POST['Precio'];
         $Oferta=$_POST['Oferta'];
         $Mostrar=$_POST['Mostrar'];  
-        
         /*
         //Obtencion de id categoria
         $sqlID ="SELECT ID FROM TERRA_Categorias WHERE Nombre = '$Categoria'";
@@ -148,12 +149,184 @@ if (isset($_POST['SubirAWeb'])) {
             $IdCategoria=$row["ID"];
         }*/
         
+       
+
+
+        //Subir IMAGEN PRODUCTO 1    
+        if ($_FILES['CargarImagen1']['size'] != 0) {
+            echo "hola";
+                    $target_file = $target_dir . basename($_FILES["CargarImagen1"]["name"]);
+                    $uploadOk = 1;
+                    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+            if ($_FILES["CargarImagen1"]["size"] > 100000) {
+                echo "Sorry, your file is too large.";
+                $uploadOk = 0;
+            }
+
+            // Allowance de formatos unicos jpeg o png
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") 
+            {
+                echo "Unicamente JPG, JPEG o PNG son permitidos.";
+                $uploadOk = 0;
+            } 
+
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["CargarImagen1"]["tmp_name"],$target_file)) {
+                echo "ok";
+                } else {
+                echo "Sorry, there was an error uploading your file.";
+                }
+            }
+
+        }
+         //Subir IMAGEN PRODUCTO 2   
+         if ($_FILES['CargarImagen2']['size'] != 0) {
+            echo "hola";
+                    $target_file2 = $target_dir . basename($_FILES["CargarImagen2"]["name"]);
+                    $uploadOk2 = 1;
+                    $imageFileType2 = strtolower(pathinfo($target_file2,PATHINFO_EXTENSION));
+
+            if ($_FILES["CargarImagen2"]["size"] > 100000) {
+                echo "Sorry, your file is too large2.";
+                $uploadOk2 = 0;
+            }
+
+            // Allowance de formatos unicos jpeg o png
+            if($imageFileType2 != "jpg" && $imageFileType2 != "png" && $imageFileType2 != "jpeg") 
+            {
+                echo "Unicamente JPG, JPEG o PNG son permitidos2.";
+                $uploadOk2 = 0;
+            } 
+
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk2 == 0) {
+                echo "Sorry, your file was not uploaded2.";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["CargarImagen2"]["tmp_name"],$target_file2)) {
+                echo "ok";
+                } else {
+                echo "Sorry, there was an error uploading your file2.";
+                }
+            }
+
+        }
+        //Subir IMAGEN PRODUCTO 3   
+        if ($_FILES['CargarImagen3']['size'] != 0) {
+            echo "hola";
+                    $target_file3 = $target_dir . basename($_FILES["CargarImagen3"]["name"]);
+                    $uploadOk3 = 1;
+                    $imageFileType3 = strtolower(pathinfo($target_file3,PATHINFO_EXTENSION));
+
+            if ($_FILES["CargarImagen3"]["size"] > 100000) {
+                echo "Sorry, your file is too large3.";
+                $uploadOk3 = 0;
+            }
+
+            // Allowance de formatos unicos jpeg o png
+            if($imageFileType3 != "jpg" && $imageFileType3 != "png" && $imageFileType3 != "jpeg") 
+            {
+                echo "Unicamente JPG, JPEG o PNG son permitidos3.";
+                $uploadOk3 = 0;
+            } 
+
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk3 == 0) {
+                echo "Sorry, your file was not uploaded3.";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["CargarImagen3"]["tmp_name"],$target_file3)) {
+                echo "ok";
+                } else {
+                echo "Sorry, there was an error uploading your file3.";
+                }
+            }
+
+        }
+        //Subir IMAGEN PRODUCTO 4   
+        if ($_FILES['CargarImagen4']['size'] != 0) {
+            echo "hola";
+                    $target_file4 = $target_dir . basename($_FILES["CargarImagen4"]["name"]);
+                    $uploadOk4 = 1;
+                    $imageFileType4 = strtolower(pathinfo($target_file4,PATHINFO_EXTENSION));
+
+            if ($_FILES["CargarImagen4"]["size"] > 100000) {
+                echo "Sorry, your file is too large4.";
+                $uploadOk4 = 0;
+            }
+
+            // Allowance de formatos unicos jpeg o png
+            if($imageFileType4 != "jpg" && $imageFileType4 != "png" && $imageFileType4 != "jpeg") 
+            {
+                echo "Unicamente JPG, JPEG o PNG son permitidos4.";
+                $uploadOk4 = 0;
+            } 
+
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk4 == 0) {
+                echo "Sorry, your file was not uploaded.";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["CargarImagen4"]["tmp_name"],$target_file4)) {
+                echo "ok";
+                } else {
+                echo "Sorry, there was an error uploading your file4.";
+                }
+            }
+
+        }
+        //Subir IMAGEN PRODUCTO 5   
+        if ($_FILES['CargarImagen5']['size'] != 0) {
+            echo "hola";
+                    $target_file5 = $target_dir . basename($_FILES["CargarImagen5"]["name"]);
+                    $uploadOk5 = 1;
+                    $imageFileType5 = strtolower(pathinfo($target_file5,PATHINFO_EXTENSION));
+
+            if ($_FILES["CargarImagen5"]["size"] > 100000) {
+                echo "Sorry, your file is too large5.";
+                $uploadOk5 = 0;
+            }
+
+            // Allowance de formatos unicos jpeg o png
+            if($imageFileType5 != "jpg" && $imageFileType5 != "png" && $imageFileType5 != "jpeg") 
+            {
+                echo "Unicamente JPG, JPEG o PNG son permitidos5.";
+                $uploadOk5 = 0;
+            } 
+
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded5.";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["CargarImagen5"]["tmp_name"],$target_file5)) {
+                echo "ok";
+                } else {
+                echo "Sorry, there was an error uploading your file5.";
+                }
+            }
+
+        }
+
+        if ($_FILES['CargarImagen1']['size'] != 0) {$Imagen1=", Imagen1='".$target_file."'"; $CargaImagen=1;} else {$Imagen1=NULL;}
+        if ($_FILES['CargarImagen2']['size'] != 0) {$Imagen2=", Imagen2='".$target_file2."'"; $CargaImagen=1;} else {$Imagen2=NULL;}
+        if ($_FILES['CargarImagen3']['size'] != 0) {$Imagen3=", Imagen3='".$target_file3."'"; $CargaImagen=1;} else {$Imagen3=NULL;}
+        if ($_FILES['CargarImagen4']['size'] != 0) {$Imagen4=", Imagen4='".$target_file4."'"; $CargaImagen=1;} else {$Imagen4=NULL;}
+        if ($_FILES['CargarImagen5']['size'] != 0) {$Imagen5=", Imagen5='".$target_file5."'"; $CargaImagen=1;} else {$Imagen5=NULL;}
+
         $sql = "UPDATE ".$DBN."_".$Operacion." SET  Codigo='".$Codigo."' , Nombre='".$Nombre."' , Descripcion='".$Descripcion."' ,
-        Stock='".$Stock."' , Categoria='".$Categoria."' , Categoria2='".$Categoria2."' , Categoria3='".$Categoria3."' , Costo='".$Costo."' , Margen='".$Margen."' , Precio='".$Precio."' , Oferta='".$Oferta."' , Mostrar='".$Mostrar."'  WHERE ID='".$ID."' ";
+        Stock='".$Stock."' , Categoria='".$Categoria."' , Categoria2='".$Categoria2."' , Categoria3='".$Categoria3."' , Costo='".$Costo."' , Margen='".$Margen."' , Precio='".$Precio."' , Oferta='".$Oferta."', Mostrar='".$Mostrar."'  
+        ".
+        $Imagen1.$Imagen2.$Imagen3.$Imagen4.$Imagen5
+        ." WHERE ID='".$ID."' ";
         $result = $conn->query($sql);
-        echo $sql;
         if ($result) {
-            header("Location: ../index.php#Productos");
+            if($CargaImagen=1){header("Location: ../index.php?idprod=".$ID."#EditarProducto");}else{header("Location: ../index.php#Productos");}
             $conn->close();
             exit();
             }
@@ -161,8 +334,11 @@ if (isset($_POST['SubirAWeb'])) {
             {
             header("Location: ../login.php");
             $conn->close();}
-        }
+        
 
+        
+
+}
 
    //ELIMINAR PRODUCTO
     if (isset($_POST['EliminarProducto'])) {
@@ -383,9 +559,9 @@ session_destroy();
 header("Location: ./login.php");
 $conn->close();}
    
+//Eliminar Imagen de producto en Pagina de edicion
 
 // continuar para siguientes imagenes, tambien eliminar imagen del ftp
-// TRIVIAL -> HACER QUE CUANDO SE ELIMINE VUELVA A LA ANTERIOR DATA --> hoy deja todo vacio
 if (isset($_POST['EliminarImagen1'])) {
     $ID= $_POST['ID'];
     $sql = "UPDATE TERRA_Productos SET Imagen1= NULL WHERE ID='".$ID."' ";
