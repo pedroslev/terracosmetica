@@ -390,12 +390,9 @@ if (isset($_POST['EliminarImagen1'])) {
     $ID= $_POST['ID'];
     $sql = "UPDATE TERRA_Productos SET Imagen1= NULL WHERE ID='".$ID."' ";
     $result = $conn->query($sql);
-    
+
     if ($result) {
-    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
-    $str = 'MenuEditarProducto'; 
-    var_dump(isset($str));
-    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    header("Location: ../index.php?idprod=".$ID."#EditarProducto");
     $conn->close();
     exit();
     }
@@ -411,10 +408,7 @@ if (isset($_POST['EliminarImagen2'])) {
     $result = $conn->query($sql);
     
     if ($result) {
-    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
-    $str = 'MenuEditarProducto'; 
-    var_dump(isset($str));
-    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    header("Location: ../index.php?idprod=".$ID."#EditarProducto");
     $conn->close();
     exit();
     }
@@ -430,10 +424,7 @@ if (isset($_POST['EliminarImagen3'])) {
     $result = $conn->query($sql);
     
     if ($result) {
-    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
-    $str = 'MenuEditarProducto'; 
-    var_dump(isset($str));
-    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    header("Location: ../index.php?idprod=".$ID."#EditarProducto");
     $conn->close();
     exit();
     }
@@ -449,10 +440,7 @@ if (isset($_POST['EliminarImagen4'])) {
     $result = $conn->query($sql);
     
     if ($result) {
-    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
-    $str = 'MenuEditarProducto'; 
-    var_dump(isset($str));
-    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    header("Location: ../index.php?idprod=".$ID."#EditarProducto");
     $conn->close();
     exit();
     }
@@ -469,10 +457,7 @@ if (isset($_POST['EliminarImagen5'])) {
     $result = $conn->query($sql);
     
     if ($result) {
-    ?><input type="hidden" name="IDProducto" value="<?php echo $ID; ?>" /><?php
-    $str = 'MenuEditarProducto'; 
-    var_dump(isset($str));
-    header("Location: ../index.php#EditarProducto?idprod=".$ID);
+    header("Location: ../index.php?idprod=".$ID."#EditarProducto");
     $conn->close();
     exit();
     }
