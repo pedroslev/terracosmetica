@@ -39,8 +39,8 @@ if (isset($_POST['SubirAWeb'])) {
             $unique=$anio.$mes.$dia.$hora.$minuto.$segundos.$milisegundos."_";
             //Seteo carpeta a guardar y nombres
             
-            $basename = basename($unique.$_FILES['file']['name'][$i]);
-            $target_file[$i] = $target_dir . $basename;
+           
+            $target_file[$i] =  basename($unique.$_FILES['file']['name'][$i]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file[$i],PATHINFO_EXTENSION));
             
@@ -52,7 +52,7 @@ if (isset($_POST['SubirAWeb'])) {
             } 
             //else 
             //{
-                if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_file[$i]))
+                if (move_uploaded_file($_FILES['file']['tmp_name'][$i],$target_dir . $target_file[$i]))
                 {
                 echo "El archivo ". htmlspecialchars( basename($_FILES['file']['name'][$i])). " fue cargado exitosamente.";
                 }
@@ -154,8 +154,8 @@ $CargaImagen=0;
 
         //Subir IMAGEN PRODUCTO 1    
         if ($_FILES['CargarImagen1']['size'] != 0) {
-            echo "hola";
-                    $target_file = $target_dir . basename($_FILES["CargarImagen1"]["name"]);
+            
+                    $target_file =basename($_FILES["CargarImagen1"]["name"]);
                     $uploadOk = 1;
                     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -176,7 +176,7 @@ $CargaImagen=0;
                 echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
             } else {
-                if (move_uploaded_file($_FILES["CargarImagen1"]["tmp_name"],$target_file)) {
+                if (move_uploaded_file($_FILES["CargarImagen1"]["tmp_name"],$target_dir.$target_file)) {
                 echo "ok";
                 } else {
                 echo "Sorry, there was an error uploading your file.";
@@ -186,8 +186,8 @@ $CargaImagen=0;
         }
          //Subir IMAGEN PRODUCTO 2   
          if ($_FILES['CargarImagen2']['size'] != 0) {
-            echo "hola";
-                    $target_file2 = $target_dir . basename($_FILES["CargarImagen2"]["name"]);
+           
+                    $target_file2 =basename($_FILES["CargarImagen2"]["name"]);
                     $uploadOk2 = 1;
                     $imageFileType2 = strtolower(pathinfo($target_file2,PATHINFO_EXTENSION));
 
@@ -208,7 +208,7 @@ $CargaImagen=0;
                 echo "Sorry, your file was not uploaded2.";
             // if everything is ok, try to upload file
             } else {
-                if (move_uploaded_file($_FILES["CargarImagen2"]["tmp_name"],$target_file2)) {
+                if (move_uploaded_file($_FILES["CargarImagen2"]["tmp_name"],$target_dir.$target_file2)) {
                 echo "ok";
                 } else {
                 echo "Sorry, there was an error uploading your file2.";
@@ -218,8 +218,8 @@ $CargaImagen=0;
         }
         //Subir IMAGEN PRODUCTO 3   
         if ($_FILES['CargarImagen3']['size'] != 0) {
-            echo "hola";
-                    $target_file3 = $target_dir . basename($_FILES["CargarImagen3"]["name"]);
+            
+                    $target_file3 =basename($_FILES["CargarImagen3"]["name"]);
                     $uploadOk3 = 1;
                     $imageFileType3 = strtolower(pathinfo($target_file3,PATHINFO_EXTENSION));
 
@@ -240,7 +240,7 @@ $CargaImagen=0;
                 echo "Sorry, your file was not uploaded3.";
             // if everything is ok, try to upload file
             } else {
-                if (move_uploaded_file($_FILES["CargarImagen3"]["tmp_name"],$target_file3)) {
+                if (move_uploaded_file($_FILES["CargarImagen3"]["tmp_name"],$target_dir.$target_file3)) {
                 echo "ok";
                 } else {
                 echo "Sorry, there was an error uploading your file3.";
@@ -250,8 +250,8 @@ $CargaImagen=0;
         }
         //Subir IMAGEN PRODUCTO 4   
         if ($_FILES['CargarImagen4']['size'] != 0) {
-            echo "hola";
-                    $target_file4 = $target_dir . basename($_FILES["CargarImagen4"]["name"]);
+            
+                    $target_file4 = basename($_FILES["CargarImagen4"]["name"]);
                     $uploadOk4 = 1;
                     $imageFileType4 = strtolower(pathinfo($target_file4,PATHINFO_EXTENSION));
 
@@ -272,7 +272,7 @@ $CargaImagen=0;
                 echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
             } else {
-                if (move_uploaded_file($_FILES["CargarImagen4"]["tmp_name"],$target_file4)) {
+                if (move_uploaded_file($_FILES["CargarImagen4"]["tmp_name"],$target_dir.$target_file4)) {
                 echo "ok";
                 } else {
                 echo "Sorry, there was an error uploading your file4.";
@@ -282,8 +282,8 @@ $CargaImagen=0;
         }
         //Subir IMAGEN PRODUCTO 5   
         if ($_FILES['CargarImagen5']['size'] != 0) {
-            echo "hola";
-                    $target_file5 = $target_dir . basename($_FILES["CargarImagen5"]["name"]);
+            
+                    $target_file5 = basename($_FILES["CargarImagen5"]["name"]);
                     $uploadOk5 = 1;
                     $imageFileType5 = strtolower(pathinfo($target_file5,PATHINFO_EXTENSION));
 
@@ -304,7 +304,8 @@ $CargaImagen=0;
                 echo "Sorry, your file was not uploaded5.";
             // if everything is ok, try to upload file
             } else {
-                if (move_uploaded_file($_FILES["CargarImagen5"]["tmp_name"],$target_file5)) {
+                
+                if (move_uploaded_file($_FILES["CargarImagen5"]["tmp_name"],$target_dir.$target_file5)) {
                 echo "ok";
                 } else {
                 echo "Sorry, there was an error uploading your file5.";
