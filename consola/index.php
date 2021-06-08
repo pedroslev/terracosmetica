@@ -44,7 +44,15 @@ function URLChecker(){
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
- 
+  <!-- checkout all -->
+  <script>
+  function toggle(source) {
+    checkboxes = document.getElementsByName('foo');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = source.checked;
+    }
+  }
+  </script>
 </head>
 
 <body onload="showTime()">
@@ -420,7 +428,7 @@ function URLChecker(){
                               <table class="table table-striped table-sm">
                                 <thead>
                                   <tr>
-                                    <th><input class="" type="checkbox" value="" id="CheckBoxGlobal" onchange="CheckBoxGlobal();"title="Seleccionar Todos"></th>
+                                    <th><input type="checkbox" onClick="toggle(this)" ></th>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
@@ -483,7 +491,7 @@ function URLChecker(){
 
     <td>
       <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="CheckBoxIndividual" title="Seleccionar Item">                                      
+      <input class="form-check-input" type="checkbox" name="foo">                                      
       </div>
     </td>                         
     <form action="index.php#Productos" method="post" id="EditarProducto<?php echo $row["ID"]; ?>"> 
@@ -1143,8 +1151,8 @@ if (isset($_POST['MenuEditarProducto'])) {
     <script>
       feather.replace()
     </script>
-
   </body>
+  
 
 
 
