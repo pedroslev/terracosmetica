@@ -689,11 +689,16 @@ function URLChecker(){
 
 
 <!-- FORMULARIO DE EDICION DE PRODUCTOS-->
-<?php 
+<?php
 if (isset($_POST['MenuEditarProducto'])) {
   $ID = $_POST['IDProducto'];
-  
   $sql = "SELECT * FROM TERRA_Productos WHERE ID ='".$ID."'";
+}  
+if(!empty($_GET['idprod'])){
+  $idget=$_GET['idprod'];
+  $sql = "SELECT * FROM TERRA_Productos WHERE ID ='".$idget."'";
+} 
+ 
         $result = $conn->query($sql);
         if($result){
           $fila = mysqli_fetch_object($result);
@@ -731,16 +736,17 @@ if (isset($_POST['MenuEditarProducto'])) {
         $NombreCategoria3=$row3["Nombre"];
 
           }
-        }
+
+        
 ?>
 <div class="Ocultar" id="EditarProducto">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Editar Producto</h1>
             <button type="button" class="btn btn-outline-dark" onclick="Seleccionar(selected=2),window.location='#Productos'">X</button>
             </div>
-            <form method="POST">
-
-            <input type="hidden" name="ID" value="<?php echo $ID; ?>" />
+            <form method="POST" enctype="multipart/form-data">
+            
+            <input type="hidden" name="ID" value="<?php if(!empty($_GET['idprod'])){echo $idget;} else{echo $ID;} ?>" />
 
               <div class="form-row">
                 <div class="col-1">
@@ -886,7 +892,7 @@ if (isset($_POST['MenuEditarProducto'])) {
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen1" id="CargarImagen1">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
@@ -909,7 +915,7 @@ if (isset($_POST['MenuEditarProducto'])) {
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen2" id="CargarImagen2">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
@@ -930,7 +936,7 @@ if (isset($_POST['MenuEditarProducto'])) {
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen3" id="CargarImagen3">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
@@ -951,7 +957,7 @@ if (isset($_POST['MenuEditarProducto'])) {
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen4" id="CargarImagen4">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
@@ -972,7 +978,7 @@ if (isset($_POST['MenuEditarProducto'])) {
           <h5 class="card-title">Sin Asignar</h5>
           <div class="form-row">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="file">
+            <input type="file" class="custom-file-input" name="CargarImagen5" id="CargarImagen5">
             <label class="custom-file-label" for="customFile">Elegir Imagen</label>
           </div>
           </div>
