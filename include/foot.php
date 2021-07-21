@@ -24,6 +24,11 @@
 									<p>Ciudad Autónoma de Buenos Aires</p>
 								</div>
 							</div> <!-- .et_pb_text -->
+							<div class="et_pb_module et_pb_text et_pb_text_28  et_pb_text_align_center et_pb_bg_layout_light">
+							<div class="et_pb_text_inner">
+									<h6>Powered by <a href="https://hazear.com/"  target="_blank">HAZEinc.</a></h6>
+								</div>
+							</div>
 						</div> <!-- .et_pb_column -->
 						<div class="et_pb_column et_pb_column_1_3 et_pb_column_100  et_pb_css_mix_blend_mode_passthrough">
 

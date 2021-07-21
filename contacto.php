@@ -99,74 +99,7 @@
     </div>
 </div>
   <div id="page-container">
-    <header id="main-header" data-height-onload="150">
-      <div class="container clearfix et_menu_container">
-        <div class="logo_container">
-          <span class="logo_helper"></span>
-          <a href="index.html">
-            <img src="images/logo-fondo-transparente.jpg" alt="Terra Cosmética Natural" id="logo"
-              data-height-percentage="90" />
-          </a>
-        </div>
-        <div id="et-top-navigation" data-height="150" data-fixed-height="40">
-          <nav id="top-menu-nav">
-            <ul id="top-menu" class="nav">
-              <li id="menu-item-117"
-                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117">
-                <a href="index.html" aria-current="page">INICIO</a></li>
-              <li id="menu-item-280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a
-                  href="quienes-somos.html">QUIÉNES SOMOS</a></li>
-              <li id="menu-item-972"
-                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a
-                  href="nuestros-productos.php">NUESTROS PRODUCTOS</a>
-                <ul class="sub-menu">
-                  <li id="menu-item-1320"
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320"><a
-                      href="aromas.html">AROMAS</a></li>
-                  <li id="menu-item-974" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974">
-                    <a href="aromas.html">CUIDADO CAPILAR</a></li>
-                  <li id="menu-item-1323"
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1323"><a
-                      href="aromas.html">CUIDADO DE LA PIEL</a></li>
-                  <li id="menu-item-1025"
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1025"><a
-                      href="aromas.html">CUIDADOS DIARIOS</a></li>
-                  <li id="menu-item-1322"
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1322"><a
-                      href="aromas.html">JABONES</a></li>
-                  <li id="menu-item-1321"
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1321"><a
-                      href="aromas.html">PROMOCIONES</a></li>
-                </ul>
-              </li>
-              <li id="menu-item-294" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-294"><a
-                  href="preguntas-frecuentes.html">PREGUNTAS FRECUENTES</a></li>
-              <li id="menu-item-400" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-400"><a
-                  href="pagina-mayorista.html">ACCESO MAYORISTA</a></li>
-              <li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a
-                  href="contacto.html">CONTACTO</a></li>
-            </ul>
-          </nav>
-          <div id="et_mobile_nav_menu">
-            <div class="mobile_nav closed">
-              <span class="select_page">Seleccionar página</span>
-              <span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
-            </div>
-          </div>
-        </div>
-        <!-- #et-top-navigation -->
-      </div>
-      <!-- .container -->
-      <div class="et_search_outer">
-        <div class="container et_search_form_container">
-          <form role="search" method="get" class="et-search-form" action="index.html">
-            <input type="search" class="et-search-field" placeholder="Búsqueda &hellip;" value="" name="s"
-              title="Buscar:" />
-          </form>
-          <span class="et_close_search_field"></span>
-        </div>
-      </div>
-    </header>
+  <?php include './include/head.php'; ?>
     <!-- #main-header -->
     <div id="et-main-area">
       <div id="main-content">
@@ -318,66 +251,8 @@
       </div>
       <!-- #main-content -->
 
-      <footer id="main-footer">
-        <div class="et_pb_with_border et_pb_section et_pb_section_2 et_section_regular">
-          <div class="et_pb_row et_pb_row_1 et_pb_equal_columns">
-            <div class="et_pb_column et_pb_column_1_3 et_pb_column_2 et_pb_css_mix_blend_mode_passthrough">
-              <div class="et_pb_module et_pb_text et_pb_text_4 et_pb_text_align_center et_pb_bg_layout_light">
-                <div class="et_pb_text_inner">
-                  <h6>CONTACTANOS</h6>
-                </div>
-              </div>
-              <!-- .et_pb_text -->
-              <div class="et_pb_module et_pb_text et_pb_text_5 et_pb_text_align_center et_pb_bg_layout_light">
-                <div class="et_pb_text_inner">
-                  <h6>
-                    <a class="email" href="mailto:terracosmeticacontacto@gmail.com">terracosmeticacontacto@gmail.com</a>
-                  </h6>
-                  <p>Ciudad Autónoma de Buenos Aires</p>
-                </div>
-              </div>
-              <!-- .et_pb_text -->
-            </div>
-            <!-- .et_pb_column -->
-            <div class="et_pb_column et_pb_column_1_3 et_pb_column_3 et_pb_css_mix_blend_mode_passthrough">
-              <div class="et_pb_module et_pb_image et_pb_image_0">
-                <span class="et_pb_image_wrap"><img src="images/logo-fondo-transparente.jpg" alt=""
-                    title="logo-fondo-transparente"
-                    sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 650px, 100vw" /></span>
-              </div>
-            </div>
-            <!-- .et_pb_column -->
-            <div
-              class="et_pb_column et_pb_column_1_3 et_pb_column_4 et_pb_css_mix_blend_mode_passthrough et-last-child">
-              <div class="et_pb_module et_pb_text et_pb_text_6 et_pb_text_align_center et_pb_bg_layout_light">
-                <div class="et_pb_text_inner">
-                  <h6>SEGUINOS EN REDES</h6>
-                </div>
-              </div>
-              <!-- .et_pb_text -->
-              <ul
-                class="et_pb_module et_pb_social_media_follow et_pb_social_media_follow_1 clearfix et_pb_text_align_center et_pb_bg_layout_light">
-                <li
-                  class="et_pb_social_media_follow_network_2 et_pb_social_icon et_pb_social_network_link et-social-instagram et_pb_social_media_follow_network_2">
-                  <a href="https://www.instagram.com/terra_cosmeticanatural/" class="icon et_pb_with_border"
-                    title="Seguir en Instagram" target="_blank"><span class="et_pb_social_media_follow_network_name"
-                      aria-hidden="true">Seguir</span></a>
-                </li>
-                <li
-                  class="et_pb_social_media_follow_network_3 et_pb_social_icon et_pb_social_network_link et-social-facebook et_pb_social_media_follow_network_3">
-                  <a href="https://www.facebook.com/Terra-Cosm%C3%A9tica-Natural-873989496300527"
-                    class="icon et_pb_with_border" title="Seguir en Facebook" target="_blank"><span
-                      class="et_pb_social_media_follow_network_name" aria-hidden="true">Seguir</span></a>
-                </li>
-              </ul>
-              <!-- .et_pb_counters -->
-            </div>
-            <!-- .et_pb_column -->
-          </div>
-          <!-- .et_pb_row -->
-        </div>
-        <!-- .et_pb_section -->
-        <!-- #main-footer -->
+      <?php include './include/foot.php'; ?>
+
     </div>
     <!-- #et-main-area -->
   </div>

@@ -189,69 +189,44 @@ else{
 										while($row = $result->fetch_assoc()) { 										
 										?>
 
-<div class="" style="display:flex;">
-											<div class="et_pb_column et_pb_column_1_2 et_pb_column_5 et_clickable  et_pb_css_mix_blend_mode_passthrough">
-
-
-												<div class="et_pb_module et_pb_image et_pb_image_0">
-
-
-													<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $PWD . $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
+									<div class="" style="display:flex;">
+										<div class="et_pb_column et_pb_column_1_2 et_pb_column_5 et_clickable  et_pb_css_mix_blend_mode_passthrough">
+											<div class="et_pb_module et_pb_image et_pb_image_0">
+												<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $PWD . $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
+												<?php if ($row["Stock"]<1){echo "Sin Stock";}else{if ($row["Stock"]<10){echo "Ultimas Disponibles";}else{echo "En Stock";}} ?>
+												<?php if ($row["Oferta"]!=0){echo "%".$row["Oferta"];} ?>
+											</div>
+										</div>
+										<div class="et_pb_column et_pb_column_1_2 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
+											<div class="et_pb_module et_pb_wc_title et_pb_wc_title_0 et_clickable et_pb_bg_layout_light">
+												<div class="et_pb_module_inner">
+													<h1><?php echo $row["Nombre"]; ?></h1>
 												</div>
-											</div> <!-- .et_pb_column -->
-											<div class="et_pb_column et_pb_column_1_2 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-												<div class="et_pb_module et_pb_wc_title et_pb_wc_title_0 et_clickable et_pb_bg_layout_light">
-
-
-
-
-													<div class="et_pb_module_inner">
-
-														<h1><?php echo $row["Nombre"]; ?></h1>
-													</div>
+											</div>
+											<div class="et_pb_module">
+												<div class="et_pb_module_inner">
+													<p class=""><?php echo $row["Descripcion"]; ?></p>
 												</div>
-												<div class="et_pb_module et_pb_wc_price et_pb_wc_price_0">
-
-
-
-
-													<div class="et_pb_module_inner">
-														<p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $row["Precio"]; ?></span>
-														</p>
-
-													</div>
+											</div>
+											<div class="et_pb_module et_pb_wc_price et_pb_wc_price_0">
+												<div class="et_pb_module_inner">
+													<p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $row["Precio"]; ?> <?php echo $row["Precio"]; ?></span></p>
 												</div>
-												<div class="et_pb_with_border et_pb_module et_pb_wc_add_to_cart et_pb_wc_add_to_cart_0 et_pb_bg_layout_light et_pb_woo_custom_button_icon  et_pb_text_align_left" data-button-class="single_add_to_cart_button" data-button-icon="5" data-button-icon-tablet="" data-button-icon-phone="">
-
-
-
-
-													<div class="et_pb_module_inner">
-
+											</div>
+											<div class="et_pb_with_border et_pb_module et_pb_wc_add_to_cart et_pb_wc_add_to_cart_0 et_pb_bg_layout_light et_pb_woo_custom_button_icon  et_pb_text_align_left" data-button-class="single_add_to_cart_button" data-button-icon="5" data-button-icon-tablet="" data-button-icon-phone="">
+												<div class="et_pb_module_inner">
 													<!-- HAY QUE REEVER ESTE FORM PARA HACERLO FUNCIONAR -->
-														<form class="cart" action="#" method="post" enctype="multipart/form-data">
-
-															<div class="quantity">
-																<label class="screen-reader-text" for="quantity_60402626b783d"><?php echo $row["Nombre"]; ?></label>
-																<input type="number" id="quantity_60402626b783d" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Cantidad" size="4" placeholder="" inputmode="numeric">
-															</div>
-
-															<button type="submit" value="225" style="color:black; border-color:lightgray; border-width: 1px;"class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon">  <a href="#" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a></button>
-
-														</form>
-
-
-
-													</div>
+													<form class="cart" action="#" method="post" enctype="multipart/form-data">
+														<div class="quantity">
+															<label class="screen-reader-text" for="quantity_60402626b783d"><?php echo $row["Nombre"]; ?></label>
+															<input type="number" id="quantity_60402626b783d" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Cantidad" size="4" placeholder="" inputmode="numeric">
+														</div>
+														<button type="submit" value="225" style="color:black; border-color:lightgray; border-width: 1px;"class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon">  <a href="#" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a></button>
+													</form>
 												</div>
-											</div> <!-- .et_pb_column -->
-
-
-										</div> <!-- .et_pb_row -->
-										 <!-- .et_pb_row -->
-										 <!-- .et_pb_row -->
+											</div>
+										</div>
+									</div>
 
 
 										 <?php  }  } else { //deberia mostrarlo mas lindo ?>

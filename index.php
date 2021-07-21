@@ -76,7 +76,7 @@
 																		Medio Ambiente</a></h1>
 																<div class="et_pb_button_wrapper"><a
 																		class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																		href="/nuestros-productos/"
+																		href="nuestros-productos.php"
 																		data-icon="&#x35;">Nuestra propuesta</a></div>
 															</div> <!-- .et_pb_slide_description -->
 														</div>
@@ -92,7 +92,7 @@
 
 															<div class="et_pb_slide_description">
 																<h1 class="et_pb_slide_title"><a
-																		href="nuestros-productos.php">Promoción del mes</a></h1>
+																		href="nuestros-productos.php?Categoria=Ofertas">Promoción del mes</a></h1>
 																<div class="et_pb_slide_content">
 																	<p>Todos los meses te traemos</p>
 																	<p>una promo ideal</p>
@@ -127,7 +127,7 @@
 																		Medio Ambiente</a></h3>
 																<div class="et_pb_button_wrapper"><a
 																		class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																		href="/nuestros-productos/"
+																		href="nuestros-productos.php"
 																		data-icon="&#x35;">Nuestra propuesta</a></div>
 															</div> <!-- .et_pb_slide_description -->
 														</div>
@@ -143,14 +143,14 @@
 
 															<div class="et_pb_slide_description">
 																<h3 class="et_pb_slide_title"><a
-																		href="nuestros-productos.php">Promoción del mes</a></h3>
+																		href="nuestros-productos.php?Categoria=Ofertas">Promoción del mes</a></h3>
 																<div class="et_pb_slide_content">
 																	<p>Todos los meses traemos</p>
 																	<p>una propuesta ideal</p>
 																</div>
 																<div class="et_pb_button_wrapper"><a
 																		class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																		href="nuestros-productos.php"
+																		href="nuestros-productos.php?Categoria=Ofertas"
 																		data-icon="&#x35;">Conocela</a></div>
 															</div> <!-- .et_pb_slide_description -->
 														</div>
@@ -254,12 +254,12 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">CUIDADO
+																				href="nuestros-productos.php?Categoria=33">CUIDADO
 																				DE
 																				LA PIEL</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php"
+																				href="nuestros-productos.php?Categoria=33"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -292,11 +292,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">CUIDADOS
+																				href="nuestros-productos.php?Categoria=34">CUIDADOS
 																				DIARIOS</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php"
+																				href="nuestros-productos.php?Categoria=34"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -325,12 +325,12 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">CUIDADO
+																				href="nuestros-productos.php?Categoria=32">CUIDADO
 																				CAPILAR
 																			</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php"
+																				href="nuestros-productos.php?Categoria=32"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -363,10 +363,10 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">JABONES</a></h2>
+																				href="nuestros-productos.php?Categoria=35">JABONES</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php" data-icon="&#x24;">VER
+																				href="nuestros-productos.php?Categoria=35" data-icon="&#x24;">VER
 																				MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -395,10 +395,10 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">AROMAS</a></h2>
+																				href="nuestros-productos.php?Categoria=36">AROMAS</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php" data-icon="&#x24;">VER
+																				href="nuestros-productos.php?Categoria=36" data-icon="&#x24;">VER
 																				MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -431,11 +431,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">PROMOCIONES DEL
+																				href="nuestros-productos.php?Categoria=Ofertas">PROMOCIONES DEL
 																				MES</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php"
+																				href="nuestros-productos.php?Categoria=Ofertas"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -476,11 +476,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">CUIDADO DE
+																				href="nuestros-productos.php?Categoria=33">CUIDADO DE
 																				LA PIEL</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php"
+																				href="nuestros-productos.php?Categoria=33"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -503,11 +503,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">CUIDADOS
+																				href="nuestros-productos.php?Categoria=34">CUIDADOS
 																				DIARIOS</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php"
+																				href="nuestros-productos.php?Categoria=34"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -536,11 +536,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">CUIDADO CAPILAR
+																				href="nuestros-productos.php?Categoria=32">CUIDADO CAPILAR
 																			</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php"
+																				href="nuestros-productos.php?Categoria=32"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -573,10 +573,10 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">JABONES</a></h2>
+																				href="nuestros-productos.php?Categoria=35">JABONES</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php" data-icon="&#x24;">VER
+																				href="nuestros-productos.php?Categoria=35" data-icon="&#x24;">VER
 																				MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -605,10 +605,10 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">AROMAS</a></h2>
+																				href="nuestros-productos.php?Categoria=36">AROMAS</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php" data-icon="&#x24;">VER
+																				href="nuestros-productos.php?Categoria=36" data-icon="&#x24;">VER
 																				MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -641,11 +641,11 @@
 
 																	<div class="et_pb_slide_description">
 																		<h2 class="et_pb_slide_title"><a
-																				href="nuestros-productos.php">PROMOCIONES</br>
+																				href="nuestros-productos.php?Categoria=Ofertas">PROMOCIONES</br>
 																				DEL MES</a></h2>
 																		<div class="et_pb_button_wrapper"><a
 																				class="et_pb_button et_pb_custom_button_icon et_pb_more_button"
-																				href="nuestros-productos.php"
+																				href="nuestros-productos.php?Categoria=Ofertas"
 																				data-icon="&#x24;">VER MÁS</a></div>
 																	</div> <!-- .et_pb_slide_description -->
 																</div>
@@ -679,7 +679,7 @@
 
 
 													<div class="et_pb_text_inner">
-														<a href="nuestros-envases.html">
+														<a href="nuestros-envases.php">
 															<p class="text-color">Nuestros envases</p>
 														</a>
 													</div>
@@ -694,7 +694,7 @@
 
 
 													<div class="et_pb_text_inner">
-														<a href="nuestros-ingredentes.html">
+														<a href="nuestros-ingredentes.php">
 															<p class="text-color">Nuestros ingredientes</p>
 														</a>
 														<h6></h6>
@@ -710,7 +710,7 @@
 
 
 													<div class="et_pb_text_inner">
-														<a href="testimonios.html">
+														<a href="testimonios.php">
 															<p class="text-color">Testimonios</p>
 														</a>
 													</div>
