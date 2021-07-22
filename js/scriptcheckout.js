@@ -161,9 +161,9 @@ var shoppingCart = (function() {
     for(var i in cartArray) {
       output += "<tr class='row'>"
         + "<td class='col-12'>" + cartArray[i].name + "</td>" 
-        + "<td class='col-5'><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
+        + "<td class='col-5'><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name
         + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
-        + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
+        + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name
         + "<td class='col-2'><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
         + " = " 
         + "<td class='col-5'>" + cartArray[i].total + "</td>" 
