@@ -221,7 +221,7 @@ else{
 															<label class="screen-reader-text" for="quantity_60402626b783d"><?php echo $row["Nombre"]; ?></label>
 															<input type="number" id="quantity_60402626b783d" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Cantidad" size="4" placeholder="" inputmode="numeric">
 														</div>
-														<button type="submit" value="225" style="color:black; border-color:lightgray; border-width: 1px;"class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon">  <a href="#" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a></button>
+														<button type="submit" value="225" style="color:black; border-color:lightgray; border-width: 1px;"class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon">  <a href="#" data-id="<?php echo $row["Nombre"]; ?>" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a></button>
 													</form>
 												</div>
 											</div>
