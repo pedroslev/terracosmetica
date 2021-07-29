@@ -17,6 +17,7 @@ if (isset($_POST['CargaDB'])) {
 		$Localidad= $_POST['Localidad'];
 		$Observaciones= $_POST['Observaciones'];
 		$Telefono= $_POST['Telefono'];
+		$CantProds = $_POST['CantProd'];
 		
 		$sql = "INSERT INTO TERRA_Clientes (Nombre, Apellido, TipoDoc, Doc, Email, Calle, Altura, Postal, Departamento, Provincia, Localidad, Observaciones, Telefono) VALUES ('$Nombre', '$Apellido', '$TipoDoc', '$Documento', '$Email', '$DirCalle', '$DirNumero', '$DirPostal', '$DirDepartamento', '$Provincia', '$Localidad', '$Observaciones', '$Telefono')";
 		$result = $conn->query($sql);
@@ -26,15 +27,26 @@ if (isset($_POST['CargaDB'])) {
 
 	//Carga de Productos	
 		$PrecioTotal = 0;
-		$CodigoPedido="A1455"; //Falta randomizar
+		$anio=date('y');
+		$mes=date('n');
+		$dia=date('d');
+		$hora=date('g');
+		$minutos=date('');
+		$segundos=date('i');
+		$milisegundos=date('v');
+		$CodigoPedido=$anio.$mes.$dia.$hora."_".$minuto.$segundos.$milisegundos;
+		
 
 //FALTAA While para repetir dependiendo la cxant de productos
-		$IDProd= $_POST['IDProd'];
-		$PrecioFinal = $_POST['Precio'];
-		$PrecioTotal = $PrecioTotal + $PrecioFinal;
+for ($i=0; $i < $CantProds; $i++) { 
+	$IDProd= $_POST['IDProd'];
+	$PrecioFinal = $_POST['Precio'];
+	$PrecioTotal = $PrecioTotal + $PrecioFinal;
 
-		$sqlP = "INSERT INTO TERRA_Pedidos (CodigoPedido, IDProducto, PrecioFinal) VALUES ('$CodigoPedido', '$IDProd', '$PrecioFinal')";
-		$resultP = $conn->query($sqlP);
+	$sqlP = "INSERT INTO TERRA_Pedidos (CodigoPedido, IDProducto, PrecioFinal) VALUES ('$CodigoPedido', '$IDProd', '$PrecioFinal')";
+	$resultP = $conn->query($sqlP);
+}
+		
 
 	//Fin Carga de Productos
 
@@ -107,8 +119,9 @@ if (isset($_POST['CargaDB'])) {
 		
 								</table>
 			<!-- hay que hacer que se actualicen con el modal para que los levante el php -->
-								<input type="hidden" id="IDProd" name="IDProd" value="1" required>
-								<input type="hidden" id="Precio" name="Precio" value="50" required>
+								<input type="hidden" id="IDProd" name="IDProd" required>
+								<input type="hidden" id="Precio" name="Precio" required>
+								<input type="hidden" id="CantProd" name="CantProd" required>
 							</div>
 							
 								<div class="input-group">
@@ -372,6 +385,17 @@ if (isset($_POST['CargaDB'])) {
 			"phone": []
 		};
 		/* ]]> */
+
+	</script>
+
+	<script>
+		let cantprod = document.getElementsByClassName('item-count form-control');
+		let totalprod = 0;
+		for (let index = 0; index < cantprod.length; index++) {
+		totalprod = totalprod + parseInt(document.getElementsByClassName('item-count form-control')[index].textContent);
+		}
+		console.log(totalprod);
+		document.getElementById('CantProd').value = totalprod
 	</script>
 	<script type='text/javascript' src='js/custom.unified.js' async></script>
 	<script type='text/javascript' src='js/common.js' async></script>
