@@ -36,14 +36,16 @@ if (isset($_POST['CargaDB'])) {
 		$milisegundos=date('v');
 		$CodigoPedido=$anio.$mes.$dia.$hora."_".$minuto.$segundos.$milisegundos;
 		
+		
+		$IDs=json_decode($_POST['IDProd']);
+		$PrecioFinal=json_decode($_POST['Precio']);
 
 //FALTAA While para repetir dependiendo la cxant de productos
 for ($i=0; $i < $CantProds; $i++) { 
-	$IDProd= $_POST['IDProd'];
-	$PrecioFinal = $_POST['Precio'];
-	$PrecioTotal = $PrecioTotal + $PrecioFinal;
+	
+	$PrecioTotal = $PrecioTotal + $PrecioFinal[$i];
 
-	$sqlP = "INSERT INTO TERRA_Pedidos (CodigoPedido, IDProducto, PrecioFinal) VALUES ('$CodigoPedido', '$IDProd', '$PrecioFinal')";
+	$sqlP = "INSERT INTO TERRA_Pedidos (CodigoPedido, IDProducto, PrecioFinal) VALUES ('$CodigoPedido', '$IDs[$i]', '$PrecioFinal[$i]')";
 	$resultP = $conn->query($sqlP);
 }
 		
@@ -389,6 +391,8 @@ for ($i=0; $i < $CantProds; $i++) {
 	</script>
 
 	<script>
+		//Pasaje JS --> PHP 
+		//Contador de cantidad de productos
 		let cantprod = document.getElementsByClassName('item-count form-control');
 		let totalprod = 0;
 		for (let index = 0; index < cantprod.length; index++) {
@@ -396,6 +400,28 @@ for ($i=0; $i < $CantProds; $i++) {
 		}
 		console.log(totalprod);
 		document.getElementById('CantProd').value = totalprod
+
+		//Acumulador de IDs
+		let IDProd = document.getElementsByClassName('IDProdJS');
+		let IDs = [];
+
+		for (let index = 0; index < IDProd.length; index++) {
+			IDs[index] = IDProd[index].textContent;			
+		}
+		
+		document.getElementById('IDProd').value = JSON.stringify(IDs);
+
+		//Acumulador de Precios
+		let Precio = document.getElementsByClassName('PrecioJS')
+		let Precios = [];
+
+		for (let index = 0; index < Precio.length; index++) {
+			Precios[index] = Precio[index].textContent;
+		}
+
+		document.getElementById('Precio').value = JSON.stringify(Precios);
+
+
 	</script>
 	<script type='text/javascript' src='js/custom.unified.js' async></script>
 	<script type='text/javascript' src='js/common.js' async></script>

@@ -182,7 +182,7 @@ function URLChecker(){
                                         <button class="btn btn-light" title="Ver Mas" data-toggle="modal" data-target="#modalVentas<?php echo $row["ID"]; ?>"><span data-feather="plus"></span></button>
                                         </td>
                                         <td>                                         
-                                        <button class="btn btn-light" title="Descargar" onclick="DivAPdf()"><span data-feather="download"></span></button>
+                                        <button class="btn btn-light" title="Descargar" onclick='DivAPdf( "<?php echo $row["CodigoPedido"]; ?>" )'><span data-feather="download"></span></button>
                                         </td>
 
 
@@ -190,10 +190,10 @@ function URLChecker(){
                                         <td>
                                   <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="modalVentas<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div id="Ticket" class="modal-dialog modal-dialog-centered" role="document">
+            <div id="Ticket<?php echo $row["CodigoPedido"]; ?>" class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header row align-items-center m-0">
-                <h5 class="modal-title col-6">Pedido N° <span id="CodigoPedido" ><?php echo $row["CodigoPedido"]; ?></span></h5>
+                <h5 class="modal-title col-6">Pedido N° <span id="<?php echo $row["CodigoPedido"]; ?>" ><?php echo $row["CodigoPedido"]; ?></span></h5>
 
                 <?php
                 switch ($row["Estado"]) {
@@ -324,7 +324,7 @@ function URLChecker(){
                   </form>
 
 
-                  <button type="button" class="btn btn-primary" onclick="DivAPdf()">Descargar comprobante</button>
+                  <button type="button" class="btn btn-primary" onclick='DivAPdf( "<?php echo $row["CodigoPedido"]; ?>" )'>Descargar comprobante</button>
 
              
 
