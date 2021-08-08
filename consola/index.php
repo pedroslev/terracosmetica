@@ -382,7 +382,7 @@ function URLChecker(){
                 <div class="form-row">
                  <div class="col">
                   <label for="Stock">Cantidad</label>
-                    <input type="number" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
+                    <input type="number" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad">
                 </div>
 
                 <div class="col">
