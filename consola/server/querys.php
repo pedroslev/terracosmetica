@@ -667,4 +667,24 @@ if (isset($_POST['EditarEstado'])) {
         exit();
     }
 } 
+
+//---------------Edicion Rapida--------------------
+if (isset($_POST['EdicionRapida'])) {
+    //Post de datos
+    $Oferta=$_POST['Oferta'];
+    $Margen=$_POST['Margen'];
+    $Stock=$_POST['Stock'];
+
+    $IDs = json_decode($_POST['IDCheck']);
+    $CantProd = $_POST['CantProd'];
+ //FALTA HACER QUE CUANDO UNA VARIABLE VENGA VACIA NO LA MODIFIQUE EN DB  
+    for ($i=0; $i < $CantProd; $i++) {
+        //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
+        $ID = $IDs[$i];
+        $sql = "UPDATE ".$DBN."_Productos SET Oferta='".$Oferta."', Stock='".$Stock."' , Margen='".$Margen."' WHERE ID='".$ID."' ";
+        $result = $conn->query($sql);
+    }
+}
+
+
 ?>
