@@ -166,7 +166,7 @@ for ($i=0; $i < $CantProds; $i++) {
 		
 									<div class="col-sm-6 mt-3">
 										<label for="lastName" class="form-label">Documento</label>
-										<input type="text" class="form-control" id="lastName" name="Documento" placeholder="48646353" value="" required>
+										<input type="number" class="form-control" id="lastName" name="Documento" placeholder="48646353" value="" required>
 										<div class="invalid-feedback">
 											Ingrese un Documento valido.
 										</div>
@@ -183,7 +183,7 @@ for ($i=0; $i < $CantProds; $i++) {
 									</div>
 									<div class="col-6">
 										<label for="lastName" class="form-label">Telefono</label>
-										<input type="text" class="form-control" id="lastName" name="Telefono" placeholder="01145453498" value="" required>
+										<input type="number" class="form-control" id="lastName" name="Telefono" placeholder="01145453498" value="" required>
 										<div class="invalid-feedback">
 											Ingrese un Telefono valido.
 										</div>
@@ -202,7 +202,7 @@ for ($i=0; $i < $CantProds; $i++) {
 		
 									<div class="col-6">
 										<label for="address" class="form-label">Numero</label>
-										<input type="text" class="form-control" id="address" name="DirNumero" placeholder="1234" required>
+										<input type="number" class="form-control" id="address" name="DirNumero" placeholder="1234" required>
 										<div class="invalid-feedback">
 											Ingrese su Numero.
 										</div>
@@ -404,20 +404,52 @@ for ($i=0; $i < $CantProds; $i++) {
 		//Acumulador de IDs
 		let IDProd = document.getElementsByClassName('IDProdJS');
 		let IDs = [];
+		
 
 		for (let index = 0; index < IDProd.length; index++) {
-			IDs[index] = IDProd[index].textContent;			
+			let IDsAux = [];
+			let cantidadporid = document.getElementsByClassName('item-count form-control')[index].textContent;
+			let lenght = IDs.lenght;
+			if(cantidadporid > 1){
+				//IDs[lenght] = IDProd[index].textContent;	
+				IDs.push(IDProd[index].textContent);
+				for (let i = 0; i < cantidadporid - 1; i++) {
+					IDsAux[i] = IDProd[index].textContent;	
+				}
+				IDs = IDs.concat(IDsAux);
+			}else{
+				//IDs[lenght] = IDProd[index].textContent;
+				IDs.push(IDProd[index].textContent);
+			}
 		}
 		
 		document.getElementById('IDProd').value = JSON.stringify(IDs);
 
 		//Acumulador de Precios
-		let Precio = document.getElementsByClassName('PrecioJS')
+		let PrecioHTML = document.getElementsByClassName('PrecioJS')
 		let Precios = [];
 
-		for (let index = 0; index < Precio.length; index++) {
-			Precios[index] = Precio[index].textContent;
+		for (let index = 0; index < PrecioHTML.length; index++) {
+		let cantidadporid = document.getElementsByClassName('item-count form-control')[index].textContent;
+		let precioporproducto = PrecioHTML[index].textContent / cantidadporid;
+		let lenght = Precios.lenght
+		if(cantidadporid > 1){
+			//Precios[lenght] = precioporproducto;
+			Precios.push(precioporproducto)
+			PreciosAux = [];
+			for (let i = 0; i < cantidadporid - 1; i++) {
+				PreciosAux[i] = precioporproducto;
+			}
+			Precios = Precios.concat(PreciosAux);
+		}else{
+			Precios.push(precioporproducto)
+			//Precios[lenght] = precioporproducto;
 		}
+
+			
+		}
+
+
 
 		document.getElementById('Precio').value = JSON.stringify(Precios);
 
