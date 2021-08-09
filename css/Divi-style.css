@@ -27832,6 +27832,11 @@ screen and (max-width:800px) and (orientation:landscape) {
     div button a {
         color: black;
     }
+
+    .badge-font-size {
+        font-size:22px;
+        color:white;
+    }
     
   
 

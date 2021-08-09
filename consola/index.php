@@ -134,7 +134,7 @@ function URLChecker(){
                   <?php 
                   //MOSTRADOR DE VENTAS (LISTADO)
                   
-                  $sql ="SELECT * FROM TERRA_Ventas ORDER BY 'Estado' ASC";
+                  $sql ="SELECT * FROM TERRA_Ventas ORDER BY Estado ASC";
                   $result= $conn->query($sql);
                   if ($result->num_rows > 0) {
                   //Output data of each row
@@ -157,16 +157,16 @@ function URLChecker(){
                                                   <span class="badge badge-danger">ERROR</span>
                                               <?php break;
                                               case "1": ?>
-                                                  <span class="badge badge-secondary">FALTA DE PAGO</span> 
+                                                  <span class="badge badge-warning">PENDIENTE</span> 
                                               <?php break;
                                               case "2": ?>
-                                                  <span class="badge badge-warning">PENDIENTE</span>
-                                              <?php break;
-                                              case "3": ?>
                                                   <span class="badge badge-primary">EN CAMINO</span>
                                               <?php break;
-                                              case "4": ?>
+                                              case "3": ?>
                                                   <span class="badge badge-success">ENTREGADO</span>
+                                              <?php break;
+                                              case "4": ?>
+                                                  <span class="badge badge-secondary">FALTA DE PAGO</span>
                                               <?php break;
                                               } 
                                               ?>
@@ -194,16 +194,16 @@ function URLChecker(){
                     <span class="badge badge-danger col-3">ERROR</span>
                 <?php break;
                 case "1": ?>
-                    <span class="badge badge-secondary col-3">FALTA DE PAGO</span> 
+                     <span class="badge badge-warning col-3">PENDIENTE</span>
                 <?php break;
                 case "2": ?>
-                    <span class="badge badge-warning col-3">PENDIENTE</span>
-                <?php break;
-                case "3": ?>
                     <span class="badge badge-primary col-3">EN CAMINO</span>
                 <?php break;
-                case "4": ?>
+                case "3": ?>
                     <span class="badge badge-success col-3">ENTREGADO</span>
+                <?php break;
+                case "4": ?>
+                    <span class="badge badge-secondary col-3">FALTA DE PAGO</span>
                 <?php break;
                 } 
                 ?>
@@ -256,6 +256,7 @@ function URLChecker(){
                       <tr>
                         <th>Codigo</th>
                         <th>Producto</th>
+                        <th>Precio</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -280,6 +281,7 @@ function URLChecker(){
                       <tr>
                         <td><?php echo $filaP->Codigo; ?></td>
                         <td><?php echo $filaP->Nombre; ?></td>
+                        <td>$<?php echo $rowPedidos["PrecioFinal"]; ?></td>
                       </tr>                     
                    
 
@@ -289,6 +291,11 @@ function URLChecker(){
               }
             } else { echo"Pedido no Registrado"; }
                 ?>
+
+                    <tr>                   
+                        <th colspan="2">Total: </th>
+                        <th>$<?php echo $row["PrecioTotal"]; ?></th>
+                    </tr> 
 
 
                 </tbody>
@@ -307,10 +314,10 @@ function URLChecker(){
                                         <?php if($row["Estado"]==0){ ?>                                      
                                         <option selected>ERROR</option>
                                         <?php } else{ ?>                                                                                 
-                                        <option value="1" <?php if($row["Estado"]==1){echo "selected";}; ?>>FALTA DE PAGO</option>
-                                        <option value="2" <?php if($row["Estado"]==2){echo "selected";}; ?>>PENDIENTE</option>
-                                        <option value="3" <?php if($row["Estado"]==3){echo "selected";}; ?>>EN CAMINO</option>
-                                        <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>>ENTREGADO</option>
+                                        <option value="1" <?php if($row["Estado"]==1){echo "selected";}; ?>>PENDIENTE</option>
+                                        <option value="2" <?php if($row["Estado"]==2){echo "selected";}; ?>>EN CAMINO</option>
+                                        <option value="3" <?php if($row["Estado"]==3){echo "selected";}; ?>>ENTREGADO</option>
+                                        <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>>FALTA DE PAGO</option>
                                         <?php }; ?>
                   </select>
                   <input type="hidden" name="IDVentas" value="<?php echo $row["ID"]; ?>" />
