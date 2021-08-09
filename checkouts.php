@@ -1,6 +1,7 @@
 <!--Efectivizada-->
 <?php
-include './server/database.php';
+require __DIR__ .  '/checkout/vendor/autoload.php';
+include '/server/database.php';
 
 if (isset($_POST['CargaDB'])) {
 
@@ -64,6 +65,24 @@ for ($i=0; $i < $CantProds; $i++) {
 
 }
 
+$PrecioPreference = $_POST['PrecioFinalMercadopago'];
+
+// Agrega credenciales
+MercadoPago\SDK::setAccessToken('TEST-5216061197824640-021822-1b407daa90b33541af8a578bfb31b3ee-264568386');
+
+// Crea un objeto de preferencia
+$preference = new MercadoPago\Preference();
+
+// Crea un ítem en la preferencia
+$item = new MercadoPago\Item();
+$item->title = 'Producto Test';
+$item->quantity = 1;
+$item->unit_price = $PrecioPreference;
+$preference->items = array($item);
+$preference->save();
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +102,9 @@ for ($i=0; $i < $CantProds; $i++) {
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/mercadopago.css">
 
 	<meta content="Divi v.4.4.8" name="generator">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -96,7 +117,12 @@ for ($i=0; $i < $CantProds; $i++) {
 	<script type='text/javascript' src='js/jquery.js' async></script>
 	<link rel="stylesheet" href="css/global-et-divi-customizer-global-1614728849082.min.css">
 	<link rel='stylesheet' href='css/home.css'>
-	
+
+	<!-- MERCADOPAGO -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+    <!--<script type="text/javascript" src="js/mercadopago.js" defer></script>-->
+    <script  src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
 </head>
 
 <body
@@ -111,7 +137,7 @@ for ($i=0; $i < $CantProds; $i++) {
 				<main>
 					<div class="mt-5">
 					</div>
-				<form class="needs-validation" action="./checkout/index.php" method="post">		
+				<form class="needs-validation" action="" method="post">		
 					<div class="row g-5">
 						<div class="col-md-5 col-lg-4 order-md-last">
 							<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -265,12 +291,14 @@ for ($i=0; $i < $CantProds; $i++) {
 		
 								<hr class="my-4">
 		
-		
-								<button type="submit" class="w-100 btn btn-primary" name="CargaDB">Pagar con Mercado Pago</button>
+								<script  src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-button-label="Comprar" data-id="mercadopago" data-preference-id="<?php echo $preference->id; ?>">Checkout</script>
+								<!-- <button type="submit" class="w-100 btn btn-primary" name="CargaDB">Pagar con Mercado Pago</button> -->
 							
 						</div>
 					</div>	
 				</form>
+
+				 
 				</main>
 		</div>
 
@@ -447,13 +475,13 @@ for ($i=0; $i < $CantProds; $i++) {
 			//Precios[lenght] = precioporproducto;
 		}
 
-			
 		}
 		SaveData("Precios", Precios);
 		document.getElementById('Precio').value = JSON.stringify(Precios);
 
-
-
+		//document.getElementsByClassName('mercadopago-button').name = "CargaDB";
+		$('.mercadopago-button').attr('id', 'mercadopago')
+		document.getElementById('mercadopago').setAttribute('name', "CarbaDB")
 function SaveData(clave, valor){
 	localStorage.setItem(clave, valor)
 }

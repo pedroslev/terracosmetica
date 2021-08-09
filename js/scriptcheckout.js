@@ -169,13 +169,14 @@ function displayCart() {
             "</td>" +
             "<td class='col-2'><button class='delete-item btn btn-danger' data-id=" + cartArray[i].id + "data-name=" + cartArray[i].name + ">X</button></td>" +
             " = " +
-            "<td class='col-5 PrecioJS'>" + cartArray[i].total + "</td>"
+            "<td class='col-5 PrecioJS' >" + cartArray[i].total + "</td>"
         "</tr>"
     }
 
     $('.show-cart').html(output);
     $('.total-cart').html(shoppingCart.totalCart());
     $('.total-count').html(shoppingCart.totalCount());
+
 }
 
 // Delete item button

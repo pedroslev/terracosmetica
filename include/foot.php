@@ -66,7 +66,7 @@
 				</div> <!-- .et_pb_section -->
 			</footer> <!-- #main-footer -->
 		</div> <!-- #et-main-area -->
-
+		
 		 <!-- Modal -->
 		 <div class="modal fade modal-height" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg" role="document">
@@ -81,11 +81,16 @@
 										<table class="show-cart table">
 				
 										</table>
-										<div>Precio total: $<span class="total-cart"></span></div>
+										<form method="POST" action="checkouts.php">
+											
+										<div>Precio total: $ <span class="total-cart" id="PrecioTotalMercadopago"></span></div>
+										<input type="hidden" name="PrecioFinalMercadopago" id="PrecioFinalMercadopago">
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-										<button type="button" class="btn btn btn-cart"> <a href="checkouts.php">Ordenar</a></button>
+										<button type="submit" class="btn btn btn-cart"> Ordenar</button>
+									</form>
+										
 									</div>
 								</div>
 							</div>
