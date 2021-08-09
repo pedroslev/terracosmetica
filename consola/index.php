@@ -256,6 +256,7 @@ function URLChecker(){
                       <tr>
                         <th>Codigo</th>
                         <th>Producto</th>
+                        <th>Precio</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -280,6 +281,7 @@ function URLChecker(){
                       <tr>
                         <td><?php echo $filaP->Codigo; ?></td>
                         <td><?php echo $filaP->Nombre; ?></td>
+                        <td>$<?php echo $rowPedidos["PrecioFinal"]; ?></td>
                       </tr>                     
                    
 
@@ -289,6 +291,11 @@ function URLChecker(){
               }
             } else { echo"Pedido no Registrado"; }
                 ?>
+
+                    <tr>                   
+                        <th colspan="2">Total: </th>
+                        <th>$<?php echo $row["PrecioTotal"]; ?></th>
+                    </tr> 
 
 
                 </tbody>
