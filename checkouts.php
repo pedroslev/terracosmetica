@@ -1,6 +1,7 @@
 <!--Efectivizada-->
 <?php
 include './server/database.php';
+
 if (isset($_POST['CargaDB'])) {
 
 	//carga de Cliente
@@ -62,6 +63,7 @@ for ($i=0; $i < $CantProds; $i++) {
 
 
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +111,7 @@ for ($i=0; $i < $CantProds; $i++) {
 				<main>
 					<div class="mt-5">
 					</div>
-				<form class="needs-validation" action="" method="post">		
+				<form class="needs-validation" action="./checkout/index.php" method="post">		
 					<div class="row g-5">
 						<div class="col-md-5 col-lg-4 order-md-last">
 							<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -422,10 +424,9 @@ for ($i=0; $i < $CantProds; $i++) {
 				IDs.push(IDProd[index].textContent);
 			}
 		}
-		
+		SaveData("IDs", IDs);
 		document.getElementById('IDProd').value = JSON.stringify(IDs);
 
-		//Acumulador de Precios
 		let PrecioHTML = document.getElementsByClassName('PrecioJS')
 		let Precios = [];
 
@@ -448,10 +449,14 @@ for ($i=0; $i < $CantProds; $i++) {
 
 			
 		}
-
-
-
+		SaveData("Precios", Precios);
 		document.getElementById('Precio').value = JSON.stringify(Precios);
+
+
+
+function SaveData(clave, valor){
+	localStorage.setItem(clave, valor)
+}
 
 
 	</script>
