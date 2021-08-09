@@ -667,4 +667,53 @@ if (isset($_POST['EditarEstado'])) {
         exit();
     }
 } 
+
+//---------------Edicion Rapida--------------------
+if (isset($_POST['EdicionRapida'])) {
+    //Post de datos
+    $IDs = json_decode($_POST['IDCheck']);
+    $CantProd = $_POST['CantProd'];
+
+    $Oferta=$_POST['Oferta'];
+    $Margen=$_POST['Margen'];
+    $Stock=$_POST['Stock'];
+ 
+    //Carga la variable SET con los datos que vienen del post, omitiendo los que vienen vacios
+    if( !empty($_POST['Oferta']) ){
+        $Set= "Oferta='".$Oferta."'";
+    }
+    if( (!empty($_POST['Oferta']) && !empty($_POST['Margen'])) || (!empty($_POST['Oferta']) && !empty($_POST['Stock'])) ){
+        $Set= $Set." , ";
+    }
+    if( !empty($_POST['Margen']) ){
+        $Set= $Set."Margen='".$Margen."'";    
+    }
+    if( !empty($_POST['Margen']) && !empty($_POST['Stock']) ){
+        $Set= $Set." , ";
+    }
+    if( !empty($_POST['Stock']) ){
+        $Set= $Set."Stock='".$Stock."'";
+    }
+   
+    //carga todos los ids en una variable separada por ANDs
+    for ($i=0; $i < $CantProd; $i++) {
+        if($i > 0 ){
+            $ID = $ID ." or ID='$IDs[$i]'";
+        }
+        else
+        {
+            $ID = "ID='$IDs[$i]'";
+        }
+    }
+
+    //Update en Tabla segun ID - $DBN se modifica en:/server/datavase.php
+    $sql = "UPDATE ".$DBN."_Productos SET $Set WHERE $ID ";
+    $result = $conn->query($sql);
+    
+
+
+   
+}
+
+
 ?>

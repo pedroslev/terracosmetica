@@ -178,10 +178,10 @@ function CheckBoxGlobal() {
 }
 
 //Descarga el ticket de ventas
-function DivAPdf() {
+function DivAPdf(id) {
 
     var doc = new jsPDF();
-    var elementHTML = $('#Ticket').html();
+    var elementHTML = $('#Ticket' + id).html();
     // aca se pone una clase que no queremos que se vea en el archivo
     var specialElementHandlers = {
         '#elementH': function(element, renderer) {
@@ -195,7 +195,7 @@ function DivAPdf() {
 
 
     // Save the PDF
-    var codigo = document.getElementById('CodigoPedido').innerHTML;
+    var codigo = document.getElementById(id).innerHTML;
     doc.save('Pedido-' + codigo + '.pdf');
 }
 

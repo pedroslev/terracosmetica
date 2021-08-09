@@ -1,4 +1,89 @@
 <!--Efectivizada-->
+<?php
+require __DIR__ .  '/checkout/vendor/autoload.php';
+include '/server/database.php';
+
+if (isset($_POST['CargaDB'])) {
+
+	//carga de Cliente
+		$Nombre= $_POST['Nombre'];
+		$Apellido= $_POST['Apellido'];
+		$TipoDoc= $_POST['TipoDoc'];
+		$Documento= $_POST['Documento'];
+		$Email= $_POST['Email'];
+		$DirCalle= $_POST['DirCalle'];
+		$DirNumero= $_POST['DirNumero'];
+		$DirPostal= $_POST['DirPostal'];
+		$DirDepartamento= $_POST['DirDepartamento'];
+		$Provincia= $_POST['Provincia'];
+		$Localidad= $_POST['Localidad'];
+		$Observaciones= $_POST['Observaciones'];
+		$Telefono= $_POST['Telefono'];
+		$CantProds = $_POST['CantProd'];
+		
+		$sql = "INSERT INTO TERRA_Clientes (Nombre, Apellido, TipoDoc, Doc, Email, Calle, Altura, Postal, Departamento, Provincia, Localidad, Observaciones, Telefono) VALUES ('$Nombre', '$Apellido', '$TipoDoc', '$Documento', '$Email', '$DirCalle', '$DirNumero', '$DirPostal', '$DirDepartamento', '$Provincia', '$Localidad', '$Observaciones', '$Telefono')";
+		$result = $conn->query($sql);
+		$IDCliente = $conn->insert_id;//Guarda el ID cliente	
+		
+	// Fin de carga de Cliente
+
+	//Carga de Productos	
+		$PrecioTotal = 0;
+		$anio=date('y');
+		$mes=date('n');
+		$dia=date('d');
+		$hora=date('g');
+		$minutos=date('');
+		$segundos=date('i');
+		$milisegundos=date('v');
+		$CodigoPedido=$anio.$mes.$dia.$hora."_".$minuto.$segundos.$milisegundos;
+		
+		
+		$IDs=json_decode($_POST['IDProd']);
+		$PrecioFinal=json_decode($_POST['Precio']);
+
+//FALTAA While para repetir dependiendo la cxant de productos
+for ($i=0; $i < $CantProds; $i++) { 
+	
+	$PrecioTotal = $PrecioTotal + $PrecioFinal[$i];
+
+	$sqlP = "INSERT INTO TERRA_Pedidos (CodigoPedido, IDProducto, PrecioFinal) VALUES ('$CodigoPedido', '$IDs[$i]', '$PrecioFinal[$i]')";
+	$resultP = $conn->query($sqlP);
+}
+		
+
+	//Fin Carga de Productos
+
+	//Carga de Venta
+		$Fecha= date("Ymd");
+
+		$sqlV = "INSERT INTO TERRA_Ventas (IDCliente, CodigoPedido, PrecioTotal, Fecha, Estado) VALUES ('$IDCliente', '$CodigoPedido', '$PrecioTotal', '$Fecha', '1')";
+		$resultV = $conn->query($sqlV);
+
+	//Fin Carga de Productos
+
+
+}
+
+$PrecioPreference = $_POST['PrecioFinalMercadopago'];
+
+// Agrega credenciales
+MercadoPago\SDK::setAccessToken('TEST-5216061197824640-021822-1b407daa90b33541af8a578bfb31b3ee-264568386');
+
+// Crea un objeto de preferencia
+$preference = new MercadoPago\Preference();
+
+// Crea un ítem en la preferencia
+$item = new MercadoPago\Item();
+$item->title = 'Producto Test';
+$item->quantity = 1;
+$item->unit_price = $PrecioPreference;
+$preference->items = array($item);
+$preference->save();
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -17,7 +102,9 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/mercadopago.css">
 
 	<meta content="Divi v.4.4.8" name="generator">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -30,88 +117,27 @@
 	<script type='text/javascript' src='js/jquery.js' async></script>
 	<link rel="stylesheet" href="css/global-et-divi-customizer-global-1614728849082.min.css">
 	<link rel='stylesheet' href='css/home.css'>
-	
+
+	<!-- MERCADOPAGO -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+    <!--<script type="text/javascript" src="js/mercadopago.js" defer></script>-->
+    <script  src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-preference-id="<?php echo $preference->id; ?>"></script>
 </head>
 
 <body
 	class=" et_header_style_centered et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css">
 	<div id="page-container">
-
-		<header id="main-header" data-height-onload="150">
-			<div class="container clearfix et_menu_container">
-				<div class="logo_container">
-					<span class="logo_helper"></span>
-					<a href="index.html">
-						<img src="images/logo-fondo-transparente.jpg" alt="Terra Cosmética Natural" id="logo"
-							data-height-percentage="90" />
-					</a>
-				</div>
-				<div id="et-top-navigation" data-height="150" data-fixed-height="40">
-					<nav id="top-menu-nav">
-						<ul id="top-menu" class="nav">
-							<li id="menu-item-117"
-								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117">
-								<a href="index.html" aria-current="page">INICIO</a>
-							</li>
-							<li id="menu-item-280"
-								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a
-									href="quienes-somos.html">QUIÉNES SOMOS</a></li>
-							<li id="menu-item-972"
-								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972">
-								<a href="nuestros-productos.php">NUESTROS PRODUCTOS</a>
-								<ul class="sub-menu">
-									<li id="menu-item-1320"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320">
-										<a href="aromas.html">AROMAS</a>
-									</li>
-									<li id="menu-item-974"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974">
-										<a href="aromas.html">CUIDADO CAPILAR</a>
-									</li>
-									<li id="menu-item-1323"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1323">
-										<a href="aromas.html">CUIDADO DE LA PIEL</a>
-									</li>
-									<li id="menu-item-1025"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1025">
-										<a href="aromas.html">CUIDADOS DIARIOS</a>
-									</li>
-									<li id="menu-item-1322"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1322">
-										<a href="aromas.html">JABONES</a>
-									</li>
-									<li id="menu-item-1321"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1321">
-										<a href="aromas.html">PROMOCIONES</a>
-									</li>
-								</ul>
-							</li>
-							<li id="menu-item-294"
-								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-294"><a
-									href="preguntas-frecuentes.html">PREGUNTAS FRECUENTES</a></li>
-							<li id="menu-item-400"
-								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-400"><a
-									href="pagina-mayorista.html">ACCESO MAYORISTA</a></li>
-							<li id="menu-item-351"
-								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a
-									href="contacto.html">CONTACTO</a></li>
-						</ul>
-					</nav>
-
-
-					<div id="et_mobile_nav_menu">
-						<div class="mobile_nav closed">
-							<span class="select_page">Seleccionar página</span>
-							<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
-						</div>
-					</div>
-				</div> <!-- #et-top-navigation -->
-			</div> <!-- .container -->
+	
+	<header id="main-header" data-height-onload="150">
+   
+</header> <!-- #main-header -->
+		
 			<div class="container">
 				<main>
 					<div class="mt-5">
 					</div>
-		
+				<form class="needs-validation" action="" method="post">		
 					<div class="row g-5">
 						<div class="col-md-5 col-lg-4 order-md-last">
 							<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -122,22 +148,25 @@
 								<table class="show-cart table">
 		
 								</table>
-								
+			<!-- hay que hacer que se actualicen con el modal para que los levante el php -->
+								<input type="hidden" id="IDProd" name="IDProd" required>
+								<input type="hidden" id="Precio" name="Precio" required>
+								<input type="hidden" id="CantProd" name="CantProd" required>
 							</div>
-							<form class="card p-2 d-none">
+							
 								<div class="input-group">
 									<input type="text" class="form-control" placeholder="Promo code">
 									<button type="submit" class="btn btn-secondary">Redeem</button>
 								</div>
-							</form>
+							
 						</div>
 						<div class="col-md-7 col-lg-8">
-							<h4 class="mb-3">Shipping</h4>
-							<form class="needs-validation" novalidate>
+							<h4 class="mb-3">Datos de Envio</h4>
+							
 								<div class="row g-3">
 									<div class="col-sm-6">
 										<label for="firstName" class="form-label">Nombre</label>
-										<input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+										<input type="text" class="form-control" id="firstName" name="Nombre" placeholder="Juan" value="" required>
 										<div class="invalid-feedback">
 											Ingrese un nombre valido.
 										</div>
@@ -145,29 +174,27 @@
 		
 									<div class="col-sm-6">
 										<label for="lastName" class="form-label">Apellido</label>
-										<input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+										<input type="text" class="form-control" id="lastName" name="Apellido" placeholder="Perez Linch" value="" required>
 										<div class="invalid-feedback">
 											Ingrese un apellido valido.
 										</div>
 									</div>
 		
-									<div class="col-md-6 mt-4">
+									<div class="col-md-6 mt-3">
 										<label for="state" class="form-label">Tipo de Documento</label>
-										<select class="form-select" id="state" required>
-											<option value="">Elegir...
-											</option>
-											<option>DNI</option>
-											<option>Pasaporte
-											</option>
+										<select class="form-control" id="state" name="TipoDocumento" required>
+											<option value="">Elegir...</option>
+											<option value="1">DNI</option>
+											<option value="2">Pasaporte</option>
 										</select>
 										<div class="invalid-feedback">
-											Ingrese una provinicia valida.
+											Ingrese una dni valido.
 										</div>
 									</div>
 		
-									<div class="col-sm-6">
+									<div class="col-sm-6 mt-3">
 										<label for="lastName" class="form-label">Documento</label>
-										<input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+										<input type="number" class="form-control" id="lastName" name="Documento" placeholder="48646353" value="" required>
 										<div class="invalid-feedback">
 											Ingrese un Documento valido.
 										</div>
@@ -175,11 +202,18 @@
 								</div>
 								<hr class="my-4">
 								<div class="row g-3">
-									<div class="col-12">
+									<div class="col-6">
 										<label for="email" class="form-label">Email <span class="text-muted"></span></label>
-										<input type="email" class="form-control" id="email" placeholder="you@example.com">
+										<input type="email" class="form-control" id="email" name="Email" placeholder="nombre@ejemplo.com" required>
 										<div class="invalid-feedback">
 											Ingrese un Email valido.
+										</div>
+									</div>
+									<div class="col-6">
+										<label for="lastName" class="form-label">Telefono</label>
+										<input type="number" class="form-control" id="lastName" name="Telefono" placeholder="01145453498" value="" required>
+										<div class="invalid-feedback">
+											Ingrese un Telefono valido.
 										</div>
 									</div>
 								</div>
@@ -188,7 +222,7 @@
 		
 									<div class="col-6">
 										<label for="address" class="form-label">Calle</label>
-										<input type="text" class="form-control" id="address" placeholder="Calle" required>
+										<input type="text" class="form-control" id="address" name="DirCalle" placeholder="Calle" required>
 										<div class="invalid-feedback">
 											Ingrese su Calle.
 										</div>
@@ -196,7 +230,7 @@
 		
 									<div class="col-6">
 										<label for="address" class="form-label">Numero</label>
-										<input type="text" class="form-control" id="address" placeholder="1234" required>
+										<input type="number" class="form-control" id="address" name="DirNumero" placeholder="1234" required>
 										<div class="invalid-feedback">
 											Ingrese su Numero.
 										</div>
@@ -204,8 +238,8 @@
 									
 									
 									<div class="col-md-6 mt-3">
-										<label for="zip" class="form-label">Zip</label>
-										<input type="text" class="form-control" id="zip" placeholder="1234" required>
+										<label for="zip" class="form-label">Codigo Postal</label>
+										<input type="text" class="form-control" id="zip" name="DirPostal" placeholder="1234" required>
 										<div class="invalid-feedback">
 											Ingrese un codigo zip valido.
 										</div>
@@ -213,7 +247,7 @@
 		
 									<div class="col-md-6 mt-3">
 										<label for="zip" class="form-label">Deparamento</label>
-										<input type="text" class="form-control" id="zip" placeholder="11 D" required>
+										<input type="text" class="form-control" id="dep" name="DirDepartamento" placeholder="11 D - NO [En caso de no serlo]" required>
 										<div class="invalid-feedback">
 											Ingrese un departamento valido.
 										</div>
@@ -226,7 +260,7 @@
 		
 									<div class="col-md-6">
 										<label for="state" class="form-label">Provincia</label>
-										<select class="form-select col-md-6 provselectElement_prov" id="dynamic_slct_prov"></select>
+										<select class="form-control" name="Provincia" id="dynamic_slct_prov" required></select>
 										<div class="invalid-feedback">
 											Ingrese una provinicia valida.
 										</div>
@@ -234,7 +268,7 @@
 		
 									<div class="col-md-6">
 										<label for="state" class="form-label">Localidad</label>
-										<select class="form-select col-md-6 selectElement" id="dynamic_slct" required></select>
+										<select class="form-control" id="dynamic_slct" name="Localidad" required></select>
 										<div class="invalid-feedback">
 											Ingrese una provinicia valida.
 										</div>
@@ -245,31 +279,35 @@
 		
 									<div class="form-floating col-12">
 										
-										<textarea class="form-control" placeholder="Observaciones" id="floatingTextarea2" style="height: 100px"></textarea>
+										<textarea class="form-control" placeholder="Observaciones" id="floatingTextarea2" name="Observaciones" style="height: 100px"></textarea>
 									  </div>
 		
 									</div>
+									<!-- NO FUNCA NECESITA COOKIES
 								<div class="form-check mt-3">
-									<input type="checkbox" class="form-check-input" id="save-info">
-									<label class="form-check-label" for="save-info">Guardar información para la próxima compra.</label>
-								</div>
+									<input type="checkbox" class="form-check-input" id="save-info" name="?">
+									<label class="form-check-label" for="save-info">Guardar información para la próxima compra.[NO FUNCIONA]</label>
+								</div>-->
 		
 								<hr class="my-4">
 		
-		
-								<button class="w-100 btn btn-primary btn-cart" type="submit">Pagar con Mercado Pago</button>
-							</form>
+								<script  src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-button-label="Comprar" data-id="mercadopago" data-preference-id="<?php echo $preference->id; ?>">Checkout</script>
+								<!-- <button type="submit" class="w-100 btn btn-primary" name="CargaDB">Pagar con Mercado Pago</button> -->
+							
 						</div>
-					</div>				
+					</div>	
+				</form>
+
+				 
 				</main>
 		</div>
 
 		
 			<!-- FOOTER -->
 			<footer class="container mt-5">
-				<p class="float-right"><a style="color: brown;" href="#">Back to top</a></p>
-				<p class="float-left">&copy; 2018-2021 Terracosmetica indumentaria &middot;</p>
-				<p> Powered & Designed by<a style="color: green;" href="https://hazear.com/"> HAZEinc.</a></p>
+			<p class="float-right"> Powered & Designed by<a style="color: green;" href="https://hazear.com/"> HAZEinc.</a></p>
+			<p class="float-left"><a href="http://hazear.com/" target="_blank" style="color: grey;">&copy; S.O.V. 2020 - <?php echo date("Y"); ?>. Versión <?php echo $VERSION; ?></a></p>
+				
 			</footer>
             
                 <!-- Bootstrap core JavaScript
@@ -379,6 +417,76 @@
 			"phone": []
 		};
 		/* ]]> */
+
+	</script>
+
+	<script>
+		//Pasaje JS --> PHP 
+		//Contador de cantidad de productos
+		let cantprod = document.getElementsByClassName('item-count form-control');
+		let totalprod = 0;
+		for (let index = 0; index < cantprod.length; index++) {
+		totalprod = totalprod + parseInt(document.getElementsByClassName('item-count form-control')[index].textContent);
+		}
+		console.log(totalprod);
+		document.getElementById('CantProd').value = totalprod
+
+		//Acumulador de IDs
+		let IDProd = document.getElementsByClassName('IDProdJS');
+		let IDs = [];
+		
+
+		for (let index = 0; index < IDProd.length; index++) {
+			let IDsAux = [];
+			let cantidadporid = document.getElementsByClassName('item-count form-control')[index].textContent;
+			let lenght = IDs.lenght;
+			if(cantidadporid > 1){
+				//IDs[lenght] = IDProd[index].textContent;	
+				IDs.push(IDProd[index].textContent);
+				for (let i = 0; i < cantidadporid - 1; i++) {
+					IDsAux[i] = IDProd[index].textContent;	
+				}
+				IDs = IDs.concat(IDsAux);
+			}else{
+				//IDs[lenght] = IDProd[index].textContent;
+				IDs.push(IDProd[index].textContent);
+			}
+		}
+		SaveData("IDs", IDs);
+		document.getElementById('IDProd').value = JSON.stringify(IDs);
+
+		let PrecioHTML = document.getElementsByClassName('PrecioJS')
+		let Precios = [];
+
+		for (let index = 0; index < PrecioHTML.length; index++) {
+		let cantidadporid = document.getElementsByClassName('item-count form-control')[index].textContent;
+		let precioporproducto = PrecioHTML[index].textContent / cantidadporid;
+		let lenght = Precios.lenght
+		if(cantidadporid > 1){
+			//Precios[lenght] = precioporproducto;
+			Precios.push(precioporproducto)
+			PreciosAux = [];
+			for (let i = 0; i < cantidadporid - 1; i++) {
+				PreciosAux[i] = precioporproducto;
+			}
+			Precios = Precios.concat(PreciosAux);
+		}else{
+			Precios.push(precioporproducto)
+			//Precios[lenght] = precioporproducto;
+		}
+
+		}
+		SaveData("Precios", Precios);
+		document.getElementById('Precio').value = JSON.stringify(Precios);
+
+		//document.getElementsByClassName('mercadopago-button').name = "CargaDB";
+		$('.mercadopago-button').attr('id', 'mercadopago')
+		document.getElementById('mercadopago').setAttribute('name', "CarbaDB")
+function SaveData(clave, valor){
+	localStorage.setItem(clave, valor)
+}
+
+
 	</script>
 	<script type='text/javascript' src='js/custom.unified.js' async></script>
 	<script type='text/javascript' src='js/common.js' async></script>

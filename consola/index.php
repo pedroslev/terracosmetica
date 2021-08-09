@@ -44,15 +44,8 @@ function URLChecker(){
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <!-- checkout all -->
-  <script>
-  function toggle(source) {
-    checkboxes = document.getElementsByName('foo');
-    for(var i=0, n=checkboxes.length;i<n;i++) {
-      checkboxes[i].checked = source.checked;
-    }
-  }
-  </script>
+ 
+  
 </head>
 
 <body onload="showTime()">
@@ -141,7 +134,7 @@ function URLChecker(){
                   <?php 
                   //MOSTRADOR DE VENTAS (LISTADO)
                   
-                  $sql ="SELECT * FROM TERRA_Ventas ORDER BY 'Estado' ASC";
+                  $sql ="SELECT * FROM TERRA_Ventas ORDER BY Estado ASC";
                   $result= $conn->query($sql);
                   if ($result->num_rows > 0) {
                   //Output data of each row
@@ -164,16 +157,16 @@ function URLChecker(){
                                                   <span class="badge badge-danger">ERROR</span>
                                               <?php break;
                                               case "1": ?>
-                                                  <span class="badge badge-secondary">FALTA DE PAGO</span> 
+                                                  <span class="badge badge-warning">PENDIENTE</span> 
                                               <?php break;
                                               case "2": ?>
-                                                  <span class="badge badge-warning">PENDIENTE</span>
-                                              <?php break;
-                                              case "3": ?>
                                                   <span class="badge badge-primary">EN CAMINO</span>
                                               <?php break;
-                                              case "4": ?>
+                                              case "3": ?>
                                                   <span class="badge badge-success">ENTREGADO</span>
+                                              <?php break;
+                                              case "4": ?>
+                                                  <span class="badge badge-secondary">FALTA DE PAGO</span>
                                               <?php break;
                                               } 
                                               ?>
@@ -182,7 +175,7 @@ function URLChecker(){
                                         <button class="btn btn-light" title="Ver Mas" data-toggle="modal" data-target="#modalVentas<?php echo $row["ID"]; ?>"><span data-feather="plus"></span></button>
                                         </td>
                                         <td>                                         
-                                        <button class="btn btn-light" title="Descargar" onclick="DivAPdf()"><span data-feather="download"></span></button>
+                                        <button class="btn btn-light" title="Descargar" onclick='DivAPdf( "<?php echo $row["CodigoPedido"]; ?>" )'><span data-feather="download"></span></button>
                                         </td>
 
 
@@ -190,10 +183,10 @@ function URLChecker(){
                                         <td>
                                   <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="modalVentas<?php echo $row["ID"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div id="Ticket" class="modal-dialog modal-dialog-centered" role="document">
+            <div id="Ticket<?php echo $row["CodigoPedido"]; ?>" class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header row align-items-center m-0">
-                <h5 class="modal-title col-6">Pedido N° <span id="CodigoPedido" ><?php echo $row["CodigoPedido"]; ?></span></h5>
+                <h5 class="modal-title col-6">Pedido N° <span id="<?php echo $row["CodigoPedido"]; ?>" ><?php echo $row["CodigoPedido"]; ?></span></h5>
 
                 <?php
                 switch ($row["Estado"]) {
@@ -201,16 +194,16 @@ function URLChecker(){
                     <span class="badge badge-danger col-3">ERROR</span>
                 <?php break;
                 case "1": ?>
-                    <span class="badge badge-secondary col-3">FALTA DE PAGO</span> 
+                     <span class="badge badge-warning col-3">PENDIENTE</span>
                 <?php break;
                 case "2": ?>
-                    <span class="badge badge-warning col-3">PENDIENTE</span>
-                <?php break;
-                case "3": ?>
                     <span class="badge badge-primary col-3">EN CAMINO</span>
                 <?php break;
-                case "4": ?>
+                case "3": ?>
                     <span class="badge badge-success col-3">ENTREGADO</span>
+                <?php break;
+                case "4": ?>
+                    <span class="badge badge-secondary col-3">FALTA DE PAGO</span>
                 <?php break;
                 } 
                 ?>
@@ -263,6 +256,7 @@ function URLChecker(){
                       <tr>
                         <th>Codigo</th>
                         <th>Producto</th>
+                        <th>Precio</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -287,6 +281,7 @@ function URLChecker(){
                       <tr>
                         <td><?php echo $filaP->Codigo; ?></td>
                         <td><?php echo $filaP->Nombre; ?></td>
+                        <td>$<?php echo $rowPedidos["PrecioFinal"]; ?></td>
                       </tr>                     
                    
 
@@ -296,6 +291,11 @@ function URLChecker(){
               }
             } else { echo"Pedido no Registrado"; }
                 ?>
+
+                    <tr>                   
+                        <th colspan="2">Total: </th>
+                        <th>$<?php echo $row["PrecioTotal"]; ?></th>
+                    </tr> 
 
 
                 </tbody>
@@ -314,17 +314,17 @@ function URLChecker(){
                                         <?php if($row["Estado"]==0){ ?>                                      
                                         <option selected>ERROR</option>
                                         <?php } else{ ?>                                                                                 
-                                        <option value="1" <?php if($row["Estado"]==1){echo "selected";}; ?>>FALTA DE PAGO</option>
-                                        <option value="2" <?php if($row["Estado"]==2){echo "selected";}; ?>>PENDIENTE</option>
-                                        <option value="3" <?php if($row["Estado"]==3){echo "selected";}; ?>>EN CAMINO</option>
-                                        <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>>ENTREGADO</option>
+                                        <option value="1" <?php if($row["Estado"]==1){echo "selected";}; ?>>PENDIENTE</option>
+                                        <option value="2" <?php if($row["Estado"]==2){echo "selected";}; ?>>EN CAMINO</option>
+                                        <option value="3" <?php if($row["Estado"]==3){echo "selected";}; ?>>ENTREGADO</option>
+                                        <option value="4" <?php if($row["Estado"]==4){echo "selected";}; ?>>FALTA DE PAGO</option>
                                         <?php }; ?>
                   </select>
                   <input type="hidden" name="IDVentas" value="<?php echo $row["ID"]; ?>" />
                   </form>
 
 
-                  <button type="button" class="btn btn-primary" onclick="DivAPdf()">Descargar comprobante</button>
+                  <button type="button" class="btn btn-primary" onclick='DivAPdf( "<?php echo $row["CodigoPedido"]; ?>" )'>Descargar comprobante</button>
 
              
 
@@ -350,7 +350,7 @@ function URLChecker(){
 
             </div>
             
-          
+      
      
         
           <!-- PRODUCTOS -->
@@ -369,17 +369,17 @@ function URLChecker(){
             <form class="form-inline mb-0">
             <input id="SearchBox" type="search" class="form-control mr-sm-2" placeholder="Buscador" aria-label="Search" onchange="window.find(document.getElementById('SearchBox').value,false,false,true);">
             <button id="Agregar" type="button" class="btn btn-outline-dark mr-2" onclick="Seleccionar(selected=4),window.location='#Agregar'">Agregar Producto</button>
-            <button id="modal" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#EdicionRapida">Edicion Rapida <span class="badge badge-light">4</span></button>
+            <button id="modal" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#EdicionRapida" title="Seleccione Productos Para Editar" disabled>Edicion Rapida <span class="badge badge-light Cant">0</span></button>
             </form>
             </div>
 
 <!-- Modal -->
 <div class="modal fade" id="EdicionRapida" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <form action="index.php#Productos" method="post">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">EdicionRapida</h5>
-                  <p>Productos seleccionados:4</p>
+                  <h5 class="modal-title" id="exampleModalLongTitle">EdicionRapida | <span class="Cant"></span> Productos</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -389,7 +389,7 @@ function URLChecker(){
                 <div class="form-row">
                  <div class="col">
                   <label for="Stock">Cantidad</label>
-                    <input type="text" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad" required>
+                    <input type="number" class="form-control mb-2" id="Stock" name="Stock" placeholder="Cantidad">
                 </div>
 
                 <div class="col">
@@ -398,7 +398,7 @@ function URLChecker(){
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="Margen" name="Margen" placeholder="100" value="" onchange="CalculoPrecio()">
+                    <input type="number" class="form-control" id="Margen" name="Margen" placeholder="100" value="">
                   </div>
                 </div>
 
@@ -408,27 +408,29 @@ function URLChecker(){
                     <div class="input-group-prepend">
                       <div class="input-group-text">%</div>
                     </div>
-                    <input type="text" class="form-control" id="Oferta" name="Oferta" placeholder="Oferta" value="" onchange="CalculoPrecio()">
+                    <input type="number" class="form-control" id="Oferta" name="Oferta" placeholder="Oferta" value="">
                   </div>
                 </div>
                 </div>
 
-
+                <input type="hidden" id="IDCheck" name="IDCheck" required>
+                <input type="hidden" id="CantProd" name="CantProd" required>
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
-                  <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="deseleccionar(),edicionRapida()">Descartar</button>
+                  <button type="submit" class="btn btn-primary" name="EdicionRapida">Guardar Cambios</button>
                 </div>
               </div>
             </div>
+            </form>
           </div>  
 <!-- FIN Modal -->
             <div class="table-responsive">
                               <table class="table table-striped table-sm">
                                 <thead>
                                   <tr>
-                                    <th><input type="checkbox" onClick="toggle(this)" ></th>
+                                    <th><input type="checkbox" id="SelectorGlobal" onClick="toggle(this),edicionRapida()" ></th>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
@@ -491,7 +493,7 @@ function URLChecker(){
 
     <td>
       <div class="form-check">
-      <input class="form-check-input" type="checkbox" name="foo">                                      
+      <input class="form-check-input" type="checkbox" name="foo" value="<?php echo $row["ID"]; ?>" onchange="edicionRapida()">                                      
       </div>
     </td>                         
     <form action="index.php#Productos" method="post" id="EditarProducto<?php echo $row["ID"]; ?>"> 
@@ -1139,7 +1141,77 @@ if(!empty($_GET['idprod'])){
       </div>
     </div>
 
+    <script>
+     
+            
+function edicionRapida(){
+    var totalCheckboxes = document.getElementsByName("foo"),//total de chackboxes
+    count = 0,//cantidad de checkboxes checkeadas
+    idsCheck = [];//Ids de checkboxes checkeadas
 
+    //Toma los checkbox checkeados y los cuenta, ademas toma los Valores de esos checkbox(Ids de cada prod) y los mete en una variable 
+    for (var i=0; i<totalCheckboxes.length; i++) {       
+    if (totalCheckboxes[i].type == "checkbox" && totalCheckboxes[i].checked == true) 
+    {
+    idsCheck[count] = totalCheckboxes[i].value;
+    count++;
+    }
+    }
+    //toma la variable y la mete en un Json y los pasa a un intput tipo hidden 
+    document.getElementById('IDCheck').value = JSON.stringify(idsCheck);
+    document.getElementById('CantProd').value = count;
+    console.log(idsCheck);
+    
+    //Modifica el número de productos seleccionados
+    for (let index = 0; index < document.getElementsByClassName('Cant').length; index++) {
+      document.getElementsByClassName('Cant')[index].textContent = count;
+    }
+
+    //Modifica el estado del botón
+    if(count === 0)
+    {
+      document.getElementById("modal").disabled = true;
+      document.getElementById('modal').setAttribute('title', 'Seleccione Productos Para Editar');
+      
+    }
+    else
+    {
+      document.getElementById("modal").disabled = false;
+      document.getElementById('modal').setAttribute('title', 'Click Para Editar');
+    }
+
+    //cambia estado del check global
+   
+      if(count == totalCheckboxes.length)
+      {
+        document.getElementById("SelectorGlobal").checked = true;//Activa el checkbox global estan todos seleccionados
+      }
+      else
+      {
+        if(count < totalCheckboxes.length)
+        {
+          document.getElementById("SelectorGlobal").checked = false;//Desactiva el checkbox global si no hay ninguno seleccionado
+        }
+      }
+}
+
+//Selector global          
+  function toggle(source) {
+    checkboxes = document.getElementsByName('foo');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = source.checked;
+    }
+  }
+
+//Boton Descartar
+  function deseleccionar(){
+    checkboxes = document.getElementsByName('foo');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = false;
+    }
+  }
+
+</script>
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->

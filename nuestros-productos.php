@@ -1,6 +1,39 @@
 <?php 
 
+
 include './server/database.php';
+
+if (empty($_GET['Categoria']))
+{
+	$sql ="SELECT * FROM ".$DBN."_Productos WHERE Mostrar='1' AND Eliminar!='1' ";
+	$texto="Nuestro Productos";
+}
+else{
+	if ($_GET['Categoria']=="Ofertas")
+	{
+		$sql ="SELECT * FROM ".$DBN."_Productos WHERE Mostrar='1' AND Eliminar!='1' AND Oferta!='0' ";
+		$texto="Ofertas";
+	}
+	else{
+		$Categoria= $_GET['Categoria'];
+
+		$sqlC ="SELECT * FROM ".$DBN."_Categorias WHERE ID=".$Categoria." ";
+		$resultC= $conn->query($sqlC);
+		if ($resultC->num_rows > 0) {
+			$fila = mysqli_fetch_object($resultC);
+          	$texto = $fila->Nombre;
+
+			$sql ="SELECT * FROM ".$DBN."_Productos WHERE Mostrar='1' AND Eliminar!='1' AND ( Categoria=".$Categoria." OR Categoria2=".$Categoria." OR Categoria3=".$Categoria.") ";
+			
+		}
+		else{
+			
+			$sql ="SELECT * FROM ".$DBN."_Productos WHERE Mostrar='1' AND Eliminar!='1' ";
+			$texto="Nuestros Productos";
+		};
+		
+	};
+};
 
 
 ?>
@@ -28,7 +61,6 @@ include './server/database.php';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
 	<meta content="Divi v.4.4.8" name="generator">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
@@ -72,78 +104,8 @@ include './server/database.php';
 <body class="page-template-default page page-id-966 custom-background theme-Divi woocommerce-js et_pb_button_helper_class et_fullwidth_nav et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_centered et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_full_width_page et_divi_theme et-db et_minified_js et_minified_css chrome">
 	<div id="page-container" class="et-animated-content" style="margin-top: -32px;">
 
-	<div class="row fixed-bottom mb-3 ml-1">
-			<div class="col">
-				<div class="float-left">
-					<div class="float-left">
-						<button type="button" class="btn btn-cart et-cart-info" data-toggle="modal" data-target="#cart"><span class="total-count m-2"></span></button>
-					</div>
-	
-					<div class="d-none">
-						<button class="clear-cart btn btn-danger">Clear Cart</button></div>
-				</div>
-			</div>
-		</div>
+	<?php include './include/head.php'; ?>
 
-		<header id="main-header" data-height-onload="196" class="et-fixed-header" data-height-loaded="true" data-fixed-height-onload="116" style="top: 0px;">
-			<div class="container clearfix et_menu_container">
-				<div class="logo_container">
-					<span class="logo_helper"></span>
-					<a href="index.html">
-						<img src="images/logo-fondo-transparente.jpg" alt="Terra Cosmética Natural" id="logo" data-height-percentage="90" data-actual-width="650" data-actual-height="654">
-					</a>
-				</div>
-				<div id="et-top-navigation" data-height="150" data-fixed-height="40">
-					<nav id="top-menu-nav">
-						<ul id="top-menu" class="nav"><li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117"><a href="index.html" aria-current="page">INICIO</a></li>
-<li id="menu-item-280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a href="quienes-somos.html">QUIÉNES SOMOS</a></li>
-<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.php">NUESTROS PRODUCTOS</a>
-<ul class="sub-menu">
-	<li id="menu-item-1320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320"><a href="aromas.html">AROMAS</a></li>
-	<li id="menu-item-974" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974"><a href="aromas.html">CUIDADO CAPILAR</a></li>
-	<li id="menu-item-1323" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1323"><a href="aromas.html">CUIDADO DE LA PIEL</a></li>
-	<li id="menu-item-1025" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1025"><a href="aromas.html">CUIDADOS DIARIOS</a></li>
-	<li id="menu-item-1322" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1322"><a href="aromas.html">JABONES</a></li>
-	<li id="menu-item-1321" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1321"><a href="aromas.html">PROMOCIONES</a></li>
-</ul>
-</li>
-<li id="menu-item-294" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-294"><a href="preguntas-frecuentes.html">PREGUNTAS FRECUENTES</a></li>
-<li id="menu-item-400" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-400"><a href="pagina-mayorista.html">ACCESO MAYORISTA</a></li>
-<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="contacto.html">CONTACTO</a></li>
-</ul>						</nav>
-
-
-					<div id="et_mobile_nav_menu">
-						<div class="mobile_nav closed">
-							<span class="select_page">Seleccionar página</span>
-							<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
-						<ul id="mobile_menu" class="et_mobile_menu"><li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-117 et_first_mobile_item"><a href="index.html" aria-current="page">INICIO</a></li>
-<li id="menu-item-280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a href="quienes-somos.html">QUIÉNES SOMOS</a></li>
-<li id="menu-item-972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-972"><a href="nuestros-productos.php">NUESTROS PRODUCTOS</a>
-<ul class="sub-menu">
-	<li id="menu-item-1320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1320"><a href="aromas.html">AROMAS</a></li>
-	<li id="menu-item-974" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-974"><a href="aromas.html">CUIDADO CAPILAR</a></li>
-	<li id="menu-item-1323" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1323"><a href="aromas.html">CUIDADO DE LA PIEL</a></li>
-	<li id="menu-item-1025" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1025"><a href="aromas.html">CUIDADOS DIARIOS</a></li>
-	<li id="menu-item-1322" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1322"><a href="aromas.html">JABONES</a></li>
-	<li id="menu-item-1321" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1321"><a href="aromas.html">PROMOCIONES</a></li>
-</ul>
-</li>
-<li id="menu-item-294" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-294"><a href="preguntas-frecuentes.html">PREGUNTAS FRECUENTES</a></li>
-<li id="menu-item-400" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-400"><a href="pagina-mayorista.html">ACCESO MAYORISTA</a></li>
-<li id="menu-item-351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-351"><a href="contacto.html">CONTACTO</a></li>
-</ul></div>
-					</div>
-				</div> <!-- #et-top-navigation -->
-			</div> <!-- .container -->
-			<div class="et_search_outer">
-				<div class="container et_search_form_container">
-					<form role="search" method="get" class="et-search-form" action="index.html">
-						<input type="search" class="et-search-field" placeholder="Búsqueda …" value="" name="s" title="Buscar:"> </form>
-					<span class="et_close_search_field"></span>
-				</div>
-			</div>
-		</header> <!-- #main-header -->
 		<div id="et-main-area">
 
 			<div id="main-content">
@@ -171,7 +133,7 @@ include './server/database.php';
 
 
 													<div class="et_pb_text_inner">
-														<h1>Nuestros Productos</h1>
+														<h1><?php echo $texto; ?></h1>
 													</div>
 												</div> <!-- .et_pb_text -->
 												<div class="et_pb_module et_pb_text et_pb_text_1  et_pb_text_align_center et_pb_bg_layout_light">
@@ -193,7 +155,7 @@ include './server/database.php';
 
 
 													<div class="et_pb_text_inner">
-														<h1>Nuestros productos</h1>
+														<h1><?php echo $texto; ?></h1>
 													</div>
 												</div> <!-- .et_pb_text -->
 												<div class="et_pb_module et_pb_text et_pb_text_3  et_pb_text_align_center et_pb_bg_layout_light">
@@ -215,115 +177,61 @@ include './server/database.php';
 
 
 
-										<div class="et_pb_row et_pb_row_2">
-											<div class="et_pb_column et_pb_column_1_5 et_pb_column_2  et_pb_css_mix_blend_mode_passthrough et_pb_column_empty">
-
-
-
-											</div> <!-- .et_pb_column -->
-											<div class="et_pb_column et_pb_column_3_5 et_pb_column_3  et_pb_css_mix_blend_mode_passthrough">
-
-
-												<div class="et_pb_module et_pb_text et_pb_text_4  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-													<div class="et_pb_text_inner">
-														<p>Aromas</p>
-													</div>
-												</div> <!-- .et_pb_text -->
-												<div class="et_pb_module et_pb_text et_pb_text_5  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-													<div class="et_pb_text_inner">
-														<p>fragancias que comunican emociones</p>
-													</div>
-												</div> <!-- .et_pb_text -->
-											</div> <!-- .et_pb_column -->
-											<div class="et_pb_column et_pb_column_1_5 et_pb_column_4  et_pb_css_mix_blend_mode_passthrough et-last-child et_pb_column_empty">
-
-
-
-											</div> <!-- .et_pb_column -->
-
-
-										</div> <!-- .et_pb_row -->
+										
 
 										<?php 
-										//MOSTRADOR DE PRODUCTOS EN OFERTA            
-										$sql ="SELECT * FROM ".$DBN."_Productos WHERE Mostrar='1' ";
+										//MOSTRADOR DE PRODUCTOS EN OFERTA
+
+										
 										$result= $conn->query($sql);
 										if ($result->num_rows > 0) {										
 										while($row = $result->fetch_assoc()) { 										
 										?>
 
-<div class="" style="display:flex;">
-											<div class="et_pb_column et_pb_column_1_2 et_pb_column_5 et_clickable  et_pb_css_mix_blend_mode_passthrough">
-
-
-												<div class="et_pb_module et_pb_image et_pb_image_0">
-
-
-													<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $PWD . $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
+									<div class="" style="display:flex;">
+										<div class="et_pb_column et_pb_column_1_2 et_pb_column_5 et_clickable  et_pb_css_mix_blend_mode_passthrough">
+											<div class="et_pb_module et_pb_image et_pb_image_0">
+												<span style="color:white;" class="mt-5 badge bg-primary"> <p> <?php if ($row["Stock"]<1){echo "Sin Stock";}else{if ($row["Stock"]<10){echo "Ultimas Disponibles";}else{echo "En Stock";}} ?></p></span>
+												<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $PWD . $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
+											</div>
+										</div>
+										<div class=" mt-5 et_pb_column et_pb_column_1_2 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
+											<div class="et_pb_module et_pb_wc_title et_pb_wc_title_0 et_clickable et_pb_bg_layout_light">
+												<div class="et_pb_module_inner">
+													<h1><?php echo $row["Nombre"]; ?></h1>
 												</div>
-											</div> <!-- .et_pb_column -->
-											<div class="et_pb_column et_pb_column_1_2 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-												<div class="et_pb_module et_pb_wc_title et_pb_wc_title_0 et_clickable et_pb_bg_layout_light">
-
-
-
-
-													<div class="et_pb_module_inner">
-
-														<h1><?php echo $row["Nombre"]; ?></h1>
-													</div>
+											</div>
+											<div class="et_pb_module">
+												<div class="et_pb_module_inner">
+													<p class=""><?php echo $row["Descripcion"]; ?></p>
 												</div>
-												<div class="et_pb_module et_pb_wc_price et_pb_wc_price_0">
-
-
-
-
-													<div class="et_pb_module_inner">
-														<p class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $row["Precio"]; ?></span>
-														</p>
-
-													</div>
+											</div>
+											<div class="et_pb_module et_pb_wc_price et_pb_wc_price_0">
+												<div class="et_pb_module_inner">
+													<p> <span class="badge-font-size badge bg-success">
+													
+												<?php if ($row["Oferta"]!=0){echo "%".$row["Oferta"];} ?> OFF
+													</span> <span class="price"> <span style="text-decoration-line: line-through;"> $ <?php echo $row["Precio"]; ?> </span> $ <?php echo $row["Precio"]; ?></span></p>
 												</div>
-												<div class="et_pb_with_border et_pb_module et_pb_wc_add_to_cart et_pb_wc_add_to_cart_0 et_pb_bg_layout_light et_pb_woo_custom_button_icon  et_pb_text_align_left" data-button-class="single_add_to_cart_button" data-button-icon="5" data-button-icon-tablet="" data-button-icon-phone="">
-
-
-
-
-													<div class="et_pb_module_inner">
-
+											</div>
+											<div class="et_pb_with_border et_pb_module et_pb_wc_add_to_cart et_pb_wc_add_to_cart_0 et_pb_bg_layout_light et_pb_woo_custom_button_icon  et_pb_text_align_left" data-button-class="single_add_to_cart_button" data-button-icon="5" data-button-icon-tablet="" data-button-icon-phone="">
+												<div class="et_pb_module_inner">
 													<!-- HAY QUE REEVER ESTE FORM PARA HACERLO FUNCIONAR -->
-														<form class="cart" action="#" method="post" enctype="multipart/form-data">
-
-															<div class="quantity">
-																<label class="screen-reader-text" for="quantity_60402626b783d"><?php echo $row["Nombre"]; ?></label>
-																<input type="number" id="quantity_60402626b783d" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Cantidad" size="4" placeholder="" inputmode="numeric">
-															</div>
-
-															<button type="submit" value="225" style="color:black; border-color:lightgray; border-width: 1px;"class="single_add_to_cart_button button alt et_pb_promo_button et_pb_button et_pb_custom_button_icon">  <a href="#" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a></button>
-
-														</form>
-
-
-
-													</div>
+													<form class="cart" action="#" method="post" enctype="multipart/form-data">
+														<div class="quantity d-none">
+															<label class="screen-reader-text" for="quantity_60402626b783d"><?php echo $row["Nombre"]; ?></label>
+														</div>
+														<button type="submit" value="225" class="btn btn-light" style="background-color:white; border-color:#d4d4d4;">  <a href="#" data-id="<?php echo $row["Nombre"]; ?>" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a></button>
+													</form>
 												</div>
-											</div> <!-- .et_pb_column -->
-
-
-										</div> <!-- .et_pb_row -->
-										 <!-- .et_pb_row -->
-										 <!-- .et_pb_row -->
+											</div>
+										</div>
+									</div>
 
 
 										 <?php  }  } else { //deberia mostrarlo mas lindo ?>
 
-											NO HAY PRODUCTOS
+											<h1>No Hay <?php echo $texto; ?></h1>
 
 											<?php }  ?> 
 
@@ -351,94 +259,8 @@ include './server/database.php';
 
 			</div> <!-- #main-content -->
 
-
-			<footer id="main-footer">
-				<div class="et_pb_with_border et_pb_section et_pb_section_12 et_section_regular">
-
-
-
-
-					<div class="et_pb_row et_pb_row_45 et_pb_equal_columns">
-						<div class="et_pb_column et_pb_column_1_3 et_pb_column_99  et_pb_css_mix_blend_mode_passthrough">
-
-
-							<div class="et_pb_module et_pb_text et_pb_text_27  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-								<div class="et_pb_text_inner">
-									<h6>CONTACTANOS</h6>
-								</div>
-							</div> <!-- .et_pb_text -->
-							<div class="et_pb_module et_pb_text et_pb_text_28  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-								<div class="et_pb_text_inner">
-									<h6><a class="email" href="mailto:terracosmeticacontacto@gmail.com">terracosmeticacontacto@gmail.com</a>
-									</h6>
-									<p>Ciudad Autónoma de Buenos Aires</p>
-								</div>
-							</div> <!-- .et_pb_text -->
-						</div> <!-- .et_pb_column -->
-						<div class="et_pb_column et_pb_column_1_3 et_pb_column_100  et_pb_css_mix_blend_mode_passthrough">
-
-
-							<div class="et_pb_module et_pb_image et_pb_image_32">
-
-
-								<span class="et_pb_image_wrap "><img src="images/logo-fondo-transparente.jpg" alt="" title="logo-fondo-transparente"></span>
-							</div>
-						</div> <!-- .et_pb_column -->
-						<div class="et_pb_column et_pb_column_1_3 et_pb_column_101  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-							<div class="et_pb_module et_pb_text et_pb_text_29  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-								<div class="et_pb_text_inner">
-									<h6>SEGUINOS EN REDES</h6>
-								</div>
-							</div> <!-- .et_pb_text -->
-							<ul class="et_pb_module et_pb_social_media_follow et_pb_social_media_follow_0 clearfix  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-								<li class="et_pb_social_media_follow_network_0 et_pb_social_icon et_pb_social_network_link  et-social-instagram et_pb_social_media_follow_network_0">
-									<a href="https://www.instagram.com/terra_cosmeticanatural/" class="icon et_pb_with_border" title="Seguir en Instagram" target="_blank"><span class="et_pb_social_media_follow_network_name" aria-hidden="true">Seguir</span></a></li>
-								<li class="et_pb_social_media_follow_network_1 et_pb_social_icon et_pb_social_network_link  et-social-facebook et_pb_social_media_follow_network_1">
-									<a href="https://www.facebook.com/Terra-Cosm%C3%A9tica-Natural-873989496300527" class="icon et_pb_with_border" title="Seguir en Facebook" target="_blank"><span class="et_pb_social_media_follow_network_name" aria-hidden="true">Seguir</span></a></li>
-							</ul> <!-- .et_pb_counters -->
-						</div> <!-- .et_pb_column -->
-
-
-					</div> <!-- .et_pb_row -->
-
-
-				</div> <!-- .et_pb_section -->
-			</footer> <!-- #main-footer -->
-		</div> <!-- #et-main-area -->
-
-		 <!-- Modal -->
-		 <div class="modal fade modal-height" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-lg" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<table class="show-cart table">
-				
-										</table>
-										<div>Precio total: $<span class="total-cart"></span></div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-										<button type="button" class="btn btn btn-cart"> <a href="checkouts.html">Ordenar</a></button>
-									</div>
-								</div>
-							</div>
-						</div>
+<?php include './include/foot.php'; ?>
+			
 
 
 
