@@ -180,7 +180,7 @@ else{
 										
 
 										<?php 
-										//MOSTRADOR DE PRODUCTOS EN OFERTA
+										//MOSTRADOR DE PRODUCTOS
 
 										
 										$result= $conn->query($sql);
@@ -191,8 +191,56 @@ else{
 									<div class="" style="display:flex;">
 										<div class="et_pb_column et_pb_column_1_2 et_pb_column_5 et_clickable  et_pb_css_mix_blend_mode_passthrough">
 											<div class="et_pb_module et_pb_image et_pb_image_0">
-												<span style="color:white;" class="mt-5 badge bg-primary"> <p> <?php if ($row["Stock"]<1){echo "Sin Stock";}else{if ($row["Stock"]<10){echo "Ultimas Disponibles";}else{echo "En Stock";}} ?></p></span>
-												<a href="#"><span class="et_pb_image_wrap "><img src="<?php echo $PWD . $row["Imagen1"]; ?>" alt="" title="<?php echo $row["Nombre"]; ?>"></span></a>
+												<span style="color:white;" class="mt-5 badge bg-<?php if ($row["Stock"]<1){echo "secondary";}else{if ($row["Stock"]<10){echo "warning";}else{echo "primary";}} ?>"> <p> <?php if ($row["Stock"]<1){echo "Sin Stock";}else{if ($row["Stock"]<10){echo "Ultimas Disponibles";}else{echo "En Stock";}} ?></p></span>
+												
+												<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+												<div class="carousel-inner">
+													<?php $Cant=0; if (!empty($row["Imagen1"])) {$Cant=$Cant+1;?>
+													<div class="carousel-item active">
+													<img class="d-block w-100" src="<?php echo $PWD . $row["Imagen1"]; ?>" alt="<?php echo $row["Nombre"]; ?>">
+													</div>
+													<?php } ?>
+													<?php if (!empty($row["Imagen2"])) {$Cant=$Cant+1;?>
+													<div class="carousel-item">
+													<img class="d-block w-100" src="<?php echo $PWD . $row["Imagen2"]; ?>" alt="<?php echo $row["Nombre"]; ?>">
+													</div>
+													<?php } ?>
+													<?php if (!empty($row["Imagen3"])) {$Cant=$Cant+1;?>
+													<div class="carousel-item">
+													<img class="d-block w-100" src="<?php echo $PWD . $row["Imagen3"]; ?>" alt="<?php echo $row["Nombre"]; ?>">
+													</div>
+													<?php } ?>
+													<?php if (!empty($row["Imagen4"])) {$Cant=$Cant+1;?>
+													<div class="carousel-item">
+													<img class="d-block w-100" src="<?php echo $PWD . $row["Imagen4"]; ?>" alt="<?php echo $row["Nombre"]; ?>">
+													</div>
+													<?php } ?>
+													<?php if (!empty($row["Imagen5"])) {$Cant=$Cant+1;?>
+													<div class="carousel-item">
+													<img class="d-block w-100" src="<?php echo $PWD . $row["Imagen5"]; ?>" alt="<?php echo $row["Nombre"]; ?>">
+													</div>
+													<?php } ?>
+												</div>
+												<?php
+												//se deshabilita por funcioanmiento incorrecto
+												if ($Cant < 0) {?>
+												<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+													<span class="sr-only">Previous</span>
+												</a>
+												<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+													<span class="carousel-control-next-icon" aria-hidden="true"></span>
+													<span class="sr-only">Next</span>
+												</a>
+												<?php } ?>
+												</div>
+												
+												
+												
+												
+												
+												
+											<!-- 	<a href="#"><span class="et_pb_image_wrap "><img src="<?php //echo $PWD . $row["Imagen1"]; ?>" alt="" title="<?php //echo $row["Nombre"]; ?>"></span></a> -->
 											</div>
 										</div>
 										<div class=" mt-5 et_pb_column et_pb_column_1_2 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
@@ -208,10 +256,23 @@ else{
 											</div>
 											<div class="et_pb_module et_pb_wc_price et_pb_wc_price_0">
 												<div class="et_pb_module_inner">
-													<p> <span class="badge-font-size badge bg-success">
+												<?php if ($row["Oferta"]!=0){ ?>
+													<p><span class="badge-font-size badge bg-success"><?php echo "%".$row["Oferta"]." OFF"; ?></span> 
+													<span class="price"> <span style="text-decoration-line: line-through;"><?php 
+											
+													$Precio=$row["Precio"];
+													$Oferta=$row["Oferta"];
+													$Calc=$Precio / ($Oferta/100);
+													echo "$".$Calc; 
 													
-												<?php if ($row["Oferta"]!=0){echo "%".$row["Oferta"];} ?> OFF
-													</span> <span class="price"> <span style="text-decoration-line: line-through;"> $ <?php echo $row["Precio"]; ?> </span> $ <?php echo $row["Precio"]; ?></span></p>
+													?> </span><?php 
+													
+													echo "$".$row["Precio"];
+
+													?></span></p>
+												<?php }else{ ?>	
+												<p><span class="price"> $ <?php echo $row["Precio"]; ?></span></p>
+												<?php } ?>	
 												</div>
 											</div>
 											<div class="et_pb_with_border et_pb_module et_pb_wc_add_to_cart et_pb_wc_add_to_cart_0 et_pb_bg_layout_light et_pb_woo_custom_button_icon  et_pb_text_align_left" data-button-class="single_add_to_cart_button" data-button-icon="5" data-button-icon-tablet="" data-button-icon-phone="">
@@ -221,7 +282,7 @@ else{
 														<div class="quantity d-none">
 															<label class="screen-reader-text" for="quantity_60402626b783d"><?php echo $row["Nombre"]; ?></label>
 														</div>
-														<button type="submit" value="225" class="btn btn-light" style="background-color:white; border-color:#d4d4d4;">  <a href="#" data-id="<?php echo $row["Nombre"]; ?>" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a></button>
+														<button type="submit" value="225" class="btn btn-light" style="background-color:white; border-color:#d4d4d4;<?php if ($row["Stock"]<1){echo "display:none;";}; ?>" >  <?php if ($row["Stock"]>1){ ?><a href="#" data-id="<?php echo $row["Nombre"]; ?>" data-name="<?php echo $row["ID"]; ?>" data-price="<?php echo $row["Precio"]; ?>" class="add-to-cart">Agregar al Carrito</a> <?php }; ?></button>
 													</form>
 												</div>
 											</div>
