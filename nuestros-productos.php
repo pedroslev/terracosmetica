@@ -40,7 +40,7 @@ else{
 <html lang="es"><head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+	<link rel="icon" type="image/png" href="images/favicon.png" sizes="any">
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//s.w.org">

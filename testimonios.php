@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
+    <link rel="icon" type="image/png" href="images/favicon.png" sizes="any">
+    
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
     <meta content="Divi v.4.4.8" name="generator">

@@ -87,10 +87,10 @@
 										<input type="hidden" name="PrecioFinalMercadopago" id="PrecioFinalMercadopago">
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+										
 										<button type="submit" class="btn btn btn-cart"> Ordenar</button>
 									</form>
-										
+									<button class="clear-cart btn btn-danger">Clear Cart</button>
 									</div>
 								</div>
 							</div>

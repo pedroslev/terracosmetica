@@ -10,6 +10,7 @@
   </script> -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com" />
   <link rel="dns-prefetch" href="//s.w.org" />
+  <link rel="icon" type="image/png" href="images/favicon.png" sizes="any">
   <meta content="Divi v.4.4.8" name="generator" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
